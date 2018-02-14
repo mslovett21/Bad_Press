@@ -1,7 +1,5 @@
 ## Defining your product
 
-The following layout helps define your product:
-
 In order to make a meaningful vote
 
 our product will solve a voter's
