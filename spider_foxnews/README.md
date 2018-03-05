@@ -9,4 +9,12 @@ Download and install [Scrapy+Splash](https://github.com/scrapy-plugins/scrapy-sp
 ```python
 pip install scrapy-splash
 ```
-Download and install [Docker](https://docs.docker.com/install/). Configure [crapy+splash(https://github.com/scrapy-plugins/scrapy-splash#configuration)
+Download and install [Docker](https://docs.docker.com/install/). Configure [scrapy+splash](https://github.com/scrapy-plugins/scrapy-splash#configuration) and run:
+```
+docker run -p 8050:8050 scrapinghub/splash
+```
+To start the spider, go to the top directory of spider\_foxnews and type:
+```
+scrapy crawl jsfoxnews_v1 -o jsfoxnews_v1.json
+```
+This will scrape fox news articles on West Virginia candidates and save the results to jsfoxnews\_v1.json file for viewing. 
