@@ -1,5 +1,8 @@
 # Data Preprocessing steps
 
 
-View Jupyter Notebook here:
-http://nbviewer.jupyter.org/github/mslovett21/Bad_Press/blob/master/Database/Articles.ipynb
+View current Jupyter Notebook see :
+ 
+Bad_Press/Database/.ipynb_checkpoints/Rawdata_vectors-checkpoint.ipynb
+
+
