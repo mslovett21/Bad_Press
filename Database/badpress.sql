@@ -1,38 +1,40 @@
+DROP DATABASE badpress;
+CREATE DATABASE badpress;
 USE badpress;
 
 CREATE TABLE source(
 	id INT NOT NULL,
-	name VARCHART(30),
-	URL_logo VARCHART(250),
+	name VARCHAR(30),
+	URL_logo VARCHAR(250),
 	PRIMARY KEY(id)
 );
 
 CREATE TABLE state(
 	id INT NOT NULL,
-	name VARCHART(50),
-	URL_flag VARCHART(250),
-	primaries_date VARCHART(50),
+	name VARCHAR(50),
+	URL_flag VARCHAR(250),
+	primaries_date VARCHAR(50),
 	PRIMARY KEY(id)
 );
 
 
 CREATE TABLE issue(
 	id INT NOT NULL,
-	name VARCHART(50),
+	name VARCHAR(50),
 	info TEXT,
-	URL_logo VARCHART(250),
+	URL_logo VARCHAR(250),
 	PRIMARY KEY(id)
 );
 
 CREATE TABLE candidate(
 	id INT NOT NULL,
-	name VARCHART(70),
+	name VARCHAR(70),
 	state_fk INT,
-	date_birth DATE,
-	place_birth VARCHART(100),
-	position VARCHART(100),
-	office_address VARCHART(100),
-	URL_photo VARCHART(250),
+	date_birth VARCHAR(30),
+	place_birth VARCHAR(100),
+	position VARCHAR(100),
+	URL_photo VARCHAR(250),
+    party VARCHAR(50),
 	score_issue_1 FLOAT,
 	score_issue_2 FLOAT,
 	score_issue_3 FLOAT,
@@ -47,11 +49,13 @@ CREATE TABLE article(
 	id INT NOT NULL,
 	candidate_fk INT,
 	state_fk INT,
-	link VARCHART(250),
+	link VARCHAR(250),
 	sentiment_score FLOAT,
 	issue_fk INT,
 	summary TEXT,
-	date DATE,
+	date VARCHAR(140),
+    title VARCHAR(300),
+    source_fk INT,
 	PRIMARY KEY(id),
 	FOREIGN KEY(candidate_fk) REFERENCES  candidate(id),
 	FOREIGN KEY(state_fk) REFERENCES state(id),
