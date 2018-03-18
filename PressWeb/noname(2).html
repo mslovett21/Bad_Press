@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8">
+<style>
+h1 {
+  font-family:arial;
+  font-size:2em;
+  color:#333;
+}
+#info {
+  position:absolute;
+  top: 10px;
+  left: 10px;
+}
+.states {
+	fill: #e5e5e5;
+	stroke: #fff;
+	stroke-width:2px;
+}
+.states:hover {
+	fill: steelblue;
+}
+</style>
+<body>
+<div id="info"><h1 id="name"></h1></div>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="us.json"></script>
+<script>
+ 
+var width = 960,
+	height = 500;
+ 
+var svg = d3.select('body').append('svg')
+	.attr('width', width)
+	.attr('height', height);
+ 
+var projection = d3.geo.albersUsa()
+	.scale(1000)
+	.translate([width / 2, height / 2]);
+ 
+var path = d3.geo.path()
+	.projection(projection);
+/*
+d3.json('us.json', function(error, us) {
+	svg.selectAll('.states')
+		.data(topojson.feature(us, us.objects.usStates).features)
+		.enter()
+		.append('path')
+		.attr('class', 'states')
+		.attr('d', path)
+		.on('mouseover', function(d){
+			var name = d.properties.STATE_ABBR;
+			return document.getElementById('name').innerHTML=name;
+		});
+});
+*/
+</script>
+</body>
+</html>
