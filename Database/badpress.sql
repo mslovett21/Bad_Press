@@ -1,5 +1,5 @@
 DROP DATABASE badpress;
-CREATE DATABASE badpress;
+CREATE DATABASE badpress CHARACTER SET utf8;
 USE badpress;
 
 CREATE TABLE source(
