@@ -1,0 +1,9 @@
+/* Your custom styles */
+.states {
+	fill: #000000;
+	stroke: #fff;
+	stroke-width:2px;
+}
+.states:hover {
+	fill: darkorchid;
+}
