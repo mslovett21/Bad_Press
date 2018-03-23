@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Bad Press</title>
+	<meta charset="utf-8" />
+	{% load staticfiles %}
+	<link rel='stylesheet' href="/static/css/bootstrap.min.css">
+	<link rel='stylesheet' href="/static/css/nav.css">
+	<link rel='stylesheet' href="/static/css/map.css">
+</head>
+
+<header>
+<nav class="navbar" >
+  <a class="navbar-brand" href="/">Bad Press</a>
+  
+   <form class="form-inline">
+       <a href="/about" class="btn btn-default">About</a>
+   </form>
+</nav>
+</header>
+<body class="body">
+
+	   {% block content %}
+	   {% endblock %}	
+	
+
+    <!-- Plugin JavaScript -->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom JavaScript for this theme -->
+    <script src="js/scrolling-nav.js"></script>
+<footer>
+
+</footer>
+</body>
+
+</html>
