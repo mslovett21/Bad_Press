@@ -1,6 +1,9 @@
 
 ## To get it running
-Download and install Django.
+### Required Resources
+* Django
+* mysql
+* mysqlclient
 
 Run Server
 ```python
