@@ -1,0 +1,19 @@
+.navbar {
+  background-color: #673ab7;
+}
+.navbar .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar .navbar-brand:hover,
+.navbar .navbar-brand:focus {
+  color:  #FFFFFF;
+}
+.navbar .navbar-text {
+  color:  #FFFFFF;
+}
+.navbar {
+    overflow: hidden;
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the top of the page */
+    width: 100%; /* Full width */
+}
