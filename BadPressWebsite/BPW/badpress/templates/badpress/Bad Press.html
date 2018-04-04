@@ -12,51 +12,7 @@
     <!-- Material Design Bootstrap -->
     <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="css/style.css" rel="stylesheet">
-	
-<style>
-body { 
-    padding-top: 75px; 
-}
-
-h1 {
-  font-family:arial;
-  font-size:2em;
-  color:#333;
-}
-#info {
-  position:absolute;
-  top: 10px;
-  left: 10px;
-}
-.states {
-	fill: #000000;
-	stroke: #fff;
-	stroke-width:2px;
-}
-.states:hover {
-	fill: darkorchid;
-}
-
-input[type=text] {
-    width: 130px;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px; 
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-
-input[type=text]:focus {
-    width: 100%;
-}
-</style>
+    <link href="css/map.css" rel="stylesheet">
 </head>
 
   <body id="page-top">
@@ -93,8 +49,7 @@ input[type=text]:focus {
       <div class="container">
         <div class="row">
           <div class="col-lg-8 mx-auto">
-            <h2>About this page</h2>
-            <p class="lead">This is a great place to talk about your webpage.This template is purposefully unstyled so you can use it as a boilerplate or starting point for your own landing page designs! </p>
+            <h2 style="text-align:center">Our Website, Our Mission</h2>
           </div>
         </div>
       </div>
@@ -103,17 +58,15 @@ input[type=text]:focus {
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-					<h2>Election Map</h2>		
-					<p>Search by state name:</p>				
 					<form>
-					<input type="text" name="search" placeholder="Search..">
+					<input type="text" name="search" placeholder="Enter..">
 					</form>
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="http://d3js.org/topojson.v1.min.js"></script>
 	<script>
 		
 	var width = 1440,
-	height = 750;
+	height = 600;
 	
 	var svg = d3.select('body').append('svg')
 	.attr('width', width)
@@ -134,7 +87,10 @@ input[type=text]:focus {
 	.attr("xlink:href", function(d) {return 'https://wikipedia.org/wiki/' + d.properties.STATE_ABBR})
 	.append('path')
 	.attr('class', 'states')
-	.attr('d', path);
+	.attr('d', path)
+	.style("fill", function(d) {
+	return d.properties.COLOR
+	});
 	});
 	
 		</script>
