@@ -1,0 +1,48 @@
+/* Your custom styles */
+body { 
+    padding-top: 75px; 
+}
+
+h1 {
+  font-family:arial;
+  font-size:2em;
+  color:#333;
+}
+#info {
+  position:absolute;
+  top: 10px;
+  left: 10px;
+}
+.states {
+	fill: darkorchid;
+	stroke: #fff;
+	stroke-width:2px;
+}
+.states:hover {
+	fill-opacity: .7;
+}
+
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+
+.bar {
+            fill: darkorchid;
+        }
+
+
