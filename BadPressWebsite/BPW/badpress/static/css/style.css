@@ -1,9 +1,69 @@
 /* Your custom styles */
+
+/*padding for nav bar*/
+body { 
+    padding-top: 75px; 
+}
+
+#info {
+  position:absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.jumbotron{
+margin-top: 15px;
+padding: 27px;
+color: black;
+background-color: #F2E7F1;
+}
+
+svg {
+  background: white;
+}
+
+/*US map */
 .states {
-	fill: #000000;
+	fill: darkorchid;
 	stroke: #fff;
 	stroke-width:2px;
 }
 .states:hover {
-	fill: darkorchid;
+	fill-opacity: .7;
 }
+
+/*search bar*/
+input[type=text] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+    width: 100%;
+}
+
+
+/*bar graph stylings*/
+.bar {
+  fill: gold;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: white;
+  shape-rendering: crispEdges;
+}
+
+
+
