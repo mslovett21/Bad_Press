@@ -1,14 +1,8 @@
-body { 
-    padding-top: 65px; 
+.states {
+	fill: darkorchid;
+	stroke: #fff;
+	stroke-width:2px;
 }
-.states :hover {
-  fill: #673ab7;
-}
-.state-borders {
-  fill: none;
-  stroke: #fff;
-  stroke-width: 0.5px;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  pointer-events: none;
+.states:hover {
+	fill-opacity: .7;
 }
