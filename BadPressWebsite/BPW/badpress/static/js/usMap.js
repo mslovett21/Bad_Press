@@ -12,7 +12,7 @@ var width = 1440,
     var path = d3.geo.path()
     .projection(projection);
     
-    d3.json('us.json', function(error, us) {
+    d3.json('https://raw.githubusercontent.com/mslovett21/Bad_Press/master/BadPressWebsite/BPW/badpress/templates/badpress/us.json', function(error, us) {
     svg.selectAll('.states')
     .data(topojson.feature(us, us.objects.usStates).features)
     .enter()
