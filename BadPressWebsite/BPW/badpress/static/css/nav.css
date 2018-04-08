@@ -17,3 +17,40 @@
     top: 0; /* Position the navbar at the top of the page */
     width: 100%; /* Full width */
 }
+
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.footer{
+    background-color: #673ab7;
+    color: #00a651;
+    padding-top: 0px;
+    border-top: 1px solid #e7e7e7;
+    margin-bottom: 0px;
+}
+
+.bottom-footer{
+    border-top: 1px solid #00a651;
+    margin-top: 0px;
+    padding-top: 7px;
+    color: #00a651;
+
+}
+
+.footer-nav li{
+    display: inline;
+    padding: 0px 40px;
+}
+
+.footer-nav a{
+    color: #673ab7;
+    text-decoration: none;
+}
