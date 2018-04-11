@@ -1,26 +1,21 @@
 import scrapy
 from scrapy_splash import SplashRequest
 
-#first_names = ["Don",       "Bo",    "Evan"]#,    "Joe",    "Patrick",   "Jack",    "Paula Jean",   "Tom"]
-#last_names = ["Blankenship","Copley","Jenkins"]#, "Manchin", "Morrisey", "Newbrough","Swearengin",  "Willis" ]
-
-
-
 class QuotesSpider(scrapy.Spider):
-    name="jsfoxnews_v1"
+    name="jsfoxnews_texas"
     start_urls = ["http://www.foxnews.com"]
 
     def parse(self,response):
-      first_names = ["Don",       "Bo",    "Evan",    "Joe",    "Patrick",   "Jack",    "Paula Jean",   "Tom"]
-      last_names = ["Blankenship","Copley","Jenkins", "Manchin", "Morrisey", "Newbrough","Swearengin",  "Willis" ]
-      #first_names = ["Don","Joe"]
-      #last_names = ["Blankenship","Manchin"]
+      first_names = ["Carl",  "Ted",  "Bob",    "Beto"]
+      last_names =  ["Bible", "Cruz", "McNeil", "O'Rourke"]
+      #first_names = ["Ted"]
+      #last_names = ["Cruz"]
       for i in range(len(first_names)):
         #http://www.foxnews.com/search-results/search?q=don%20blankenship&ss=fn&start=0
         candidate_link = "http://www.foxnews.com/search-results/search?q=" + first_names[i] + "%20" + last_names[i] + "&ss=fn&start=0"
         yield SplashRequest(url=candidate_link, callback=self.parse_the_search_results,
         args={
-          'wait': 5,
+          'wait': 10,
         }, endpoint='render.html')
 
     def parse_the_search_results(self, response):
@@ -45,7 +40,7 @@ class QuotesSpider(scrapy.Spider):
         print(next_page)
         yield SplashRequest(url=next_page, callback=self.parse_next_pages,
         args={
-          'wait': 5,
+          'wait': 10,
         }, endpoint='render.html')
 
     def parse_next_pages(self, response):
@@ -56,14 +51,16 @@ class QuotesSpider(scrapy.Spider):
           yield SplashRequest(url=link, callback=self.parse_the_article,
           args={
             'wait': 10,
-          }, endpoint='render.html')
+          }, meta={'article_link': link}, endpoint='render.html')
 
     def parse_the_article(self, response):
       if response.css("time::attr(datetime)").extract_first():
         if response.css("div.article-text p::text").extract():
+          link = response.meta.get('article_link')
           yield {
            'newspaper_name': "foxnews",
            'articles_date': response.css("time::attr(datetime)").extract_first(),
+           'articles_link': link,
            'articles_title': response.css('h1::text').extract_first(),
            'article_text': response.css("div.article-text p::text").extract()
           }
