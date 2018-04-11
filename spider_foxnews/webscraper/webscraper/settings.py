@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'webscraper.spiders'
 #USER_AGENT = 'webscraper (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-ROBOTSTXT_OBEY = True
+ROBOTSTXT_OBEY = False
 
 SPLASH_URL = 'http://localhost:8050'
 
