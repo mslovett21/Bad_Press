@@ -1,13 +1,23 @@
 from django.db import models
+from django.urls import reverse #Used to generate URLs by reversing the URL patterns
 
 # Create your models here.
-from django.db import models
+class State(models.Model):
+    """
+    Model representing a state.
+    """
+    state_name = models.CharField(max_length=100)
 
-# Create your models here.
-class state(models.Model):
-	name=models.CharField(max_length=50)
-	info=models.TextField()
-	URL_logo=models.CharField(max_length=250)
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular state instance.
+        """
+        return reverse('state-detail', args=[str(self.id)])
 
-def __str__(self):
-	return self.name
+
+    def __str__(self):
+        """
+        String for representing the Model object.
+        """
+        return self.state_name
+
