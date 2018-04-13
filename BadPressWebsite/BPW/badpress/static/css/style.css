@@ -59,6 +59,10 @@ input[type=text]:focus {
   background-color: white;
 }
 
+.innerBar{
+  height: 24px;
+}
+
 .innerBar:hover {
     opacity: .7;
   }
