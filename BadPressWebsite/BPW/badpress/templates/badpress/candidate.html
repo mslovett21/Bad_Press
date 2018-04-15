@@ -36,6 +36,7 @@
             <h2>Office</h2>
             <h2>ISSUES</h2>
              <div id="keyIssues"></div>
+
              <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
               <script>
 //replace with json
@@ -119,8 +120,57 @@
               </script>
             <a href="{% url 'issue' %}" class="btn btn-default">Link to Articles about Issue</a>
 
+
+           <a href="issue">
+              Environment: 
+          <div id="bars">
+            <div class="w3-border">
+              <div id="Environment" class="w3-purple w3-center innerBar"></div>
+            </div>
+          </div>
+          </a>
+
+          <a href="issue">
+             Health Care: 
+          <div id="bars">
+            <div class="w3-border">
+                <div id="Health Care" class="w3-purple w3-center innerBar"></div>
+            </div>
+          </div>
+          </a>
+
+          <a href="issue">
+             Gun Control: 
+          <div id="bars">
+            <div class="w3-border">
+                <div id="Gun Control" class="w3-purple w3-center innerBar"></div>
+            </div>
+          </div>
+          </a>
+
+          <a href="issue">
+             Immigration: 
+          <div id="bars">
+            <div class="w3-border">
+                <div id="Immigration" class="w3-purple w3-center innerBar"></div>
+            </div>
+          </div>
+          </a>
+
+          <script src="../../static/js/barAnimate.js"></script>
+          <script>
+            move("Environment", 20);
+            move("Gun Control", 57);
+            move("Immigration", 77);
+            move("Health Care", 23);
+          </script>
+
+            <a href="/issue" class="btn btn-default">Link to Articles about Issue</a>
+
+
          </div>
       </div>
+    </div>
 
       <div class="col-md-6">
            <div class="jumbotron" style="background-color: white">

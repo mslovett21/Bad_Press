@@ -11,13 +11,13 @@ body {
   left: 10px;
 }
 
+/*container styles*/
 .jumbotron{
 margin-top: 15px;
 padding: 27px;
 color: black;
 background-color: #efeff5;
 }
-
 
 svg {
   background: white;
@@ -55,9 +55,17 @@ input[type=text]:focus {
 
 
 /*bar graph stylings*/
-.bar {
-  fill: gold;
+#bars {
+  background-color: white;
 }
+
+.innerBar{
+  height: 24px;
+}
+
+.innerBar:hover {
+    opacity: .7;
+  }
 
 .axis path,
 .axis line {
