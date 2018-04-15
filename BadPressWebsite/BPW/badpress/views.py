@@ -1,29 +1,56 @@
 from django.shortcuts import render, HttpResponse
-from .models import State
 from django.views import generic
+from .models import Source, State, Issue, Article, Candidate
 
 # Create your views here.
-# hello pushing this stuff
 def index(request):
-	return render(request, 'badpress/home.html')
+	"""
+	View function for home page of site.
+	"""
+	# Render the HTML template index.html with the data in the context variable
+	return render(
+		request,
+		'badpress/home.html',
+	)
 
 
-def stateresults(request):
+class CandidateList(generic.ListView):
+	model = Candidate
 	state="Texas"
+	def get_context_data(self, **kwargs):
+		# Call the base implementation first to get a context
+		context = super().get_context_data(**kwargs)
+		# Add in a QuerySet of all the books
+		context['state_names'] = State.objects.all()
+		return context
+	'''
+	state="Texas"
+	state=State.objects.filter(name__icontains="Texas")
 	candidates=[{"name":"Candidate 1", "party": "Republican"},{"name":"Candidate 2", "party": "Democrat"},
 	{"name":"Candidate 3", "party": "Other"}, {"name":"Candidate 4", "party": "Democrat"},
 	{"name":"Candidate 5", "party": "Republican"},{"name":"Candidate 6", "party": "Republican"},
 	{"name":"Candidate 7", "party": "Democrat"}]
 	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
-	number_candidates=len(candidates)
+	#number_candidates=len(candidates)
+	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
 	date="6th May 2018"
+	#State.objects.filter(name__icontains="Texas")
 	args={'state': state, 'candidates': candidates, state_image : state_image,
 	 "number_candidates": number_candidates, "date":date}
 	return render(request, 'badpress/stateresults.html',args)
+	'''
 
 
 def candidate(request):
-	return render(request, 'badpress/candidate.html')
+	state="Texas"
+	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
+	#number_candidates=len(candidates)
+	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
+	date="6th May 2018"
+	#State.objects.filter(name__icontains="Texas")
+	args={'state': state, state_image : state_image,
+	 "number_candidates": number_candidates, "date":date}
+	return render(request, 'badpress/candidate.html', args)
 
 
 def issue(request):
@@ -42,8 +69,14 @@ def article(request):
 	return render(request, 'badpress/article.html')
 
 
-
+'''
 def about(request):
 	return render(request, 'badpress/about.html')
+'''
 
+def about(request):
+	return render(
+		request,
+		'badpress/about.html',
+	)
 

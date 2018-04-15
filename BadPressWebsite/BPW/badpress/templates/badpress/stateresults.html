@@ -7,57 +7,55 @@
 <div class="container">
 	<div class="row"> 
 				<div class="col-md-9">
-                   <img src="http://wallpaper-gallery.net/images/texas-wallpapers/texas-wallpapers-8.jpg" alt="Houston" style="opacity: 0.6;width: 1100px; height: 280px;">
-		       		<h1>{{ state }} </h1>
-		       		<br>
-		       		<div class="bottom-left">
-		       		<p><strong>  Number of candidates: {{ number_candidates }}</strong>  </p>
-		       		<p><strong>  Primary Election Day: {{ date }} </strong> </p>
-                    </div>
-		    	</div>	
-		    	<div class="col-md-3">
-		           
-		       		 <img src="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825" class="img-fluid z-depth-1" alt="Responsive image">
+									 <img src="http://wallpaper-gallery.net/images/texas-wallpapers/texas-wallpapers-8.jpg" alt="Houston" style="opacity: 0.6;width: 1100px; height: 280px;">
+							<h1>{{ state }} </h1>
+							<br>
+							<div class="bottom-left">
+							<p><strong>  Number of candidates: {{ number_candidates }}</strong>  </p>
+							<p><strong>  Primary Election Day: {{ date }} </strong> </p>
+										</div>
+					</div>	
+					<div class="col-md-3">
+							 
+							 <img src="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825" class="img-fluid z-depth-1" alt="Responsive image">
 
-		    	</div>			  
+					</div>			  
 	</div>
 	</div>
 <br>
 <br>
 <div class="row">					 
-     {% for candidate in candidates %}
-       
-
-    <div class="col-6">
-
-    <div class="card">
-        {% if candidate.party == "Republican" %}
-    	     <h3 class="card-header danger-color white-text">Rebulican</h3>
-        {% endif %}
-        {% if candidate.party == "Democrat" %}
-    	     <h3 class="card-header primary-color white-text">Democrat</h3>
-        {% endif %}
-        {% if candidate.party == "Other" %}
-    	     <h3 class="card-header warning-color white-text">Other</h3>
-        {% endif %}
-    	<div class="card-body">
-    	<div class="row">
-    	   <div class="col-9">
-	       	 	<h4 class="card-title">{{ candidate.name }}</h4>
-	       	 	<p class="card-text">Some short data</p>
-	       	 	<a class="btn btn-outline-primary" href="/candidate">View Profile</a>
-           </div>
-           <div class="col-3">
-       	 		<img src="http://media4.s-nbcnews.com/j/newscms/2016_04/1396306/ted-cruz-mug_5fea106e0eb494469a75e60d8f2b18ea.nbcnews-fp-320-320.jpeg" width="150" height="150" alt="candidate-picture" align="right" title=" Candidate Picture" style="margin-bottom: 1px; margin-top: 1px; ">
-       	   </div>
-       	 </div>
-    	</div>
-	</div>
+	{% if object_list %}
+		{% for candidate in object_list %}
+			<div class="col-6">
+			<div class="card">
+					{% if candidate.party == "Republican" %}
+						 <h3 class="card-header danger-color white-text">Republican</h3>
+					{% endif %}
+					{% if candidate.party == "Democrat" %}
+						 <h3 class="card-header primary-color white-text">Democrat</h3>
+					{% endif %}
+					{% if candidate.party == "Independent" %}
+						 <h3 class="card-header warning-color white-text">Independent</h3>
+					{% endif %}
+				<div class="card-body">
+				<div class="row">
+					 <div class="col-9">
+							<h4 class="card-title">{{ candidate.name }}</h4>
+							<p class="card-text">Some short data</p>
+							<a class="btn btn-outline-primary" href="{% url 'candidate' %}">View Profile</a>
+						 </div>
+						 <div class="col-3">
+							<img src="http://media4.s-nbcnews.com/j/newscms/2016_04/1396306/ted-cruz-mug_5fea106e0eb494469a75e60d8f2b18ea.nbcnews-fp-320-320.jpeg" width="150" height="150" alt="candidate-picture" align="right" title=" Candidate Picture" style="margin-bottom: 1px; margin-top: 1px; ">
+						 </div>
+					 </div>
+				</div>
+		</div>
 	<br>
 	<br>
 	</div>
-    
-    
+		
+		
 
 {% endfor %}
 	
