@@ -1,11 +1,22 @@
 from django.shortcuts import render, HttpResponse
 from .models import State
 from django.views import generic
+from .models import Source, State, Issue, Article, Candidate
 
 # Create your views here.
 # hello pushing this stuff
+#def index(request):
+#	return render(request, 'badpress/home.html')
+
 def index(request):
-	return render(request, 'badpress/home.html')
+    """
+    View function for home page of site.
+    """
+    # Render the HTML template index.html with the data in the context variable
+    return render(
+        request,
+        'badpress/home.html',
+    )
 
 
 def stateresults(request):
@@ -42,8 +53,14 @@ def article(request):
 	return render(request, 'badpress/article.html')
 
 
-
+'''
 def about(request):
 	return render(request, 'badpress/about.html')
+'''
 
+def about(request):
+	return render(
+        request,
+        'badpress/about.html',
+    )
 
