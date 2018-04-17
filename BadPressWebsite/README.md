@@ -5,6 +5,12 @@
 * mysql
 * mysqlclient
 
+Make migrations
+```
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
 Run Server
 ```python
 python manage.py runserver
