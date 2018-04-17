@@ -2,15 +2,46 @@
 
 /*padding for nav bar*/
 body { 
-    padding-top: 75px; 
+    padding-top: 75px;
 }
 
+/*backgorund image stylings, stretches to screen, blurs*/
+#background {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content.*/
+    filter:blur(10px);
+}
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+/*heading styles*/
+h3 {
+  font-style: italic;
+}
+
+/*nails nav bar to top*/
 #info {
   position:absolute;
   top: 10px;
   left: 10px;
 }
 
+/*nails elements*/
+#keepFormat {
+position:absolute;
+right:0;
+top:0;
+}
+
+
+/*container styles*/
 .jumbotron{
 margin-top: 15px;
 padding: 27px;
@@ -55,9 +86,18 @@ input[type=text]:focus {
 
 
 /*bar graph stylings*/
-.bar {
-  fill: gold;
+#bars {
+  background-color: white;
 }
+
+.innerBar{
+  height: 24px;
+  width: 0%;
+}
+
+.innerBar:hover {
+    opacity: .7;
+  }
 
 .axis path,
 .axis line {

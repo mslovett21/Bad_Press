@@ -8,6 +8,7 @@ urlpatterns = [
     path('stateresults/', views.CandidateList.as_view(), name='stateresults'),
     path('candidate/', views.candidate, name='candidate'),
     #path('candidate/<int:pk>', views.CandidateDetailView.as_view(), name='candidate-detail'),
+    #url(r'profile/(?P<username>.+)/$', accountsViews.profile, name="profile")
     path('article/', views.article, name='article'),
     path('issue/', views.issue, name='issue'),
 
