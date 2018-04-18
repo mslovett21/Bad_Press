@@ -8,9 +8,14 @@ def index(request):
 	View function for home page of site.
 	"""
 	# Render the HTML template index.html with the data in the context variable
+	queryset = Candidate.objects.all()
+	context = {
+		"candidate_list": queryset,
+	}
 	return render(
 		request,
 		'badpress/home.html',
+		context
 	)
 
 
@@ -41,14 +46,19 @@ class CandidateList(generic.ListView):
 	'''
 
 
-def candidate(request):
+def candidate(request, id):
+	try:
+		candidate_id=Candidate.objects.get(id=id)
+	except Candidate.DoesNotExist:
+		raise Http404("Candidate does not exist")
+	
 	state="Texas"
 	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
 	#number_candidates=len(candidates)
 	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
 	date="6th May 2018"
 	#State.objects.filter(name__icontains="Texas")
-	args={'state': state, state_image : state_image,
+	args={'candidate':candidate_id,'state': state, state_image : state_image,
 	 "number_candidates": number_candidates, "date":date}
 	return render(request, 'badpress/candidate.html', args)
 
