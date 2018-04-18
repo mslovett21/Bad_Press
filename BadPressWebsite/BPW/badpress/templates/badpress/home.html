@@ -59,7 +59,7 @@
 		.data(topojson.feature(us, us.objects.usStates).features)
 		.enter()
 		.append("a")
-		.attr("xlink:href", function(d) {return 'https://wikipedia.org/wiki/' + d.properties.STATE_ABBR})
+		.attr("xlink:href", function(d) {return "{% url 'stateresults' %}" + d.properties.STATE_ABBR})
 		.append('path')
 		.attr('class', 'states')
 		.attr('d', path)
