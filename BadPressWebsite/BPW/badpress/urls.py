@@ -15,8 +15,8 @@ urlpatterns = [
     url(r'^$', views.index, name="index"),
     #url(r'stateresults', views.stateresults, name="stateresults"),
     url(r'^candidate/(?P<id>\d+)/$', views.candidate, name="candidate"),
-    url(r'article', views.article, name="article"),
-    url(r'issue',views.issue, name="issue"),
+    url(r'^article/(?P<id>\d+)/$', views.article, name="article"),
+    url(r'^issue/(?P<id>\d+)/$',views.issue, name="issue"),
     url(r'about', views.about, name="about")
 ]
 
