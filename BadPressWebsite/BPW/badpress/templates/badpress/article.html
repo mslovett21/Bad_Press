@@ -2,8 +2,42 @@
 
 {% block content %}
 
+<div class="container" style="min-height: 100%;float: none; margin: 0 auto;">
 
+	<div class="jumbotron">
+	{% if article %}
+		{% if candidate %}
+		<div class="row">
+			<div class="col-md-3">
+				<div class="list-group">
+					<a href="#" class="list-group-item list-group-item-info"  class="white"  style="font-size: 18px; background:  #673ab7">
+						<center><font color="white"><strong>{{ article.candidate }}</strong></font> </center>
+					</a>
+					<div class="list-group-item "><center> <img src="{{ candidate.URL_photo }}" width="150" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "></center>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-9">
+				<h2>{{ article.candidate }} on {{ article.issue }}</h2>
+				<h3>Media: {{ article.source }}</h3>
+				<h3>Title: {{ article.title }}</h3>
+				<h3>Dated: {{ article.date }}</h3>
+				<a href="{{ article.link }}":><h3>Link</h3></a>
+				<script src="../../static/js/radialprogress.js"></script>
+				<div id="keepFormat" style="float: right;">
+					<div id = "score" style="display:inline-block; float:right; padding-bottom: 20px; padding-right: 20px;"></div>
+					<h2 style="text-align:center; padding-right: 20px;"> Match Score </h2>
+				</div>
+				<script>
+					var bar=new RadialProgress(document.getElementById("score"),{indeterminate:false,colorFg:"#1565d6",colorText:"#202020",thick:7,fixedTextSize:0.3});
+					bar.setValue(.7);
+				</script>
 
+			</div>
+		</div>
+		{% endif %}
+	{% endif %}
+	</div>
 
  <div class="container" style="min-height: 100%;float: none; margin: 0 auto;">
 
@@ -38,10 +72,26 @@
 	      		</div>
 	      </div>
 	 </div>
+
 </div>
 
 
 <div class="container"  style="min-height: 100%; float: none; margin: 0 auto;">
+
+{% if article %}
+	<div class="jumbotron">
+		<div class="row">
+			<div class="col-md-12">
+
+				<img src="{{ source.URL_logo }}" style="width:220px;height:220px; display:inline-block; float:left; padding: 20px;" alt="newspaper_logo">
+				<h2>Article Summary</h2>
+				<p>{{ article.summary }}</p>
+
+			</div>
+		</div>
+	</div>
+{% endif %}
+
 
  <div class="jumbotron">
     <div class="row">
@@ -70,6 +120,7 @@ Macy, the chairman of the board of GOA, said the group is "very uncomfortable" w
 			</div>
 	 </div>
 </div>
+
 
 
 

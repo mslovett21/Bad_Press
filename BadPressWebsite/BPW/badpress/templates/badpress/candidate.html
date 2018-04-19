@@ -2,6 +2,114 @@
 
 {% block content %}
 
+<div class="container">
+	<div class="jumbotron">
+		<div class="row">
+			<div class="col-md-9">
+				{% if candidate %}
+					<h2>{{ candidate.first_name }} {{ candidate.last_name }}</h2>
+					<p>Personal Details</p>
+					<br>
+					<p><strong> Date of Birth: {{ candidate.date_of_birth }} </strong></p>
+					<p><strong> Position: {{ candidate.position }} </strong></p>
+					<p><strong> Political Party: {% if candidate.party == 'r' %}Republican{% elif candidate.party == 'd' %}Democrat{% else %}Independent{% endif %} </strong></p>
+				{% endif %}
+			</div>
+
+			<div class="col-md-3">
+
+				<div class="list-group">
+					<a href="#" class="list-group-item list-group-item-info"  class="white"  style="font-size: 18px; background:  #673ab7    ">
+						<center><font color="white"><strong> {{ candidate.state }} </strong></font> </center>
+					</a>
+					<div class="list-group-item "><center> <img src="{{ candidate.URL_photo }}" width="150" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "></center>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-6">
+
+			<div class="jumbotron">
+				<h2>Office</h2>
+				<h2>ISSUES</h2>
+				<div id="keyIssues"></div>
+
+				<a href="">
+					Environment:
+					<div id="bars">
+						<div class="w3-border">
+							<div id="Environment" class="w3-green w3-center innerBar"></div>
+						</div>
+					</div>
+				</a>
+
+				<a href="">
+					Health Care:
+					<div id="bars">
+						<div class="w3-border">
+							<div id="Health Care" class="w3-red w3-center innerBar"></div>
+						</div>
+					</div>
+				</a>
+
+				<a href="">
+					Gun Control:
+					<div id="bars">
+						<div class="w3-border">
+							<div id="Gun Control" class="w3-yellow w3-center innerBar"></div>
+						</div>
+					</div>
+				</a>
+
+
+				<a href="">
+					Education:
+					<div id="bars">
+						<div class="w3-border">
+							<div id="Education" class="w3-purple w3-center innerBar"></div>
+						</div>
+					</div>
+				</a>
+
+				<a href="">
+					Immigration:
+					<div id="bars">
+						<div class="w3-border">
+							<div id="Immigration" class="w3-blue w3-center innerBar"></div>
+						</div>
+					</div>
+				</a>
+
+				<script src="../../static/js/barAnimate.js"></script>
+				<script>
+					move("Environment", {{ candidate.score_issue_1 }});
+					move("Gun Control", {{ candidate.score_issue_2 }});
+					move("Education", 	{{ candidate.score_issue_3 }});
+					move("Immigration", {{ candidate.score_issue_4 }});
+					move("Health Care", {{ candidate.score_issue_5 }});
+				</script>
+				<br>
+				<a href="{% url 'issue' id=candidate.id %}" class="btn btn-default">Link to Articles about Issue</a>
+
+			</div>
+		</div>
+
+		<div class="col-md-6">
+			<div class="jumbotron" style="background-color: white">
+				<h2>POPULARITY</h2>
+				<p>April 2017- March 2018 </p>
+				<div id = "chart"></div>
+
+				<canvas id="lineChart" style="background-color: white"></canvas>
+
+				<script src="https://d3js.org/d3.v4.min.js"></script>
+				<script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
+
+				<script></script>
   <div class="container">
  <div class="jumbotron">
     <div class="row">
@@ -113,6 +221,26 @@
 //line
 var ctxL = document.getElementById("lineChart").getContext('2d');
 var myLineChart = new Chart(ctxL, {
+<<<<<<< HEAD
+	type: 'line',
+	data: {
+		labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March"],
+		datasets: [
+		{
+			label: "Number of Articles Mentions",
+			fillColor: "rgba(220,220,220,0.2)",
+			strokeColor: "rgba(220,220,220,1)",
+			pointColor: "rgba(220,220,220,1)",
+			pointStrokeColor: "#fff",
+			pointHighlightFill: "#fff",
+			pointHighlightStroke: "rgba(220,220,220,1)",
+			data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40]
+		}
+		]
+	},
+	options: {
+		responsive: true
+	}
     type: 'line',
     data: {
         labels: ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March"],
@@ -136,6 +264,10 @@ var myLineChart = new Chart(ctxL, {
 
 </script>
 
+</div>
+</div>
+</div>
+=======
       </div>
     </div>
   </div>
@@ -144,6 +276,20 @@ var myLineChart = new Chart(ctxL, {
 
 <div class="container">
 <div class="row">
+			<div class="col-md-6">
+			 <div class="jumbotron">
+						<h2>Latest Article</h2>
+						<a href="{% url 'article' id=1 %}" class="btn btn-default">Link to Article</a>
+				</div>
+			</div>
+
+
+		 <div class="col-md-6">
+			 <div class="jumbotron">
+				<h2> Cloud </h2>
+						 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+				<script src="../../static/js/d3.layout.cloud.js"></script>
+				<div id="cloud"></div>
       <div class="col-md-6">
        <div class="jumbotron">
             <h2>Latest Article</h2>
@@ -160,39 +306,42 @@ var myLineChart = new Chart(ctxL, {
         <div id="cloud"></div>
 <script>
 //replace with json file
-    var frequency_list = [{"text":"trusted ","size":40},{"text":"affairs","size":15},{"text":"government","size":10},{"text":"electricity","size":15},{"text":"local","size":10},{"text":"global","size":5},{"text":"agriculture","size":10},{"text":"city","size":5},{"text":"tax","size":5},{"text":"working class","size":85},{"text":"senator","size":5},{"text":"authoritarian","size":5},{"text":"laws","size":15},{"text":"bribe","size":45},{"text":"career","size":30},{"text":"coercion","size":5},{"text":"constraints","size":5},{"text":"control","size":10},{"text":"reform","size":120},{"text":"hypocrisy","size":5},{"text":"responsible","size":90},{"text":"bipartisan","size":5},{"text":"demagogue","size":10},{"text":"works","size":10},{"text":"science","size":70},{"text":"gerrymander","size":30},{"text":"studies","size":5},{"text":"lame duck","size":45},{"text":"nature","size":40},{"text":"lobby","size":30},{"text":"concerned","size":25},{"text":"capitalist","size":40},{"text":"google","size":10},{"text":"trickle down","size":5},{"text":"economy","size":15},{"text":"left","size":15},{"text":"right","size":15},{"text":"centre","size":15},{"text":"progressive","size":15},{"text":"radical","size":15},{"text":"filibuster","size":20},{"text":"civil rights","size":15},{"text":"LGBTQ","size":15},{"text":"modern","size":15},{"text":"immigration","size":15},{"text":"military","size":15},{"text":"white-collar","size":15},{"text":"experience","size":25},{"text":"realpolitik","size":5},{"text":"authority","size":15},{"text":"conservative","size":5},{"text":"independent","size":10},{"text":"jobs","size":5},{"text":"constitutional","size":5}];
+		var frequency_list = [{"text":"trusted ","size":40},{"text":"affairs","size":15},{"text":"government","size":10},{"text":"electricity","size":15},{"text":"local","size":10},{"text":"global","size":5},{"text":"agriculture","size":10},{"text":"city","size":5},{"text":"tax","size":5},{"text":"working class","size":85},{"text":"senator","size":5},{"text":"authoritarian","size":5},{"text":"laws","size":15},{"text":"bribe","size":45},{"text":"career","size":30},{"text":"coercion","size":5},{"text":"constraints","size":5},{"text":"control","size":10},{"text":"reform","size":120},{"text":"hypocrisy","size":5},{"text":"responsible","size":90},{"text":"bipartisan","size":5},{"text":"demagogue","size":10},{"text":"works","size":10},{"text":"science","size":70},{"text":"gerrymander","size":30},{"text":"studies","size":5},{"text":"lame duck","size":45},{"text":"nature","size":40},{"text":"lobby","size":30},{"text":"concerned","size":25},{"text":"capitalist","size":40},{"text":"google","size":10},{"text":"trickle down","size":5},{"text":"economy","size":15},{"text":"left","size":15},{"text":"right","size":15},{"text":"centre","size":15},{"text":"progressive","size":15},{"text":"radical","size":15},{"text":"filibuster","size":20},{"text":"civil rights","size":15},{"text":"LGBTQ","size":15},{"text":"modern","size":15},{"text":"immigration","size":15},{"text":"military","size":15},{"text":"white-collar","size":15},{"text":"experience","size":25},{"text":"realpolitik","size":5},{"text":"authority","size":15},{"text":"conservative","size":5},{"text":"independent","size":10},{"text":"jobs","size":5},{"text":"constitutional","size":5}];
 
 
-    var color = d3.scale.linear()
-            .domain([0,1,2,3,4,5,6,10,15,20,100])
-            .range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
+		var color = d3.scale.linear()
+						.domain([0,1,2,3,4,5,6,10,15,20,100])
+						.range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
 
-    d3.layout.cloud().size([500, 400])
-            .words(frequency_list)
-            .rotate(0)
-            .fontSize(function(d) { return d.size; })
-            .on("end", draw)
-            .start();
+		d3.layout.cloud().size([500, 400])
+						.words(frequency_list)
+						.rotate(0)
+						.fontSize(function(d) { return d.size; })
+						.on("end", draw)
+						.start();
 
-    function draw(words) {
-        d3.select("#cloud").append("svg")
-                .attr("width", 500)
-                .attr("height", 350)
-                .attr("class", "wordcloud")
-                .append("g")
-                //x y coords for work cloud
-                .attr("transform", "translate(200,200)")
-                .selectAll("text")
-                .data(words)
-                .enter().append("text")
-                .style("font-size", function(d) { return d.size + "px"; })
-                .style("fill", function(d, i) { return color(i); })
-                .attr("transform", function(d) {
-                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-                })
-                .text(function(d) { return d.text; });
-    }
+		function draw(words) {
+				d3.select("#cloud").append("svg")
+								.attr("width", 500)
+								.attr("height", 350)
+								.attr("class", "wordcloud")
+								.append("g")
+								//x y coords for work cloud
+								.attr("transform", "translate(200,200)")
+								.selectAll("text")
+								.data(words)
+								.enter().append("text")
+								.style("font-size", function(d) { return d.size + "px"; })
+								.style("fill", function(d, i) { return color(i); })
+								.attr("transform", function(d) {
+										return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+								})
+								.text(function(d) { return d.text; });
+		}
 </script>
+			</div>
+		 </div>
+	 </div>
       </div>
      </div>
    </div>

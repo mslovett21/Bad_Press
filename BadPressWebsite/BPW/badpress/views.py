@@ -8,9 +8,14 @@ def index(request):
 	View function for home page of site.
 	"""
 	# Render the HTML template index.html with the data in the context variable
+	queryset = Candidate.objects.all()
+	context = {
+		"candidate_list": queryset,
+	}
 	return render(
 		request,
 		'badpress/home.html',
+		context
 	)
 
 
@@ -23,56 +28,79 @@ class CandidateList(generic.ListView):
 		# Add in a QuerySet of all the books
 		context['state_names'] = State.objects.all()
 		return context
-	'''
-	state="Texas"
-	state=State.objects.filter(name__icontains="Texas")
-	candidates=[{"name":"Candidate 1", "party": "Republican"},{"name":"Candidate 2", "party": "Democrat"},
-	{"name":"Candidate 3", "party": "Other"}, {"name":"Candidate 4", "party": "Democrat"},
-	{"name":"Candidate 5", "party": "Republican"},{"name":"Candidate 6", "party": "Republican"},
-	{"name":"Candidate 7", "party": "Democrat"}]
-	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
-	#number_candidates=len(candidates)
-	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
-	date="6th May 2018"
-	#State.objects.filter(name__icontains="Texas")
-	args={'state': state, 'candidates': candidates, state_image : state_image,
-	 "number_candidates": number_candidates, "date":date}
-	return render(request, 'badpress/stateresults.html',args)
-	'''
 
 
-def candidate(request):
+def candidate(request, id):
+	try:
+		candidate_id=Candidate.objects.get(id=id)
+	except Candidate.DoesNotExist:
+		raise Http404("Candidate does not exist")
+
 	state="Texas"
 	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
 	#number_candidates=len(candidates)
 	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
 	date="6th May 2018"
 	#State.objects.filter(name__icontains="Texas")
-	args={'state': state, state_image : state_image,
+	args={'candidate':candidate_id,'state': state, state_image : state_image,
 	 "number_candidates": number_candidates, "date":date}
 	return render(request, 'badpress/candidate.html', args)
 
 
-def issue(request):
-	candidate={"name" :"Ted Cruz"}
-	issue={"name":"Gun Law", "info":"Gun laws in the United States regulate the sale, possession, and use of firearms and ammunition. State laws (and the laws of Washington, D.C. and the U.S. territories) vary considerably, and are independent of existing federal firearms laws, although they are sometimes broader or more limited in scope than the federal laws. State level laws vary significantly in their form, content, and level of restriction. Forty-four states have a provision in their state constitutions similar to the Second Amendment to the U.S. Constitution, which protects the right to keep and bear arms. The exceptions are California, Iowa, Maryland, Minnesota, New Jersey, and New York. In New York, however, the statutory civil rights laws contain a provision virtually identical to the Second Amendment. Additionally, the U.S. Supreme Court held in McDonald v. Chicago that the protections of the Second Amendment to keep and bear arms for self-defense in one's home apply against state governments and their political subdivisions.",
-	"URL_logo":"https://cdn.cltampa.com/files/base/scomm/cltampa/image/2018/03/640w/gun_law.5aa311dbc246a.jpg"}
-	articles=[{"newspaper": "CNN", "title": "Title1", "date": "02/07/2018"}, {"newspaper": "FoxNews", "title": "Title2", "date": "02/07/2018"},
-	{"newspaper": "New York Times", "title": "Title3", "date": "02/07/2018"},{"newspaper": "CNN", "title": "Title4", "date": "02/07/2018"}]
-	number=len(articles)
-	args={"articles": articles, "issue":issue, "candidate": candidate, "number": number}
+def issue(request, id):
+	try:
+		candidate_id=Candidate.objects.get(id=id)
+	except Candidate.DoesNotExist:
+		raise Http404("Candidate does not exist")
+
+	try:
+		candidate_article = Article.objects.filter(candidate=id)
+	except Article.DoesNotExist:
+		raise Http404("Article does not exist")
+
+	try:
+		candidate_issue = Issue.objects.get(id=id)
+	except Issue.DoesNotExist:
+		raise Http404("Issue does not exist")
+
+	try:
+		candidate_source = Source.objects.get(id=id)
+	except Source.DoesNotExist:
+		raise Http404("Source does not exist")
+
+	number=len(candidate_article)
+	args={	"articles": candidate_article,
+			"issue": candidate_issue,
+			"source": candidate_source,
+			"candidate": candidate_id,
+			"number": number
+	}
 	return render(request, 'badpress/issue.html',args)
 
 
+def article(request, id):
+	try:
+		article = Article.objects.get(id=id)
+	except Article.DoesNotExist:
+		raise Http404("Article does not exist")
 
-def article(request):
-	return render(request, 'badpress/article.html')
+	try:
+		candidate_id=Candidate.objects.get(name=article.candidate)
+	except Candidate.DoesNotExist:
+		raise Http404("Candidate does not exist")
+	print(candidate_id)
+	try:
+		source = Source.objects.get(name=article.source)
+	except Source.DoesNotExist:
+		raise Http404("Source does not exist")
 
+	context={
+		"article": article,
+		"source": source,
+		"candidate": candidate_id,
+	}
+	return render(request, 'badpress/article.html', context)
 
-'''
-def about(request):
-	return render(request, 'badpress/about.html')
-'''
 
 def about(request):
 	return render(
