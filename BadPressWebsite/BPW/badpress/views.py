@@ -35,7 +35,7 @@ def candidate(request, id):
 		candidate_id=Candidate.objects.get(id=id)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
-	
+
 	state="Texas"
 	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
 	#number_candidates=len(candidates)
@@ -69,10 +69,10 @@ def issue(request, id):
 		raise Http404("Source does not exist")
 
 	number=len(candidate_article)
-	args={	"articles": candidate_article, 
+	args={	"articles": candidate_article,
 			"issue": candidate_issue,
 			"source": candidate_source,
-			"candidate": candidate_id, 
+			"candidate": candidate_id,
 			"number": number
 	}
 	return render(request, 'badpress/issue.html',args)
@@ -85,7 +85,7 @@ def article(request, id):
 		raise Http404("Article does not exist")
 
 	try:
-		candidate_id=Candidate.objects.get(first_name="Ted")
+		candidate_id=Candidate.objects.get(name=article.candidate)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
 	print(candidate_id)

@@ -87,6 +87,7 @@ class Candidate(models.Model):
     """
     id = models.AutoField(primary_key=True)
     state = models.ForeignKey('State', on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=200, null=True)
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
