@@ -21,32 +21,16 @@
     </ol>
 </div>
 <!--/.Carousel Wrapper-->
+
 </div>
 
 <script> $('.carousel').carousel({interval: 7000, wrap: false}); </script>
 
-<<<<<<< HEAD
-
-=======
-				<div class="row">
-					<div class="col-lg-6 mx-auto">
-						 <a class="btn btn-outline-primary keepFormat" href="{% url 'stateresults' %}" style="float:right;">View Texas</a>
-						 <a class="btn btn-outline-primary keepFormat" href="{% url 'candidate' id=1 %}" style="float:right;">View Candidate</a>
-						 <h2 style="text-align: center; padding-right: 500px;">Select your State:</h2>
-					</div>
-				</div>
->>>>>>> 6f1fcfd81d20de229140c5b5d218df8751a892ed
-		<br>
-
-	 {% load static %}
-
-
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="http://d3js.org/topojson.v1.min.js"></script>
 
-
 	<div class="row">
-	<div class="span6" style="float: none; margin: 0 auto;">
+		<div class="span6" style="float: none; margin: 0 auto;">
 
 	<section id="map">
 		<div class="container">
@@ -56,8 +40,7 @@
 				</div>
 			</div>
 		</div>
-	</section>
-					
+
 	<div id="usMap"></div>
  
 
@@ -107,22 +90,18 @@
 			.style("opacity", 0);
 		});   
 	});
-	</script>
-	
-		
+	</script>	
 </div>
- 
-		 </div>
-		</div>
-			</div>
-	</section>
+</section>
+</div>
+</div>
 
 		<section id="services" class="bg-light">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 mx-auto">
 						 <a class="btn btn-outline-primary " href="{% url 'stateresults' %}">View Texas</a>
-						 <a class="btn btn-outline-primary " href="{% url 'candidate' %}">View Candidate</a>
+						 <a class="btn btn-outline-primary " href="{% url 'candidate' id=1 %}">View Candidate</a>
 					</div>
 				</div>			
 			</div>
