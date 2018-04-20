@@ -26,6 +26,7 @@ h3 {
   font-style: italic;
 }
 
+
 /*nails nav bar to top*/
 #info {
   position:absolute;
@@ -66,24 +67,28 @@ svg {
 
 /*search bar*/
 input[type=text] {
-    width: 130px;
-    box-sizing: border-box;
+    width: 100%;
     border: 2px solid grey;
-    border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    background-image: url('searchicon.png');
-    background-position: 10px 10px; 
+    background-image: url("search-icon.png");
+    background-position: left; 
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
 }
 
-input[type=text]:focus {
-    width: 100%;
+/*tooltip*/
+div.tooltip {   
+  position: absolute;           
+  text-align: center;           
+  width: 100px;                  
+  height: 28px;                 
+  padding: 5px;             
+  font-size: 12px;        
+  background: gold;   
+  border-radius: 8px;           
+  pointer-events: none;         
 }
-
 
 /*bar graph stylings*/
 #bars {
@@ -106,5 +111,47 @@ input[type=text]:focus {
   shape-rendering: crispEdges;
 }
 
+strong {
+  font-weight: bold;
+}
+
+#containCenter {
+    width: 700px;
+    margin-right: auto;
+    margin-left: auto;
+    
+    height: 1080px;
+    background: white;
+}
+
+.underline {
+  background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+  background-repeat: no-repeat;
+  background-size: 100% 0.2em;
+  background-position: 0 88%;
+  transition: background-size 0.25s ease-in;
+  &:hover {
+    background-size: 100% 88%;
+  }
+}
+
+#animatedU {
+  text-decoration: none;
+  position: relative;
+  color: black;
+}
+
+#animatedU:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  border-bottom: 2px solid red;
+  transition: 0.4s;
+}
 
 
+#animatedU:hover:after {
+  width:100%;
+}

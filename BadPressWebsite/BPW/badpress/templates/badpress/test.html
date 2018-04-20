@@ -15,139 +15,43 @@
     <link href="../../static/css/style.css" rel="stylesheet">
 
 
-<body id="page-top">
+<body id="page-top" style="padding-top: 0px">
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark secondary-color fixed-top" id="mainNav">
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav" style="background: linear-gradient(to top right, red, #f06d06);">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">BAD PRESS</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top" style="color: white;">BAD PRESS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+              <a class="nav-link js-scroll-trigger" href="#about" style="color: white;">About</a>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="#contact" style="color: white;">Contact</a>
             </li>
           </ul>
         </div>
-    <form class="form-inline">
-            <div class="md-form mt-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-            </div>
-        </form>
       </div>
     </nav>
   <!-- /End of Nav -->
+<div id="background"> <img src="https://cdn0.thetruthaboutguns.com/wp-content/uploads/2016/06/courtesy-shminhe.com_-900x450.jpg" class="stretch" alt =""></div>
 
-  <div class="container">
- <div class="jumbotron">
-    <div class="row">
-        <div class="col-md-9">
-            <h2>TED CRUZ</h2>
-            <p>Personal Details</p>
-                 <br>
-            <p><strong> Date of Birth: </strong></p>
-            <p><strong> Education: </strong></p>
-            <p><strong> Political Party: </strong></p>
+<div id="containCenter" style="text-align: center">
 
-        </div>
+  <h2 style="padding-top: 75px;"> <span class="underline">FONTS</span></h2>
+  <p style="padding-top: 25px"><span id="animatedU" > The quick brown fox jumped over the lazy dog.</span></p>
+  <p style="font-family: palatino;"><span id="animatedU"> The quick brown fox jumped over the lazy dog.</span></p>
+  <p style="font-family: garamond;"><span id="animatedU"> The quick brown fox jumped over the lazy dog.</span> </p>
+  <p style="font-family: bookman;"> <span id="animatedU"> The quick brown fox jumped over the lazy dog.</span></p>
+  <p style="font-family: trebuchet ms;"><span id="animatedU"> The quick brown fox jumped over the lazy dog.</span> </p>
+  <p style="font-family: arial black;"> <span id="animatedU"> The quick brown fox jumped over the lazy dog.</span></p>
+  <p style="font-family: impact;"> <span id="animatedU"> The quick brown fox jumped over the lazy dog.</span> </p>
+  <p style="font-family: Lucida Console;"> <span id="animatedU"> The quick brown fox jumped over the lazy dog.</span> </p>
+  <p style="font-family: georgia;"> <span id="animatedU"> The quick brown fox jumped over the lazy dog.</span></p>
+  <p style="font-family: helvetica;"> <span id="animatedU"> The quick brown fox jumped over the lazy dog.</span></p>
+    <p style="font-family: verdana;"> <span id="animatedU"> The quick brown fox jumped over the lazy dog.</span></p>
 
-        <div class="col-md-3">
-            
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-info"  class="white"  style="font-size: 18px; background:  #673ab7    ">
-          <center><font color="white"><strong> TEXAS</strong></font> </center>  
-          </a>
-          <div class="list-group-item "><center> <img src="http://media4.s-nbcnews.com/j/newscms/2016_04/1396306/ted-cruz-mug_5fea106e0eb494469a75e60d8f2b18ea.nbcnews-fp-320-320.jpeg" width="150" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "></center>
-          </div>
-        </div>
-          
-        </div>
-   </div>
-</div>
-
-   <div class="row">
-      <div class="col-md-6">
-       <div class="jumbotron">
-            <h2>Office</h2>
-            <h2>ISSUES</h2>
-             <div id="keyIssues"></div>
-             <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-              <script src="../../static/js/barGraph.js"></script>
-            <a href="/issue" class="btn btn-default">Link to Articles about Issue</a>
-
-         </div>
-      </div>
-
-      <div class="col-md-6">
-           <div class="jumbotron">
-            <h2>POPULARITY</h2>
-                  <svg width="500" height="455" id = "popChart"></svg> 
-                  <script src="https://d3js.org/d3.v4.min.js"></script>
-                  <script src="../../static/js/popGraph.js"></script>
-           </div>
-      </div>
-
-   </div>
-
-
-     <div class="row">
-      <div class="col-md-6">
-       <div class="jumbotron">
-            <h2>Latest Article</h2>
-            <a href="/article" class="btn btn-default">Link to Article</a>
-            <a href="/article" class="btn btn-default">Link to Article</a>
-            <a href="/article" class="btn btn-default">Link to Article</a>
-            <a href="/article" class="btn btn-default">Link to Article</a>
-
-      </div>
-     </div>
-     <div class="col-md-6">
-       <div class="jumbotron">
-        <h2> Cloud </h2>
-             <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-        <script src="../../static/js/d3.layout.cloud.js"></script>
-<div id="cloud"></div>
-<script>
-//replace with json file
-    var frequency_list = [{"text":"trusted ","size":40},{"text":"affairs","size":15},{"text":"government","size":10},{"text":"electricity","size":15},{"text":"local","size":10},{"text":"global","size":5},{"text":"agriculture","size":10},{"text":"city","size":5},{"text":"tax","size":5},{"text":"working class","size":85},{"text":"senator","size":5},{"text":"authoritarian","size":5},{"text":"laws","size":15},{"text":"bribe","size":45},{"text":"career","size":30},{"text":"coercion","size":5},{"text":"constraints","size":5},{"text":"control","size":10},{"text":"reform","size":120},{"text":"hypocrisy","size":5},{"text":"responsible","size":90},{"text":"bipartisan","size":5},{"text":"demagogue","size":10},{"text":"works","size":10},{"text":"science","size":70},{"text":"gerrymander","size":30},{"text":"studies","size":5},{"text":"lame duck","size":45},{"text":"nature","size":40},{"text":"lobby","size":30},{"text":"concerned","size":25},{"text":"capitalist","size":40},{"text":"google","size":10},{"text":"trickle down","size":5},{"text":"economy","size":15},{"text":"left","size":15},{"text":"right","size":15},{"text":"centre","size":15},{"text":"progressive","size":15},{"text":"radical","size":15},{"text":"filibuster","size":20},{"text":"civil rights","size":15},{"text":"LGBTQ","size":15},{"text":"modern","size":15},{"text":"immigration","size":15},{"text":"military","size":15},{"text":"white-collar","size":15},{"text":"experience","size":25},{"text":"realpolitik","size":5},{"text":"authority","size":15},{"text":"conservative","size":5},{"text":"independent","size":10},{"text":"jobs","size":5},{"text":"constitutional","size":5}];
-
-
-    var color = d3.scale.linear()
-            .domain([0,1,2,3,4,5,6,10,15,20,100])
-            .range(["#ddd", "#ccc", "#bbb", "#aaa", "#999", "#888", "#777", "#666", "#555", "#444", "#333", "#222"]);
-
-    d3.layout.cloud().size([500, 400])
-            .words(frequency_list)
-            .rotate(0)
-            .fontSize(function(d) { return d.size; })
-            .on("end", draw)
-            .start();
-
-    function draw(words) {
-        d3.select("#cloud").append("svg")
-                .attr("width", 500)
-                .attr("height", 350)
-                .attr("class", "wordcloud")
-                .append("g")
-                //x y coords for work cloud
-                .attr("transform", "translate(200,200)")
-                .selectAll("text")
-                .data(words)
-                .enter().append("text")
-                .style("font-size", function(d) { return d.size + "px"; })
-                .style("fill", function(d, i) { return color(i); })
-                .attr("transform", function(d) {
-                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-                })
-                .text(function(d) { return d.text; });
-    }
-</script>
-      </div>
-     </div>
-   </div>
 
 </div>
 </body>
