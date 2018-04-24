@@ -43,9 +43,9 @@ def state(request, slug):
 	args={'candidates': candidates, 'state': state_name,}
 	return render(request, 'badpress/candidate_list.html', args)
 
-def candidate(request, id):
+def candidate(request, last_name):
 	try:
-		candidate_id=Candidate.objects.get(id=id)
+		candidate_id=Candidate.objects.get(last_name=last_name)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
 
