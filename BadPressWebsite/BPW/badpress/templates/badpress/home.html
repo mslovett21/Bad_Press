@@ -11,7 +11,7 @@
         	<h2 style="text-align: center;"> Discover the politicians who champion your cause.</h2>
         	<p style="text-align: center; color: grey;">Start by selecting a state holding a senate election. </p>
         </div>
-        <div class="carousel-item">                    
+        <div class="carousel-item">
 				<h2 style="text-align:center;">"The Ballot is Stronger than the Bullet. "</h2>
 				<p style="text-align: center; padding-left: 100px; color: grey">-ABRAHAM LINCOLN, speech, May 19, 1856</p>
         </dir>
@@ -42,55 +42,55 @@
 		</div>
 
 	<div id="usMap"></div>
- 
+
 
 		<script type="text/javascript">
 		var width = 950,
 		height = 550;
-		
+
 		var svg = d3.select('#usMap').append('svg')
 		.attr('width', width)
 		.attr('height', height);
-				
+
 		var projection = d3.geo.albersUsa()
-		.scale(1000) 
+		.scale(1000)
 		.translate([width / 2, height / 2]);
 
 		var div = d3.select("body")
 					.append("div")
 					.attr("class", "tooltip")
 					.style("opacity", 0);
-		
+
 		var path = d3.geo.path()
 		.projection(projection);
-		
+
 		d3.json('https://raw.githubusercontent.com/mslovett21/Bad_Press/master/BadPressWebsite/BPW/badpress/templates/badpress/us.json', function(error, us) {
 		svg.selectAll('.states')
 		.data(topojson.feature(us, us.objects.usStates).features)
 		.enter()
 		.append("a")
-		.attr("xlink:href", function(d) {return "{% url 'stateresults' %}" + d.properties.STATE_ABBR})
+    .attr("xlink:href", function(d) {return "stateresults/" + d.properties.STATE_ABBR })
 		.append('path')
 		.attr('class', 'states')
 		.attr('d', path)
 		.style("fill", function(d) {
 		return d.properties.COLOR
 		})
-		.on("mouseover", function(d) {      
-    	div.transition()        
-      	   .duration(200)      
-           .style("opacity", .8);      
+		.on("mouseover", function(d) {
+    	div.transition()
+      	   .duration(200)
+           .style("opacity", .8);
         div.text(d.properties.STATE_ABBR)
-           .style("left", (d3.event.pageX - 50) + "px")     
-           .style("top", (d3.event.pageY - 50) + "px");    
+           .style("left", (d3.event.pageX - 50) + "px")
+           .style("top", (d3.event.pageY - 50) + "px");
 		})
 		.on("mouseout", function(d) {
 			div.transition()
 			.duration(700)
 			.style("opacity", 0);
-		});   
+		});
 	});
-	</script>	
+	</script>
 </div>
 </section>
 </div>
@@ -100,10 +100,10 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-6 mx-auto">
-						 <a class="btn btn-outline-primary " href="{% url 'stateresults' %}">View Texas</a>
+						 <a class="btn btn-outline-primary " href="">View Texas</a>
 						 <a class="btn btn-outline-primary " href="{% url 'candidate' id=1 %}">View Candidate</a>
 					</div>
-				</div>			
+				</div>
 			</div>
 		</section>
 

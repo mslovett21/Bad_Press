@@ -5,47 +5,43 @@
 
 <div class="container"  style="min-height: 100%;float: none; margin: 0 auto; padding-top: 60px">
 	<div class="container">
-		<div class="row"> 
+		<div class="row">
 			<div class="col-md-9">
 				<img src="http://wallpaper-gallery.net/images/texas-wallpapers/texas-wallpapers-8.jpg" alt="Houston" style="opacity: 0.6;width: 1100px; height: 280px;">
 				<h1>{{ state }} </h1>
 				<br>
 				<div class="bottom-left">
-					{% if candidate_list %}
-						<!--{% for candidate in candidate_list %}
+					{% if candidates %}
+						<!--{% for candidate in candidates %}
 							{% if candidate.state|stringformat:"s" == 'Texas' %}
 								{{ forloop.counter }}
 							{% endif %}
 						{% endfor %}-->
-						<p><strong>  Number of candidates: {{ candidate_list|length }}</strong>  </p>
-						{% if state_names %}
-							{% for a_state in state_names %}
-								{% if a_state.name|stringformat:"s" == 'Texas' %}
-									<p><strong>  Primary Election Day: {{ a_state.primaries_date }} </strong> </p>
-								{% endif %}
-							{% endfor %}
+						<p><strong>  Number of candidates: {{ candidates|length }}</strong>  </p>
+						{% if state %}
+							{% if state.name|stringformat:"s" == 'Texas' %}
+								<p><strong>  Primary Election Day: {{ state.primaries_date }} </strong> </p>
+							{% endif %}
 						{% endif %}
 					{% endif %}
 					<!--<p><strong>  Number of candidates: {{ number_candidates }}</strong>  </p>
 					<p><strong>  Primary Election Day: {{ date }} </strong> </p>-->
 				</div>
-			</div>	
+			</div>
 			<div class="col-md-3">
-				{% if state_names %}
-					{% for a_state in state_names %}
-						{% if a_state.name|stringformat:"s" == 'Texas' %}
-							<img src={{a_state.URL_logo}} class="img-fluid z-depth-1" alt="Responsive image">
-						{% endif %}
-					{% endfor %}
+				{% if state %}
+					{% if state.name|stringformat:"s" == 'Texas' %}
+						<img src={{state.URL_logo}} class="img-fluid z-depth-1" alt="Responsive image">
+					{% endif %}
 				{% endif %}
-			</div>			  
+			</div>
 		</div>
 	</div>
 <br>
 <br>
-<div class="row">					 
-	{% if candidate_list %}
-		{% for candidate in candidate_list %}
+<div class="row">
+	{% if candidates %}
+		{% for candidate in candidates %}
 			{% if candidate.state|stringformat:"s" == 'Texas' %}
 				<div class="col-6">
 					<div class="card">
@@ -70,12 +66,12 @@
 								</div>
 							</div>
 						</div>
-					</div> 
+					</div>
 					<br>
 					<br>
 				</div>
-			{% endif %} 
+			{% endif %}
 		{% endfor %}
-	{% endif %}  
-</div>  
+	{% endif %}
+</div>
 {% endblock %}
