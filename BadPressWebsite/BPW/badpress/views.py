@@ -29,6 +29,19 @@ class CandidateList(generic.ListView):
 		context['state_names'] = State.objects.all()
 		return context
 
+def state(request, slug):
+	try:
+		state_name=State.objects.get(name=slug)
+	except State.DoesNotExist:
+		raise Http404("State does not exist")
+
+	try:
+		candidates=Candidate.objects.filter(state=state_name)
+	except Candidate.DoesNotExist:
+		raise Http404("Candidate does not exist")
+
+	args={'candidates': candidates, 'state': state_name,}
+	return render(request, 'badpress/candidate_list.html', args)
 
 def candidate(request, last_name):
 	try:
@@ -42,7 +55,7 @@ def candidate(request, last_name):
 	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
 	date="6th May 2018"
 	#State.objects.filter(name__icontains="Texas")
-	args={'candidate':candidate_id,'state': state, state_image : state_image,
+	args={'candidate':candidate_id,'state': state, 'state_image' : state_image,
 	 "number_candidates": number_candidates, "date":date}
 	return render(request, 'badpress/candidate.html', args)
 
