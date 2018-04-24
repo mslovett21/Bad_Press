@@ -1,0 +1,591 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"col",
+				"col-3"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"back",
+				"background-image"
+			],
+			[
+				"st",
+				"state_image"
+			],
+			[
+				"style",
+				"stylesheet"
+			],
+			[
+				"map",
+				"map3d"
+			],
+			[
+				"ST",
+				"STDOUT_FILENO"
+			],
+			[
+				"S",
+				"STDOUT_FILENO"
+			],
+			[
+				"c",
+				"connect_mongo_info"
+			],
+			[
+				"conn",
+				"connect_mongo_genes"
+			],
+			[
+				"query",
+				"query_patient"
+			],
+			[
+				"connec",
+				"connection"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"co",
+				"connection_mongodb"
+			],
+			[
+				"rec",
+				"recName"
+			],
+			[
+				"no",
+				"nonNone"
+			],
+			[
+				"un",
+				"uniprot_entry"
+			],
+			[
+				"gene",
+				"geneDict"
+			],
+			[
+				"all",
+				"all_gene"
+			],
+			[
+				"par",
+				"parseAllUniprotXML"
+			],
+			[
+				"can",
+				"cannibals_right"
+			],
+			[
+				"mis",
+				"missionaries_right"
+			],
+			[
+				"mi",
+				"missionaries_left"
+			],
+			[
+				"sh",
+				"shore_side"
+			],
+			[
+				"ca",
+				"cannibals_left"
+			],
+			[
+				"cand",
+				"candidate_fk"
+			],
+			[
+				"URL",
+				"URL_logo"
+			],
+			[
+				"state",
+				"state_fk"
+			],
+			[
+				"respon",
+				"response_str"
+			],
+			[
+				"resp",
+				"response_str"
+			],
+			[
+				"res",
+				"response_str"
+			],
+			[
+				"str",
+				"string_pages"
+			],
+			[
+				"enc",
+				"encoding_start"
+			],
+			[
+				"en",
+				"encoding_start"
+			],
+			[
+				"in",
+				"input_string"
+			],
+			[
+				"bu",
+				"buffer"
+			],
+			[
+				"candid",
+				"candidates_last"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "BPW/__init__.py",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/pat/Bad_Press/BadPressWebsite/BPW",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/BPW",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/static",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/static/css",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/static/js",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress"
+	],
+	"file_history":
+	[
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/static/css/nav.css",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/bar-data.csv",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/candidate.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/header.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/usMap.js",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/data.tsv",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/us.json",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/static/js/barGraph.js",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/static/js/popGraph.js",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/~$d Press.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/manage.py",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/my.cnf",
+		"/home/pat/Desktop/encode.c",
+		"/home/pat/Desktop/decoding.c",
+		"/home/pat/Desktop/test01",
+		"/home/pat/Desktop/test02",
+		"/home/pat/Desktop/Krawczuk_Patrycja_Kent_Olga/mysql_queries.py",
+		"/home/pat/Desktop/test0",
+		"/home/pat/Desktop/Krawczuk_Patrycja_Kent_Olga/data/README.txt",
+		"/home/pat/Desktop/test2",
+		"/home/pat/Desktop/test5",
+		"/home/pat/Desktop/Krawczuk_Patrycja_Kent_Olga/neo4j_queries.py",
+		"/home/pat/Desktop/Krawczuk_Patrycja_Kent_Olga/parser_1.py",
+		"/home/pat/Desktop/knowledgedb-modules/import_ppi_interactions.py",
+		"/home/pat/Desktop/knowledgedb-modules/modify_gene_expression.py",
+		"/home/pat/Desktop/knowledgedb-modules/mongodb_queries.py",
+		"/home/pat/Desktop/knowledgedb-modules/mysql_queries.py",
+		"/home/pat/Desktop/knowledgedb-modules/neo4j_queries.py",
+		"/home/pat/Desktop/knowledgedb-modules/parser_1.py",
+		"/home/pat/Desktop/knowledgedb-modules/populate_mySql.py",
+		"/home/pat/Desktop/knowledgedb-modules/project.py",
+		"/home/pat/Desktop/knowledgedb-modules/data/README.txt",
+		"/home/pat/Desktop/knowledgedb-modules/uniprot_to_entrez.py",
+		"/home/pat/Desktop/knowledgedb-modules/query_gene.py",
+		"/home/pat/Desktop/knowledgedb-modules/entrez_uniprot.py",
+		"/home/pat/Desktop/knowledgedb-modules/query_n_order_gene.py",
+		"/home/pat/Desktop/knowledgedb-modules/query_patient.py",
+		"/home/pat/Desktop/project1/patients.py",
+		"/home/pat/Desktop/knowledgedb-modules/query_mean_std.py",
+		"/home/pat/Desktop/knowledgedb-modules/entrez_to_uniprot.py",
+		"/home/pat/Desktop/project1/mymongo.py",
+		"/home/pat/Desktop/test",
+		"/home/pat/Desktop/test1",
+		"/home/pat/Desktop/project1/modify_gene_expression.py",
+		"/home/pat/Desktop/project1/project.py",
+		"/home/pat/Desktop/project1/entrez_ids_genesymbol.csv",
+		"/home/pat/Desktop/project1/entrez_ids_uniprot.txt",
+		"/home/pat/Desktop/project1/patients.csv",
+		"/home/pat/Desktop/bigdata.xml",
+		"/home/pat/Desktop/project1/populate_mySql.py",
+		"/home/pat/Desktop/project1/ROSMAP_RNASeq_entrez.csv",
+		"/home/pat/Desktop/project1/newData8",
+		"/home/pat/Desktop/project1/patient2sql.py",
+		"/home/pat/Desktop/project1/new_None",
+		"/home/pat/Desktop/Ex_Files_Learning_MongoDB/Exercise Files/Chapter4/04_01/Start/tours.json",
+		"/home/pat/Desktop/project1/ROSMAP_RNASeq_disease_label.csv",
+		"/home/pat/Desktop/project1/entrez_ids_uniprot.csv",
+		"/home/pat/Desktop/project1/gene_expression.csv",
+		"/home/pat/Desktop/project1/parser_1.py",
+		"/home/pat/Desktop/project1/newData4",
+		"/home/pat/Desktop/project1/newData3",
+		"/home/pat/Desktop/project1/data_gene",
+		"/home/pat/Desktop/project1/newData5",
+		"/home/pat/Desktop/project1/newData7",
+		"/home/pat/Desktop/project1/newData",
+		"/home/pat/Desktop/project1/newData2",
+		"/home/pat/Desktop/project1/newData1",
+		"/home/pat/Desktop/project1/parser.py",
+		"/home/pat/Desktop/project1/uniprot.xsd.xml",
+		"/home/pat/Desktop/project1/new_data",
+		"/home/pat/Desktop/project1/gene_expression1.csv",
+		"/home/pat/Desktop/project1/new_data8",
+		"/home/pat/Desktop/project1/new_data7",
+		"/home/pat/Desktop/project1/new_data6",
+		"/home/pat/Desktop/project1/new_data5",
+		"/home/pat/converter/my-project/stack.yaml",
+		"/home/pat/Desktop/project1/new_data9",
+		"/home/pat/Desktop/project1/myparser.py",
+		"/home/pat/Desktop/project1/parser2.py",
+		"/home/pat/Desktop/project1/new_data4",
+		"/home/pat/Desktop/project1/new_data1",
+		"/home/pat/Desktop/project1/new_data3",
+		"/home/pat/Desktop/project1/new_data.json",
+		"/home/pat/Desktop/project1/uniprot_data.csv",
+		"/home/pat/Desktop/project1/parser1.py",
+		"/home/pat/converter/my-project/README.md",
+		"/home/pat/converter/my-project/package.yaml",
+		"/home/pat/converter/my-project/my-project.cabal",
+		"/home/pat/Desktop/project1/data_parsed.txt",
+		"/home/pat/Desktop/project1/data_uniprot2",
+		"/home/pat/Desktop/project1/test.xml",
+		"/home/pat/Desktop/project1/converter.py",
+		"/home/pat/Desktop/project1/tree1.py",
+		"/home/pat/Desktop/Ex_Files_Learning_MongoDB/Exercise Files/Chapter4/04_01/Start/tours_id.json",
+		"/home/pat/Desktop/project1/temp.xml",
+		"/home/pat/Desktop/project1/third.py",
+		"/home/pat/Desktop/project1/mongo.py",
+		"/home/pat/Desktop/project1/output.json",
+		"/home/pat/Desktop/project1/tree.py",
+		"/home/pat/Desktop/project1/uniprot-human.xml",
+		"/home/pat/Desktop/project1/xml.py",
+		"/home/pat/Desktop/project1/gene_ex.csv",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/BPW/settings.py",
+		"/home/pat/Desktop/project1/patient.sql",
+		"/home/pat/Desktop/project1/ngene.py",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/urls.py",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/views.py",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/models.py",
+		"/etc/neo4j/neo4j.conf",
+		"/home/pat/Desktop/project1/PPI.csv",
+		"/home/pat/Bad_Press/Database/badpress.sql",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/issue.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/stateresults.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/home.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/BPW/urls.py",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/about.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/505.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/404.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/article.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/state/models.py",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/state/urls.py",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/state/templates/state/state.html",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/static/css/map.css",
+		"/home/pat/Bad_Press/BadPressWebsite/BPW/badpress/templates/badpress/includes/htmlsnippet.html",
+		"/home/pat/Bad_Press/BadPR/BadPR/settings.py",
+		"/home/pat/Bad_Press/BadPR/BadPR/urls.py",
+		"/home/pat/Bad_Press/BadPR/politician/templates/header.html",
+		"/home/pat/Bad_Press/BadPR/webapp/urls.py"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"info",
+			"red",
+			"state",
+			"svg",
+			"encoding_buff",
+			"encoding",
+			"signint_handler",
+			"transferase B,",
+			"(transferase B,",
+			"(transferase A,",
+			"nonNone",
+			"None",
+			"}} ,",
+			"None",
+			"}}",
+			"recommendedName",
+			"\"\"",
+			"\"\"]",
+			"\"\"",
+			"\"\"}",
+			"\"\"",
+			"\"-",
+			"\"\"",
+			"\"-",
+			"}}",
+			"\\n",
+			"None",
+			"'",
+			"\"-",
+			"None",
+			"'",
+			" ,",
+			"None",
+			"'",
+			"all_protein",
+			"modified",
+			"NA",
+			"element",
+			"elements",
+			"csv",
+			"17\t",
+			"17 ",
+			"2285",
+			"251 ",
+			"251",
+			"2 ",
+			"Bo C",
+			"Don B",
+			"Willis",
+			"Tom Willis",
+			"Jack Newbrough",
+			"Joe Manchin",
+			"Copley",
+			"Don Blankenship",
+			"2016",
+			"2017",
+			"estimated",
+			"2",
+			"5",
+			"five",
+			"two",
+			"5",
+			"2",
+			"5",
+			"estimated",
+			"water-jug",
+			"2",
+			"two",
+			"5",
+			"five",
+			"candidate_name"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"transferase B-",
+			"(transferase B-",
+			"(transferase A-",
+			"notTypeNone",
+			"\"None\"",
+			"}},",
+			"\"None\"",
+			"}},",
+			"\"",
+			"\"]",
+			"\"}",
+			"-",
+			"\"",
+			"-",
+			"}},",
+			"\"None\"",
+			"\"",
+			"-",
+			"\"None\"",
+			"\"",
+			"",
+			"\"None\"",
+			"\"",
+			"water-jug-2",
+			"3",
+			"three",
+			"7",
+			"seven"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "BPW/__init__.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 21.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 154.0
+	},
+	"pinned_build_system": "",
+	"project": "badpress.sublime-project",
+	"replace":
+	{
+		"height": 38.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 277.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
