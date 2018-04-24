@@ -30,9 +30,9 @@ class CandidateList(generic.ListView):
 		return context
 
 
-def candidate(request, id):
+def candidate(request, last_name):
 	try:
-		candidate_id=Candidate.objects.get(id=id)
+		candidate_id=Candidate.objects.get(last_name=last_name)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
 
