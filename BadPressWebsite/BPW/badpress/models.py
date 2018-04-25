@@ -119,3 +119,60 @@ class Candidate(models.Model):
         String for representing the Model object.
         """
         return '{0} {1}'.format(self.first_name, self.last_name)
+
+class Cloud(models.Model):
+    """
+    Model representing word cloud.
+    """
+    id = models.OneToOneField('Candidate', on_delete=models.CASCADE, primary_key=True, null=False)
+    word_1 = models.CharField(max_length=250)
+    word_2 = models.CharField(max_length=250)
+    word_3 = models.CharField(max_length=250)
+    word_4 = models.CharField(max_length=250)
+    word_5 = models.CharField(max_length=250)
+    word_6 = models.CharField(max_length=250)
+    word_7 = models.CharField(max_length=250)
+    word_8 = models.CharField(max_length=250)
+    word_9 = models.CharField(max_length=250)
+    word_10 = models.CharField(max_length=250)
+    word_11 = models.CharField(max_length=250)
+    word_12 = models.CharField(max_length=250)
+    word_13 = models.CharField(max_length=250)
+    word_14 = models.CharField(max_length=250)
+    word_15 = models.CharField(max_length=250)
+    word_16 = models.CharField(max_length=250)
+    word_17 = models.CharField(max_length=250)
+    word_18 = models.CharField(max_length=250)
+    word_19 = models.CharField(max_length=250)
+    word_20 = models.CharField(max_length=250)
+
+    def __str__(self):
+        """
+        String for representing the Model object (in Admin site etc.)
+        """
+        return self.id
+
+class Popularity(models.Model):
+    """
+    Model representing word cloud.
+    """
+    id = models.OneToOneField('Candidate', on_delete=models.CASCADE, primary_key=True, null=False)
+    april = models.IntegerField()
+    may = models.IntegerField()
+    june = models.IntegerField()
+    july = models.IntegerField()
+    august = models.IntegerField()
+    september = models.IntegerField()
+    october = models.IntegerField()
+    november = models.IntegerField()
+    december = models.IntegerField()
+    january = models.IntegerField()
+    february = models.IntegerField()
+    march = models.IntegerField()
+
+
+    def __str__(self):
+        """
+        String for representing the Model object (in Admin site etc.)
+        """
+        return self.id
