@@ -32,7 +32,6 @@ def structure_data(all_candidates, file_name):
 
     # combine all frames
     all_data = pd.concat(frames, ignore_index=True)
-
     all_data.is_copy = False
     pd.options.mode.chained_assignment = None  ## to allow references to original objects and not copies
 
@@ -63,7 +62,6 @@ def structure_data(all_candidates, file_name):
     all_data = all_data[all_data.articles_date != ""]
     all_data = all_data[all_data.first_name != ""]
     all_data = all_data[all_data.articles_link.notnull()]
-
 
     all_data = all_data.reset_index(drop=True) ## had to set it over otherwise change didn't apply
     last_id = all_data.shape[0] + 1
