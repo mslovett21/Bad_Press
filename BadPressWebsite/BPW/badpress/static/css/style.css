@@ -1,11 +1,24 @@
 /* Your custom styles */
 
-/*padding for nav bar*/
+/*Change default highlight on text selection, add [tag] in front to specify*/
+::selection {
+  background: darkorchid;
+  color: white;
+}
+
+/*padding for nav bar, misc text formating*/
 body { 
     padding-top: 75px;
 }
 
-/*backgorund image stylings, stretches to screen, blurs*/
+p {
+  margin: 0px;
+  padding: 0px;
+  font-size: 20px;
+}
+
+
+/*background image, stretches to screen, blurs*/
 #background {
     width: 100%; 
     height: 100%; 
@@ -45,14 +58,17 @@ top:0;
 /*container styles*/
 .jumbotron{
 margin-top: 15px;
-padding: 27px;
+padding: 20px;
 color: black;
 background-color: #efeff5;
 }
 
-
 svg {
   background: white;
+}
+
+.topBox {
+  padding: 20px;
 }
 
 /*US map */
@@ -111,16 +127,23 @@ div.tooltip {
   shape-rendering: crispEdges;
 }
 
+/*redeclare font tags*/
 strong {
   font-weight: bold;
 }
 
+em {
+  font-weight: italic;
+}
+
+/*Test styles; center container that stretches to bottom, underline styles*/
 #containCenter {
-    width: 700px;
+    width: 50vw;
     margin-right: auto;
     margin-left: auto;
-    
-    height: 1080px;
+    padding-left: 5vw;
+    padding-right: 5vw;
+    height: 100vh;
     background: white;
 }
 
@@ -151,7 +174,62 @@ strong {
   transition: 0.4s;
 }
 
-
 #animatedU:hover:after {
   width:100%;
 }
+
+/*on load css, fade in effects*/
+.fade-in {
+    opacity:0;  /* make things invisible upon start */
+    -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+    -moz-animation:fadeIn ease-in 1;
+    animation:fadeIn ease-in 1;
+
+    -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+    -moz-animation-fill-mode:forwards;
+    animation-fill-mode:forwards;
+
+    -webkit-animation-duration:0.5s;
+    -moz-animation-duration:0.5s;
+    animation-duration:0.5s;
+}
+
+.fade-in.point4 {
+-webkit-animation-delay: 0.4s;
+-moz-animation-delay: 0.4s;
+animation-delay: 0.4;
+}
+
+.fade-in.point8 {
+-webkit-animation-delay: 0.6s;
+-moz-animation-delay: 0.6s;
+animation-delay: 0.6;
+}
+
+.fade-in.onepoint2 {
+-webkit-animation-delay: 1.2s;
+-moz-animation-delay: 1.2s;
+animation-delay: 1.2;
+}
+
+/*Newsfeed Styles*/
+.panel
+{
+    padding:0px;
+    margin:0px;
+    border-radius: 20px;
+    list-style:none; 
+    color: black;
+}
+
+.news-item
+{
+    padding:4px 4px;
+    margin:0px;
+    border-bottom:1px dotted #555; 
+}
+
+.news-item:hover {
+    border-left: 5px solid red;
+}
+
