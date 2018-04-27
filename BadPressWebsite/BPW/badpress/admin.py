@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Source, State, Issue, Article, Candidate
+from .models import Source, State, Issue, Article, Candidate, Cloud, Popularity
 
 #admin.site.register(Source)
 #admin.site.register(State)
@@ -25,7 +25,7 @@ class ArticleAdmin(admin.ModelAdmin):
 
 # Register the Admin classes for BookInstance using the decorator
 
-@admin.register(Issue) 
+@admin.register(Issue)
 class IssueAdmin(admin.ModelAdmin):
     list_display = ('name', 'info', 'URL_logo')
 
@@ -35,7 +35,46 @@ class StateAdmin(admin.ModelAdmin):
 
 # Register the Admin classes for BookInstance using the decorator
 
-@admin.register(Source) 
+@admin.register(Source)
 class SourceAdmin(admin.ModelAdmin):
     list_display = ('name', 'URL_logo')
 
+@admin.register(Cloud)
+class CloudAdmin(admin.ModelAdmin):
+    list_display = ('id',
+      'word_1',
+      'word_2',
+      'word_3',
+      'word_4',
+      'word_5',
+      'word_6',
+      'word_7',
+      'word_8',
+      'word_9',
+      'word_10',
+      'word_11',
+      'word_12',
+      'word_13',
+      'word_14',
+      'word_15',
+      'word_16',
+      'word_17',
+      'word_18',
+      'word_19',
+      'word_20')
+
+@admin.register(Popularity)
+class PopularityAdmin(admin.ModelAdmin):
+    list_display = ('id',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december',
+      'january',
+      'february',
+      'march')
