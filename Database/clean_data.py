@@ -23,7 +23,8 @@ def substring_search(substring, string):
         return True
     return False
 
-def structure_data(all_candidates, file_name):
+## TODO: pass in folder name, and state names/ids to loop through files
+def structure_data(all_candidates, output_file):
     ## create frames for each state
     frames = []
     frames.extend(return_dataframes("RAW_DATA/cnn_westvirginia.json","RAW_DATA/jsfoxnews_westvirginia.json","RAW_DATA/nyt_westvirginia.json",1 ))
@@ -102,7 +103,5 @@ def structure_data(all_candidates, file_name):
             print(i, date)
         all_data["articles_date"][i] = " ".join([day, month, year])
 
-    file_name = file_name+'.json'
-    all_data.to_json(orient = "records")
-    with open(file_name, 'w') as f:
+    with open(output_file, 'w') as f:
         f.write(all_data.to_json(orient = "records"))

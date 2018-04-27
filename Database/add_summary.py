@@ -68,11 +68,9 @@ def find_empty_summary(no_summary, threshold, all_data):
     #print("output", empty_summary)
     return empty_summary
 
-def add_summary(file_name):
+def add_summary(input_file, output_file):
     ## create frames for each state
-    data = pd.read_json(file_name)
-    # combine all frames
-    all_data = pd.concat([data], ignore_index=True)
+    all_data = pd.read_json(input_file)
 
     all_data.is_copy = False
     pd.options.mode.chained_assignment = None  ## to allow references to original objects and not copies
@@ -91,4 +89,5 @@ def add_summary(file_name):
     #    if row["summary"] == "":
     #        print(index, len(all_data.at[index, "article_text"]))
 
-    return all_data
+    with open(output_file, 'w') as f:
+        f.write(all_data.to_json(orient = "records"))
