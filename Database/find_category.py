@@ -49,23 +49,20 @@ def lemmatizeWords(words):
 def partOfSpeechTag(words):
     return nltk.pos_tag(words)
 
-
-stopset = set(nltk.corpus.stopwords.words('english'))
-extra_stopwords = ["like", "it’s", "uh", "going", "that’s", "think", "actually", "kind", "…", "know", "come", "u", "really"
-                   ,"mr", "june", "july", "august", "aug", "festival", "theater", "music", "concert", "dance", "performance"
-                   , "jazz", "band", "arts", "art","museum","painting", "artist", "exhibition","gallery", "ms", "sculpture"
-                   , "tell", "also","thats", "im", "album", "film", "movie", "opera", "cookbook", "orchestra", "play"
-                   , "street", "design", "photograph", "drawing", "collection", "street", "design", "direct", "jan", "may","summer"
-                   , "season", "production", "park", "oct", "show", "quartet", "series", "may"]
-for word in extra_stopwords:
-    stopset.add(word)
+def get_stopset(extra_stopwords):
+    stopset = set(nltk.corpus.stopwords.words('english'))
+    for word in extra_stopwords:
+        stopset.add(word)
+    return stopset
 
 # removes stop words from a list of words
-def removeStopWords(text):
+def removeStopWords(text, added_words):
+    stopset = get_stopset(added_words)
     return [word for word in text if word not in stopset]
 
 # checks if a word isnt in the stopset
-def notStopWord(word):
+def notStopWord(word, added_words):
+    stopset = get_stopset(added_words)
     return word not in stopset
 
 
