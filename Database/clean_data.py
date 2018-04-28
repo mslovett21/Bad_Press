@@ -9,7 +9,7 @@ def return_dataframes(cnn, fn, nyt, state_id):
     FN_df = pd.read_json(fn)
     NYT_df = pd.read_json(nyt)
 
-    FN_df=FN_df[["articles_date","article_text", "articles_title", "newspaper_name"]]
+    FN_df=FN_df[["articles_date","article_text", "articles_title", "newspaper_name","first_name","last_name", "articles_link"]]
     CNN_df.rename(columns={'articles_text': 'article_text'}, inplace=True)
 
     CNN_df["state_fk"] = state_id
@@ -42,26 +42,27 @@ def structure_data(all_candidates, output_file):
         if type(all_data["articles_date"][i]) == list:
             all_data["articles_date"][i] = ' '.join(all_data["articles_date"][i])
 
-            #empty_list = []
 
+    df_columns = list(all_data.columns.values)
+    all_rows = [all_data]
     for index,row in all_data.iterrows():
-        first = []
-        last = []
         if(pd.isnull(row["first_name"])): ## check is cell value is NaN
             for name in all_candidates:
                 if substring_search(name,row['article_text']):
-                    first.append(" ".join(name.split()[0:-1]))
-                    last.append(name.split()[-1])
-                    all_data["first_name"][index] = ",".join(first)
-                    all_data["last_name"][index] = ",".join(last)
-                    #if(first == []):
-                    #    empty_list.append(index)
+                    new_row = pd.DataFrame(columns = df_columns)
+                    new_row.loc[0] = all_data.iloc[index]
+                    new_row["first_name"] = " ".join(name.split()[0:-1])
+                    new_row["last_name"] = name.split()[-1]
+                    all_rows.append(new_row)
+
+    all_data = pd.concat(all_rows, ignore_index=True)
 
     # or substring_search(name.split()[-1],row['article_text'])
     all_data = all_data[all_data.article_text != ""]
     all_data = all_data[all_data.articles_title != ""]
     all_data = all_data[all_data.articles_date != ""]
     all_data = all_data[all_data.first_name != ""]
+    all_data = all_data[all_data.first_name.notnull()]
     all_data = all_data[all_data.articles_link.notnull()]
 
     all_data = all_data.reset_index(drop=True) ## had to set it over otherwise change didn't apply
@@ -75,32 +76,38 @@ def structure_data(all_candidates, output_file):
     years = list(range(1850, 2019))
 
     for i in range(len(all_data)):
-        date = all_data["articles_date"][i].split()
-        date = [x.lower().replace(',','').replace('.','') for x in date]
-
         month = ""
         day = ""
         year = ""
+        date = all_data["articles_date"][i]
 
-        for x in date:
-            try:
-                y = int(x)
-            except ValueError:
-                y = -1
-            if y in days:
-                day = day + x
-            elif y in years:
-                year = year + x
-            elif x in months.keys():
-                month = month + str(months[x])
-            else:
-                continue
-        if(month == ""):
-            print(i, date)
-        if(day == ""):
-            print(i, date)
-        if(year == ""):
-            print(i, date)
+        if(all_data["newspaper_name"][i] != "foxnews"):
+            date = date.split()
+            date = [x.lower().replace(',','').replace('.','') for x in date]
+
+            for x in date:
+                try:
+                    y = int(x)
+                except ValueError:
+                    y = -1
+                if y in days:
+                    day = day + x
+                elif y in years:
+                    year = year + x
+                elif x in months.keys():
+                    month = month + str(months[x])
+                else:
+                    continue
+            #if(month == ""):
+            #    print(i, date)
+            #if(day == ""):
+            #    print(i, date)
+            #if(year == ""):
+            #    print(i, date)
+        else:
+            year = date[:4]
+            month =  date[5:7]
+            day = date[8:10]
         all_data["articles_date"][i] = " ".join([day, month, year])
 
     with open(output_file, 'w') as f:
