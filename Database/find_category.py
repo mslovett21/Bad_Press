@@ -98,7 +98,7 @@ def find_categories_and_top20(corpus, words_to_remove):
     corpus_sentences = [sent_tokenize(x) for x in corpus]
     corpus_words = []
     for x in corpus_sentences:
-        corpus_words.append(([lemmatizeWords(convertToLowercase(splitToWords(removePunctuation(y)))) for y in x]))
+        corpus_words.append(([lemmatizeWords(convertToLowercase(removePunctuation(y).split())) for y in x]))
     #corpus_words = [removeStopWords(WhitespaceTokenizer().tokenize(x)) for x in corpus]
 
     final_corpus = []
@@ -121,6 +121,5 @@ def create_lda_page(final_corpus, page_name):
 
     vis_data = pyLDAvis.gensim.prepare(ldamodel, corpusVec, dictionary)
 
-    page_name = page_name + ".html"
     pyLDAvis.save_html(vis_data, page_name)
     #print("--- %s seconds ---" % (time.time() - start_time))

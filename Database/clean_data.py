@@ -38,7 +38,7 @@ def structure_data(all_candidates, output_file):
 
     for i in range(len(all_data)):
         all_data["article_text"][i] = ' '.join(all_data["article_text"][i])
-        all_data["articles_title"][i] = ' '.join(all_data["articles_title"][i])
+        all_data["articles_title"][i] = ''.join(all_data["articles_title"][i])
         if type(all_data["articles_date"][i]) == list:
             all_data["articles_date"][i] = ' '.join(all_data["articles_date"][i])
 
@@ -98,12 +98,6 @@ def structure_data(all_candidates, output_file):
                     month = month + str(months[x])
                 else:
                     continue
-            #if(month == ""):
-            #    print(i, date)
-            #if(day == ""):
-            #    print(i, date)
-            #if(year == ""):
-            #    print(i, date)
         else:
             year = date[:4]
             month =  date[5:7]
