@@ -9,6 +9,13 @@ from nltk.corpus import stopwords
 import string # allows us to define punctutation to remove
 from nltk.corpus import wordnet as wn # allows us to access pos types
 
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+import pandas as pd
+from pandas import DataFrame, Series
+import numpy as np
+
+
 wordnet_lemmatizer = WordNetLemmatizer()
 
 # change words to lowercase in a list
@@ -94,8 +101,15 @@ def penn_to_wn(tag):
 
 
 
-def find_categories_and_top20(corpus, words_to_remove):
-    corpus_sentences = [sent_tokenize(x) for x in corpus]
+def find_categories_and_top_20(words_to_remove, input_file, output_file):
+
+    all_data = pd.read_json(input_file)
+
+    corpus_text = []
+    for index,row in all_data.iterrows():
+        corpus_text.append(row['article_text'])
+
+    corpus_sentences = [sent_tokenize(x) for x in corpus_text]
     corpus_words = []
     for x in corpus_sentences:
         corpus_words.append(([lemmatizeWords(convertToLowercase(removePunctuation(y).split())) for y in x]))
@@ -105,7 +119,69 @@ def find_categories_and_top20(corpus, words_to_remove):
     for x in corpus_words:
         final_corpus.append([item for sublist in x for item in removeStopWords(sublist, words_to_remove) if item.isalpha()])
 
-    return final_corpus
+    relevant_words_text_string = [" ".join(y) for y in final_corpus]
+
+
+    # create dictionary: map candidate to list of articles they appear in
+    articles_per_candidate = {}
+
+    for i in range(len(all_data)):
+        candidate_name = all_data["first_name"][i] + " " + all_data["last_name"][i]
+        if candidate_name in articles_per_candidate:
+            articles_per_candidate[candidate_name].append(i)
+        else:
+            articles_per_candidate[candidate_name] = [i]
+
+
+    tf = TfidfVectorizer(analyzer='word', ngram_range=(1,1), min_df = 0, stop_words = 'english')
+
+    tfidf_matrix =  tf.fit_transform(relevant_words_text_string)
+    feature_names = tf.get_feature_names()
+
+    dense = tfidf_matrix.todense()
+
+
+    top_20_per_candidate = {}
+
+    for person in articles_per_candidate:
+        candidate_articles = articles_per_candidate[person]
+        summed_values = [0]*len(feature_names)
+
+        phrase_scores = []
+        sorted_scores = []
+        word_val_pair = []
+        for article_id in candidate_articles:
+            article_vector = dense[article_id].tolist()[0]
+            summed_values = [x+y for x,y in zip(summed_values,article_vector)]
+
+        pairs = list(zip(range(0, len(feature_names)), summed_values))
+
+        phrase_scores = [pair for pair in pairs if pair[1] > 0]
+
+        sorted_scores = sorted(phrase_scores, key=lambda x: x[1], reverse=True)[0:20]
+
+        word_val_pair = []
+        for phrase, score in [(feature_names[word_id], score) for (word_id, score) in sorted_scores][:]:
+            word_val_pair.append((phrase,score))
+
+        top_20_per_candidate[person] = word_val_pair
+
+    top_20_columns = ["name"]
+    top_20_columns.extend(["word_"+str(x) for x in range(1,21)])
+
+    top_20_words = pd.DataFrame(columns = top_20_columns)
+
+    for person in top_20_per_candidate:
+        words = [x for x,y in top_20_per_candidate[person]]
+        values = [person] + words
+        one_row = pd.DataFrame(columns = top_20_columns)
+        one_row.loc[0] = values
+        frames = [top_20_words, one_row]
+        top_20_words = pd.concat(frames)
+
+    with open(output_file, 'w') as f:
+        f.write(top_20_words.to_json(orient = "records"))
+
 
 def create_lda_page(final_corpus, page_name):
     #start_time = time.time()
