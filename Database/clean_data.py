@@ -18,13 +18,18 @@ def return_dataframes(cnn, fn, nyt, state_id):
 
     return [CNN_df, FN_df, NYT_df]
 
+def return_data(table, index_column_name, value, desired_column):
+    row = table[table[index_column_name] == value]
+    row = row.reset_index(drop=True)
+    return row[desired_column][0]
+
 def substring_search(substring, string):
     if substring in string:
         return True
     return False
 
 ## TODO: pass in folder name, and state names/ids to loop through files
-def structure_data(all_candidates, output_file):
+def structure_data(all_candidates, candidate_table, source_table, output_file):
     ## create frames for each state
     frames = []
     frames.extend(return_dataframes("RAW_DATA/cnn_westvirginia.json","RAW_DATA/jsfoxnews_westvirginia.json","RAW_DATA/nyt_westvirginia.json",1 ))
@@ -68,6 +73,28 @@ def structure_data(all_candidates, output_file):
     all_data = all_data.reset_index(drop=True) ## had to set it over otherwise change didn't apply
     last_id = all_data.shape[0] + 1
     all_data['id'] = list(range(1,last_id))
+
+
+    candidate_ids = []
+    all_names = [x+" "+y for x,y in list(zip(all_data["first_name"].tolist(), all_data["last_name"].tolist()))]
+    candidate_ids = [return_data(candidate_table, "name", x, "id") for x in all_names]
+
+    all_data["candidate_fk"] = candidate_ids
+
+
+    newspaper_to_key = {}
+    for index, row in source_table.iterrows():
+        #print(name)
+        newspaper_to_key[row["name"]] = row['id']
+
+    newspaper_shorthand = {'CNN':'CNN', 'NYT':'New York Times', 'foxnews':'FoxNews'}
+
+    for index, row in all_data.iterrows():
+        newspaper_name = newspaper_shorthand[row['newspaper_name']]
+        #print(row['source_fk'], " ", newspaper_name, " " , newspaper_to_key[newspaper_name])
+        id_val = newspaper_to_key[newspaper_name]
+        all_data.at[index,"source_fk"] = id_val
+
 
     days = list(range(1,32))
     months = {"january":1, "jan":1, "february":2, "feb":2, "march":3, "mar":3, "april":4, "apr":4,

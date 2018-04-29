@@ -101,7 +101,7 @@ def penn_to_wn(tag):
 
 
 
-def find_categories_and_top_20(words_to_remove, input_file, output_file):
+def find_categories_and_top_20(words_to_remove, candidate_info, input_file, output_file):
 
     all_data = pd.read_json(input_file)
 
@@ -126,11 +126,11 @@ def find_categories_and_top_20(words_to_remove, input_file, output_file):
     articles_per_candidate = {}
 
     for i in range(len(all_data)):
-        candidate_name = all_data["first_name"][i] + " " + all_data["last_name"][i]
-        if candidate_name in articles_per_candidate:
-            articles_per_candidate[candidate_name].append(i)
+        candidate_id = all_data["candidate_fk"][i]
+        if candidate_id in articles_per_candidate:
+            articles_per_candidate[candidate_id].append(i)
         else:
-            articles_per_candidate[candidate_name] = [i]
+            articles_per_candidate[candidate_id] = [i]
 
 
     tf = TfidfVectorizer(analyzer='word', ngram_range=(1,1), min_df = 0, stop_words = 'english')
@@ -166,7 +166,7 @@ def find_categories_and_top_20(words_to_remove, input_file, output_file):
 
         top_20_per_candidate[person] = word_val_pair
 
-    top_20_columns = ["name"]
+    top_20_columns = ["id"]
     top_20_columns.extend(["word_"+str(x) for x in range(1,21)])
 
     top_20_words = pd.DataFrame(columns = top_20_columns)
