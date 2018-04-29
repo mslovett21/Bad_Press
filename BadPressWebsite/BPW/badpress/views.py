@@ -1,6 +1,6 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, Http404
 from django.views import generic
-from .models import Source, State, Issue, Article, Candidate
+from .models import Source, State, Issue, Article, Candidate, Popularity, Cloud
 
 # Create your views here.
 def index(request):
@@ -45,47 +45,55 @@ def state(request, slug):
 
 def candidate(request, last_name):
 	try:
-		candidate_id=Candidate.objects.get(last_name=last_name)
+		candidate=Candidate.objects.get(last_name=last_name)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
 
-	state="Texas"
+	candidate_id=candidate.id
+	state=candidate.state
+	popularity= Popularity.objects.get(id=candidate_id)
+	cloud = Cloud.objects.get(id=candidate_id)
+	print(state)
+	print(popularity.october)
+	print(cloud.word_1)
 	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
 	#number_candidates=len(candidates)
 	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
 	date="6th May 2018"
 	#State.objects.filter(name__icontains="Texas")
-	args={'candidate':candidate_id,'state': state, 'state_image' : state_image,
-	 "number_candidates": number_candidates, "date":date}
+	args={'candidate':candidate,'state': state, 'state_image' : state_image, "popularity": popularity,
+	 "number_candidates": number_candidates, "date":date, 'cloud' : cloud}
 	return render(request, 'badpress/candidate.html', args)
 
 
-def issue(request, id):
+def issue(request, id, last_name):
 	try:
-		candidate_id=Candidate.objects.get(id=id)
+		candidate=Candidate.objects.get(last_name=last_name)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
 
 	try:
-		candidate_article = Article.objects.filter(candidate=id)
+		candidate_id=candidate.id
+		article = Article.objects.filter(candidate=candidate_id).filter(issue=id)
 	except Article.DoesNotExist:
 		raise Http404("Article does not exist")
 
 	try:
-		candidate_issue = Issue.objects.get(id=id)
+		issue = Issue.objects.get(id=id)
 	except Issue.DoesNotExist:
 		raise Http404("Issue does not exist")
 
 	try:
-		candidate_source = Source.objects.get(id=id)
+
+		source= Source.objects.all()
 	except Source.DoesNotExist:
 		raise Http404("Source does not exist")
 
-	number=len(candidate_article)
-	args={	"articles": candidate_article,
-			"issue": candidate_issue,
-			"source": candidate_source,
-			"candidate": candidate_id,
+	number=len(article)
+	args={	"articles": article,
+			"issue": issue,
+			"source": source,
+			"candidate": candidate,
 			"number": number
 	}
 	return render(request, 'badpress/issue.html',args)

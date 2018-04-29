@@ -19,10 +19,13 @@
 			</div>
 			<div class="col-md-9">
 				<h2>{{ article.candidate }} on {{ article.issue }}</h2>
-				<h3>Media: {{ article.source }}</h3>
-				<h3>Title: {{ article.title }}</h3>
-				<h3>Dated: {{ article.date }}</h3>
-				<a href="{{ article.link }}":><h3>Link</h3></a>
+				<br>
+				<p><strong> Media:</strong> {{ article.source }}</p>
+				<br>
+				<p><strong> Title:</strong> {{ article.title }}</p>
+				<br>
+				<p><strong>Dated:</strong> {{ article.date }}</p>
+
 
 				<script type="text/javascript">
 					//Thanks to Federico Dossena! "Radial progress indicators are one of the most pretentious things you could possibly put on your website.
@@ -32,7 +35,7 @@ window.rp_requestAnimationFrame=window.requestAnimationFrame||window.webkitReque
 function RadialProgress(container,cfg){
 	container.innerHTML="";
 	var nc=document.createElement("div");
-	nc.style.width="10em"; nc.style.height="10em";
+	nc.style.width="8em"; nc.style.height="8em";
 	nc.style.position="relative";
 	container.appendChild(nc);
 	container=nc;
@@ -108,11 +111,11 @@ RadialProgress.prototype={
 
 				<div id="keepFormat" style="float: right;">
 					<div id = "score" style="display:inline-block; float:right; padding-bottom: 20px; padding-right: 20px;"></div>
-					<h2 style="text-align:center; padding-right: 20px;"> Match Score </h2>
+					<h5 style="text-align:center; padding-right: 20px;"> Sentiment Score </h5>
 				</div>
 				<script>
 					var bar=new RadialProgress(document.getElementById("score"),{indeterminate:false,colorFg:"#1565d6",colorText:"#202020",thick:7,fixedTextSize:0.3});
-					bar.setValue(.7);
+					bar.setValue({{ article.sentiment_score }});
 				</script>
 
 			</div>
@@ -130,8 +133,14 @@ RadialProgress.prototype={
 			<div class="col-md-12">
 
 				<img src="{{ source.URL_logo }}" style="width:220px;height:220px; display:inline-block; float:left; padding: 20px;" alt="newspaper_logo">
-				<h2>Article Summary</h2>
+				<br>
+				<h2><center>Article Summary</center></h2>
+				<br>
+				<br>
 				<p>{{ article.summary }}</p>
+				
+				<br>
+				<a href="{{ article.link }}":><p>Link</a> to the Orginal Article</p>
 
 			</div>
 		</div>

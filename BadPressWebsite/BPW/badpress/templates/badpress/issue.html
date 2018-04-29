@@ -12,7 +12,7 @@
 		<!--Slides-->
 		<div class="carousel-inner" role="listbox">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="https://cdn.cltampa.com/files/base/scomm/cltampa/image/2018/03/640w/gun_law.5aa311dbc246a.jpg" style="width: 500px; height:340px"alt="First slide">
+				<img class="d-block w-100" src="{{ issue.URL_logo }}" style="width: 500px; height:340px" alt="First slide">
 			</div>
 			<div class="carousel-item">
 				<div class="jumbotron">
@@ -46,7 +46,7 @@
 <div class="container">
 	<div class="jumbotron" style="background-color: white; width: 40%">
 		<div class="row">
-			<p>We found {{ number }} articles about {{ article.candidate }} <br>and {{ article.issue }}s</p>
+			<p>We found {{ number }} articles about {{ article.candidate }} <br>and {{ issue.name }}</p>
 			<img src="{{ candidate.URL_photo }}" style="width: 100px;height: 100px">
 		</div>
 	</div>

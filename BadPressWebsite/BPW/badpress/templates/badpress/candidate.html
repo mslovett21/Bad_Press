@@ -13,9 +13,11 @@
           <h2>{{ candidate.first_name }} {{ candidate.last_name }}</h2>
           <p>Personal Details</p>
           <br>
-          <p><strong> Date of Birth: {{ candidate.date_of_birth }} </strong></p>
-          <p><strong> Position: {{ candidate.position }} </strong></p>
-          <p><strong> Political Party: {% if candidate.party == 'r' %}Republican{% elif candidate.party == 'd' %}Democrat{% else %}Independent{% endif %} </strong></p>
+          <p><strong> Date of Birth:</strong> {{ candidate.date_of_birth }} </p>
+          <br>
+          <p><strong> Position: </strong>{{ candidate.position }} </p>
+          <br>
+          <p><strong> Political Party:</strong> {% if candidate.party == 'r' %}Republican{% elif candidate.party == 'd' %}Democrat{% else %}Independent{% endif %} </p>
         {% endif %}
       </div>
 
@@ -39,7 +41,7 @@
 
       <div class="jumbotron">
         <h2>KEY ISSUES</h2>
-        <a href="">
+        <a href="{% url 'issue' id=1 last_name=candidate.last_name %}">
           Environment:
           <div id="bars">
             <div class="w3-border">
@@ -48,7 +50,7 @@
           </div>
         </a>
 
-        <a href="">
+        <a href="{% url 'issue' id=2 last_name=candidate.last_name %}">
           Health Care:
           <div id="bars">
             <div class="w3-border">
@@ -57,7 +59,7 @@
           </div>
         </a>
 
-        <a href="">
+        <a href="{% url 'issue' id=3 last_name=candidate.last_name %}">
           Gun Control:
           <div id="bars">
             <div class="w3-border">
@@ -67,7 +69,7 @@
         </a>
 
 
-        <a href="">
+        <a href="{% url 'issue' id=4 last_name=candidate.last_name %}">
           Education:
           <div id="bars">
             <div class="w3-border">
@@ -76,7 +78,7 @@
           </div>
         </a>
 
-        <a href="{% url 'issue' id=candidate.id %}">
+        <a href="{% url 'issue' id=5 last_name=candidate.last_name %}">
           Immigration:
           <div id="bars">
             <div class="w3-border">
@@ -84,6 +86,7 @@
             </div>
           </div>
         </a>
+
 
 <script type="text/javascript">
   function move(name, fin) {
@@ -141,7 +144,10 @@ var myLineChart = new Chart(ctxL, {
       pointStrokeColor: "#fff",
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
-      data: [65, 59, 80, 81, 56, 55, 40, 80, 81, 56, 55, 40]
+      data: [{{ popularity.april }}, {{ popularity.may }}, {{ popularity.june }},
+       {{ popularity.july }}, {{ popularity.august }}, {{ popularity.september }}, {{ popularity.october }}, 
+       {{ popularity.november }}, {{ popularity.december }}, {{ popularity.january }},
+       {{ popularity.february }},{{ popularity.march }}]
     }
     ]
   },
@@ -637,7 +643,7 @@ var myLineChart = new Chart(ctxL, {
 
 <div id="cloud"></div>
         <script>
-              var frequency_list = [{"text":"trusted ","size":40},{"text":"affairs","size":15},{"text":"government","size":30},{"text":"electricity","size":15},{"text":"local","size":10},{"text":"global","size":55},{"text":"agriculture","size":20},{"text":"city","size":25},{"text":"tax","size":50},{"text":"working class","size":85},{"text":"senator","size":45},{"text":"authoritarian","size":75},{"text":"laws","size":15},{"text":"bribe","size":45},{"text":"career","size":30},{"text":"coercion","size":65},{"text":"constraints","size":45},{"text":"control","size":10},{"text":"reform","size":120},{"text":"hypocrisy","size":35}];
+              var frequency_list = [{"text": {{ cloud.word_1 }} ,"size":40},{"text":{{ cloud.word_1 }},"size":15},{"text":{{ cloud.word_1 }},"size":30},{"text":{{ cloud.word_1 }},"size":15},{"text":{{ cloud.word_1 }},"size":10},{"text":{{ cloud.word_1 }},"size":55},{"text":{{ cloud.word_1 }},"size":20},{"text":"city","size":25},{"text":{{ cloud.word_1 }},"size":50},{"text":{{ cloud.word_1 }},"size":85},{"text":{{ cloud.word_1 }},"size":45},{"text":{{ cloud.word_1 }},"size":75},{"text":{{ cloud.word_1 }},"size":15},{"text":{{ cloud.word_1 }},"size":45},{"text":{{ cloud.word_1 }},"size":30},{"text":{{ cloud.word_1 }},"size":65},{"text":{{ cloud.word_1 }},"size":45},{"text":{{ cloud.word_1 }},"size":10},{"text":{{ cloud.word_1 }},"size":120},{"text":{{ cloud.word_1 }},"size":35}];
 
 
               var color = d3.scale.linear()

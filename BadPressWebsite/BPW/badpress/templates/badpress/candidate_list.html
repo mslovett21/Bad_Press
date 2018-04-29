@@ -7,21 +7,14 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9">
-				<img src="http://wallpaper-gallery.net/images/texas-wallpapers/texas-wallpapers-8.jpg" alt="Houston" style="opacity: 0.6;width: 1100px; height: 280px;">
+
 				<h1>{{ state }} </h1>
 				<br>
 				<div class="bottom-left">
 					{% if candidates %}
-						<!--{% for candidate in candidates %}
-							{% if candidate.state|stringformat:"s" == 'Texas' %}
-								{{ forloop.counter }}
-							{% endif %}
-						{% endfor %}-->
 						<p><strong>  Number of candidates: {{ candidates|length }}</strong>  </p>
 						{% if state %}
-							{% if state.name|stringformat:"s" == 'Texas' %}
 								<p><strong>  Primary Election Day: {{ state.primaries_date }} </strong> </p>
-							{% endif %}
 						{% endif %}
 					{% endif %}
 					<!--<p><strong>  Number of candidates: {{ number_candidates }}</strong>  </p>
@@ -30,9 +23,7 @@
 			</div>
 			<div class="col-md-3">
 				{% if state %}
-					{% if state.name|stringformat:"s" == 'Texas' %}
 						<img src={{state.URL_logo}} class="img-fluid z-depth-1" alt="Responsive image">
-					{% endif %}
 				{% endif %}
 			</div>
 		</div>
@@ -42,16 +33,15 @@
 <div class="row">
 	{% if candidates %}
 		{% for candidate in candidates %}
-			{% if candidate.state|stringformat:"s" == 'Texas' %}
 				<div class="col-6">
 					<div class="card">
-						{% if candidate.party == "Republican" %}
+						{% if candidate.party == "r" %}
 						<h3 class="card-header danger-color white-text">Republican</h3>
 						{% endif %}
-						{% if candidate.party == "Democrat" %}
+						{% if candidate.party == "d" %}
 						<h3 class="card-header primary-color white-text">Democrat</h3>
 						{% endif %}
-						{% if candidate.party == "Independent" %}
+						{% if candidate.party == "i" %}
 						<h3 class="card-header warning-color white-text">Independent</h3>
 						{% endif %}
 						<div class="card-body">
@@ -70,7 +60,6 @@
 					<br>
 					<br>
 				</div>
-			{% endif %}
 		{% endfor %}
 	{% endif %}
 </div>

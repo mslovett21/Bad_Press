@@ -100,7 +100,6 @@ class Candidate(models.Model):
     )
     party = models.CharField(max_length=1, choices=CANDIDATE_POSITION, blank=True)
     URL_photo = models.CharField(max_length=250)
-    #party = models.CharField(max_length=100)
     score_issue_1 = models.IntegerField()
     score_issue_2 = models.IntegerField()
     score_issue_3 = models.IntegerField()
@@ -146,12 +145,6 @@ class Cloud(models.Model):
     word_19 = models.CharField(max_length=250)
     word_20 = models.CharField(max_length=250)
 
-    def __str__(self):
-        """
-        String for representing the Model object (in Admin site etc.)
-        """
-        return self.id
-
 class Popularity(models.Model):
     """
     Model representing word cloud.
@@ -169,10 +162,3 @@ class Popularity(models.Model):
     january = models.IntegerField()
     february = models.IntegerField()
     march = models.IntegerField()
-
-
-    def __str__(self):
-        """
-        String for representing the Model object (in Admin site etc.)
-        """
-        return self.id
