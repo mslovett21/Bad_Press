@@ -15,6 +15,7 @@ import pandas as pd
 from pandas import DataFrame, Series
 import numpy as np
 
+import math
 
 wordnet_lemmatizer = WordNetLemmatizer()
 
@@ -188,7 +189,7 @@ def find_categories_and_top_20(words_to_remove, candidate_info, input_file, outp
     for person in top_20_per_candidate:
         values = [y for x,y in top_20_per_candidate[person]]
         for i in range(0,len(values)):
-            row_values = [person, i+1, values[i]]
+            row_values = [person, i+1, math.floor(10*values[i])]
             one_row = pd.DataFrame(columns = ids_for_words_cols)
             one_row.loc[0] = row_values
             frames = [ids_for_words, one_row]
