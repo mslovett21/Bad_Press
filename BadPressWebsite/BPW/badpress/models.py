@@ -97,6 +97,7 @@ class Candidate(models.Model):
         ('r', 'Republican'),
         ('d', 'Democrat'),
         ('i', 'Independent'),
+        ('o','Other'),
     )
     party = models.CharField(max_length=1, choices=CANDIDATE_POSITION, blank=True)
     URL_photo = models.CharField(max_length=250)
