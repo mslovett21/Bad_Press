@@ -3,6 +3,7 @@
 {% block content %}
 
 <!--Profile Container-->
+
 <div class="container">
 
   <div class="jumbotron">
@@ -10,14 +11,12 @@
 <!--Candiate Header-->
       <div class="col-md-9">
         {% if candidate %}
-          <h2>{{ candidate.first_name }} {{ candidate.last_name }}</h2>
-          <p>Personal Details</p>
+          <h2 class="topBox">{{ candidate.first_name }} {{ candidate.last_name }}</h2>
           <br>
-          <p><strong> Date of Birth:</strong> {{ candidate.date_of_birth }} </p>
-          <br>
-          <p><strong> Position: </strong>{{ candidate.position }} </p>
-          <br>
-          <p><strong> Political Party:</strong> {% if candidate.party == 'r' %}Republican{% elif candidate.party == 'd' %}Democrat{% else %}Independent{% endif %} </p>
+          <h3 style="font-family: trebuchet ms;">Personal Details:</h3>
+          <p style="padding-left: 20px;"><strong> Date of Birth:</strong> {{ candidate.date_of_birth }} </p>
+          <p style="padding-left: 20px;"><strong> Position: </strong> {{ candidate.position }} </p>
+          <p style="padding-left: 20px;"><strong> Political Party:</strong> {% if candidate.party == 'r' %}Republican{% elif candidate.party == 'd' %}Democrat{% else %}Independent{% endif %} </p>
         {% endif %}
       </div>
 
@@ -25,9 +24,9 @@
 
         <div class="list-group">
           <a href="#" class="list-group-item list-group-item-info"  class="white"  style="font-size: 18px; background:  #673ab7">
-            <center><font color="white"><strong> {{ candidate.state }} </strong></font> </center>
+            <center><font color="white"><strong> {{ candidate.state }} </strong> </font> </center>
           </a>
-          <div class="list-group-item "><center> <img src="{{ candidate.URL_photo }}" width="130" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "></center>
+          <div class="list-group-item "><center> <img src="{{ candidate.URL_photo }}" width="130" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "> </center>
           </div>
         </div>
 
@@ -39,10 +38,11 @@
 <!--Bar graph-->
     <div class="col-md-6">
 
-      <div class="jumbotron">
-        <h2>KEY ISSUES</h2>
+        <h2 class="topBox">Key Issues</h2>
+
+      <div class="jumbotron" style="margin-top:-7px;">
         <a href="{% url 'issue' id=1 last_name=candidate.last_name %}">
-          Environment:
+          <span id="animatedU" style="padding-top:20px;"> Environment: </span>
           <div id="bars">
             <div class="w3-border">
               <div id="Environment" class="w3-green w3-center innerBar"></div>
@@ -51,7 +51,7 @@
         </a>
 
         <a href="{% url 'issue' id=2 last_name=candidate.last_name %}">
-          Health Care:
+          <span id="animatedU"> Health Care: </span>
           <div id="bars">
             <div class="w3-border">
               <div id="Health Care" class="w3-red w3-center innerBar"></div>
@@ -60,7 +60,7 @@
         </a>
 
         <a href="{% url 'issue' id=3 last_name=candidate.last_name %}">
-          Gun Control:
+          <span id="animatedU"> Gun Control: </span>
           <div id="bars">
             <div class="w3-border">
               <div id="Gun Control" class="w3-yellow w3-center innerBar"></div>
@@ -70,7 +70,7 @@
 
 
         <a href="{% url 'issue' id=4 last_name=candidate.last_name %}">
-          Education:
+         <span id="animatedU"> Education: </span>
           <div id="bars">
             <div class="w3-border">
               <div id="Education" class="w3-purple w3-center innerBar"></div>
@@ -79,7 +79,7 @@
         </a>
 
         <a href="{% url 'issue' id=5 last_name=candidate.last_name %}">
-          Immigration:
+          <span id="animatedU"> Immigration: </span>
           <div id="bars">
             <div class="w3-border">
               <div id="Immigration" class="w3-blue w3-center innerBar"></div>
@@ -106,11 +106,13 @@
 </script>
 
         <script>
+          $(document).ready(function () {
           move("Environment", {{ candidate.score_issue_1 }});
           move("Gun Control", {{ candidate.score_issue_2 }});
           move("Education",   {{ candidate.score_issue_3 }});
           move("Immigration", {{ candidate.score_issue_4 }});
           move("Health Care", {{ candidate.score_issue_5 }});
+        });
         </script>
         <br>
       </div>
@@ -119,8 +121,9 @@
 
 <!--MDB Line Chart-->
 <div class="col-md-6">
-      <div class="jumbotron" style="background-color: white">
-        <h2>POPULARITY</h2>
+          <h2 class="topBox">Popularity</h2>
+      <div class="jumbotron" style="background-color: white; margin-top: -7px;
+      ">
         <p>April 2017- March 2018 </p>
         <div id = "chart"></div>
 
@@ -166,10 +169,10 @@ var myLineChart = new Chart(ctxL, {
 <!--NewsFeed-->
     <div class="col-md-6">
         <div class="panel">
-<h2 style="text-align: center; color: white; background-color: grey;">News</h2>
+<h2 class="topBox">News</h2>
       <div>
 
-<ul style="list-style: none;">
+<ul style="list-style: none; margin-top: -7px;">
                   <li class="news-item">
                     <table cellpadding="4">
                       <tr>
@@ -234,8 +237,8 @@ var myLineChart = new Chart(ctxL, {
 
   <!--Word Cloud-->
     <div class="col-md-6">
-      <div class="jumbotron">
-        <h2 style="text-align: center;"> Cloud </h2>
+      <h2 class="topBox"> Cloud </h2>
+      <div class="jumbotron" style="margin-top: -7px;">
         <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 // Word cloud layout by Jason Davies, http://www.jasondavies.com/word-cloud/
@@ -643,7 +646,7 @@ var myLineChart = new Chart(ctxL, {
 
 <div id="cloud"></div>
         <script>
-              var frequency_list = [{"text": {{ cloud.word_1 }} ,"size":40},{"text":{{ cloud.word_1 }},"size":15},{"text":{{ cloud.word_1 }},"size":30},{"text":{{ cloud.word_1 }},"size":15},{"text":{{ cloud.word_1 }},"size":10},{"text":{{ cloud.word_1 }},"size":55},{"text":{{ cloud.word_1 }},"size":20},{"text":"city","size":25},{"text":{{ cloud.word_1 }},"size":50},{"text":{{ cloud.word_1 }},"size":85},{"text":{{ cloud.word_1 }},"size":45},{"text":{{ cloud.word_1 }},"size":75},{"text":{{ cloud.word_1 }},"size":15},{"text":{{ cloud.word_1 }},"size":45},{"text":{{ cloud.word_1 }},"size":30},{"text":{{ cloud.word_1 }},"size":65},{"text":{{ cloud.word_1 }},"size":45},{"text":{{ cloud.word_1 }},"size":10},{"text":{{ cloud.word_1 }},"size":120},{"text":{{ cloud.word_1 }},"size":35}];
+              var frequency_list = [{"text": "{{ cloud.word_1 }}" ,"size":40},{"text": "{{ cloud.word_2 }}","size":15},{"text": "{{ cloud.word_3 }}","size":30},{"text": "{{ cloud.word_4 }}","size":15},{"text": "{{ cloud.word_5 }}","size":10},{"text": "{{ cloud.word_6 }}","size":55},{"text": "{{ cloud.word_1 }}","size":20},{"text":"city","size":25},{"text": "{{ cloud.word_1 }}","size":50},{"text": "{{ cloud.word_1 }}","size":85},{"text": "{{ cloud.word_1 }}","size":45},{"text": "{{ cloud.word_1 }}","size":75},{"text": "{{ cloud.word_1 }}","size":15},{"text": "{{ cloud.word_1 }}","size":45},{"text": "{{ cloud.word_1 }}","size":30},{"text": "{{ cloud.word_1 }}","size":65},{"text": "{{ cloud.word_1 }}","size":45},{"text": "{{ cloud.word_1 }}","size":10},{"text": "{{ cloud.word_1 }}","size":120},{"text": "{{ cloud.word_1 }}","size":35}];
 
 
               var color = d3.scale.linear()

@@ -2,11 +2,21 @@
 
 {% block content %}
 
+{% for article in articles|slice:":1" %}
+	<div class="noteFade w3-animate-left">
+	We found <strong>{{ number }}</strong> articles on <strong>{{ article.candidate }}</strong> and <strong>{{ issue.name }}</strong>
+	</div>
+{% endfor %}
+<br>
+<script>
+	$(document).ready(function() {
+		$(".noteFade").delay(2000).fadeOut(2000);
+	});
+</script>
 
 
 
-
-<div class="container"  style="min-height: 100%;float: none; margin: 0 auto; padding-top: 60px">
+<div class="container"  style="min-height: 100%;float: none; margin: 0 auto;">
 	<!--Carousel Wrapper-->
 	<div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
 		<!--Slides-->
@@ -41,17 +51,6 @@
 </div>
 <!--/.Carousel Wrapper-->
 
-<br>
-{% for article in articles|slice:":1" %}
-<div class="container">
-	<div class="jumbotron" style="background-color: white; width: 40%">
-		<div class="row">
-			<p>We found {{ number }} articles about {{ article.candidate }} <br>and {{ issue.name }}</p>
-			<img src="{{ candidate.URL_photo }}" style="width: 100px;height: 100px">
-		</div>
-	</div>
-</div>
-{% endfor %}
 <br>
 
 <div class="row">					 

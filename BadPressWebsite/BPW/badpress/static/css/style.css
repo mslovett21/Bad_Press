@@ -1,9 +1,16 @@
 /* Your custom styles */
 
-/*Change default highlight on text selection, add [tag] in front to specify*/
+/*Change default highlight on text selection, add [tag] in front to specify, add no-copy class to toggle off selection*/
 ::selection {
   background: darkorchid;
   color: white;
+}
+
+.no-copy {
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */     
 }
 
 /*padding for nav bar, misc text formating*/
@@ -26,17 +33,12 @@ p {
     left: 0px; 
     top: 0px; 
     z-index: -1; /* Ensure div tag stays behind content.*/
-    filter:blur(10px);
 }
 
 .stretch {
     width:100%;
     height:100%;
-}
-
-/*heading styles*/
-h3 {
-  font-style: italic;
+    filter:blur(10px);
 }
 
 
@@ -57,18 +59,44 @@ top:0;
 
 /*container styles*/
 .jumbotron{
-margin-top: 15px;
 padding: 20px;
 color: black;
 background-color: #efeff5;
 }
 
 svg {
+  background: none;
+}
+
+.wordcloud {
   background: white;
 }
 
 .topBox {
-  padding: 20px;
+  padding: 5px;
+   background: grey;
+    color: white;
+     font-family: trebuchet ms;
+      text-align: center;
+  box-shadow: 1px;
+  -moz-box-shadow: 0 0 5px #999;
+  -webkit-box-shadow: 0 0 5px #999;
+}
+
+.noteFade {
+  padding:20px;
+  z-index: 999;
+  border-left: 5px solid blue;
+  position: absolute;
+  height: 15vh;
+  width: 25vw;
+  background: white;
+  color: black;
+  font-size: 20px;
+  box-shadow: 8px;
+  -moz-box-shadow: 0 0 30px 5px #999;
+  -webkit-box-shadow: 0 0 30px 5px #999;
+
 }
 
 /*US map */
@@ -138,19 +166,19 @@ em {
 
 /*Test styles; center container that stretches to bottom, underline styles*/
 #containCenter {
-    width: 50vw;
+    width: 70vw;
     margin-right: auto;
     margin-left: auto;
     padding-left: 5vw;
     padding-right: 5vw;
-    height: 100vh;
-    background: white;
+    height: 120vh;
+    background: none;
 }
 
 .underline {
   background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
   background-repeat: no-repeat;
-  background-size: 100% 0.2em;
+  background-size: 100% 0.6em;
   background-position: 0 88%;
   transition: background-size 0.25s ease-in;
   &:hover {
@@ -161,7 +189,7 @@ em {
 #animatedU {
   text-decoration: none;
   position: relative;
-  color: black;
+  font-size: 20px;
 }
 
 #animatedU:after {
@@ -170,7 +198,7 @@ em {
   bottom: 0;
   left: 0;
   width: 0%;
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid #f46016;
   transition: 0.4s;
 }
 

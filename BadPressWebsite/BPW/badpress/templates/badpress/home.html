@@ -1,10 +1,12 @@
 {% extends "badpress/header.html" %}
 
-{% block content %}
+{% block content%}
 
- <div class="container" style="min-height: 100%;float: none; margin: 0 auto;">
+<body style="padding-top: 0px; ">
+
+<div id="containCenter" style="min-height: 100%;float: none; margin: 0 auto; padding-top: 70px;">
 <!--Carousel Wrapper-->
-<div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
+<div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel";>
     <!--Slides-->
     <div class="carousel-inner" role="listbox">
         <div class="carousel-item active">
@@ -22,14 +24,12 @@
 </div>
 <!--/.Carousel Wrapper-->
 
-</div>
-
 <script> $('.carousel').carousel({interval: 7000, wrap: false}); </script>
 
 	<script src="http://d3js.org/d3.v3.min.js"></script>
 	<script src="http://d3js.org/topojson.v1.min.js"></script>
 
-	<div class="row">
+	<div class="row" >
 		<div class="span6" style="float: none; margin: 20px auto;">
 
 	<section id="map">
@@ -41,7 +41,7 @@
 			</div>
 		</div>
 
-	<div id="usMap"></div>
+	<div id="usMap" style="background-image: url('test.png');"></div>
 
 
 		<script type="text/javascript">
@@ -95,17 +95,9 @@
 </section>
 </div>
 </div>
-
-		<section id="services" class="bg-light">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6 mx-auto">
-
-					</div>
-				</div>
-			</div>
-		</section>
-
+</div>
+</div>
+</body>
 
 
 {% endblock %}
