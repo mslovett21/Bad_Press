@@ -63,26 +63,28 @@ def candidate(request, last_name):
 
 def issue(request, id, last_name):
 	try:
-		candidate=Candidate.objects.get(last_name=last_name)
+		candidateS=Candidate.objects.get(last_name=last_name)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
 
 	try:
-		candidate_id=candidate.id
-		article = Article.objects.filter(candidate=candidate_id).filter(issue_id=id)
+		if int(id) <7:
+			issueS = Issue.objects.get(issue_id=id)
+			article = Article.objects.filter(candidate=candidateS).filter(issue=issueS)
+			issue = Issue.objects.get(issue_id=id)
+		else:
+			article = Article.objects.filter(candidate=candidateS)
+			issue = Issue.objects.get(issue_id=6)
 	except Article.DoesNotExist:
 		raise Http404("Article does not exist")
 
-	try:
-		issue = Issue.objects.get(id=id)
-	except Issue.DoesNotExist:
-		raise Http404("Issue does not exist")
 
 	try:
 
 		source= Source.objects.all()
 	except Source.DoesNotExist:
 		raise Http404("Source does not exist")
+
 
 	number=len(article)
 	args={	"articles": article,

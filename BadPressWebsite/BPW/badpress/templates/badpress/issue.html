@@ -64,10 +64,10 @@
 				{% if article.source|stringformat:"s" == "CNN" %}
 				<img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Cnn_logo_red_background.png" style="width:350px;height:250px" alt="">
 				{% endif %}
-				{% if article.source|stringformat:"s" == "Fox News" %}
+				{% if article.source|stringformat:"s" == "FoxNews" %}
 				<img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Fox_News_Channel_logo.png" style="width:350px;height:250px" alt="">
 				{% endif %}
-				{% if article.source|stringformat:"s" == "NYT" %}
+				{% if article.source|stringformat:"s" == "New York Times" %}
 				<img src="http://1000logos.net/wp-content/uploads/2017/04/Logo-New-York-Times.jpg" style="width:350px;height:250px"  alt="">
 				{% endif %}
 				<a>
@@ -84,7 +84,7 @@
 
 				<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.
 				</p>
-				<a href="{% url 'article' id=article.id %}" class="btn btn-info">View</a>
+				<a href="{% url 'article' id=article.article_id %}" class="btn btn-info">View</a>
 
 			</div>
 			<!--/.Card content-->

@@ -384,7 +384,6 @@ else:
     j_article=1
     with open("articles4.csv", "r" ) as articles:
             for line in articles:
-                print(i)
                 line = line.strip()
                 line = line.split('\t')
                 if len(line)==9:
@@ -393,10 +392,10 @@ else:
                     titlet=line[2]
                     summaryt=line[6]
                     sentiment_scoret=line[7]
-                    issue_fk=line[8]
-                    state_fk=line[5]
-                    candi_fk=line[3]
-                    source_fk=line[4]
+                    issue_fk= int(line[8])
+                    state_fk=int(line[5])
+                    candi_fk=int(line[3])
+                    source_fk=int(line[4])
                     issue_object=issue_list[0]
                     state_object=statelist[0]
                     candi_object=candidatelist[0]
@@ -436,29 +435,31 @@ else:
                     elif candi_fk==5:
                         candi_object =candidatelist[4]
                     elif candi_fk==6:
-                        candi_fk =candidatelist[5]
+                        candi_object =candidatelist[5]
                     elif candi_fk==7:
-                        candi_fk =candidatelist[6]
+                        candi_object =candidatelist[6]
                     elif candi_fk ==8:
                         candi_fk =candidatelist[7]
                     elif candi_fk ==9:
-                        candi_fk =candidatelist[8]
+                        candi_object =candidatelist[8]
                     elif candi_fk ==10:
-                        candi_fk =candidatelist[9]
+                        candi_object=candidatelist[9]
                     elif candi_fk==11:
-                        candi_fk =candidatelist[10]
+                        candi_object =candidatelist[10]
                     elif candi_fk==12:
-                        candi_fk =candidatelist[11]
+                        candi_object =candidatelist[11]
                     elif candi_fk==13:
-                        candi_fk =candidatelist[12]
+                        candi_object =candidatelist[12]
                     elif candi_fk==14:
-                        candi_fk=candidatelist[13]
+                        candi_object=candidatelist[13]
                     elif candi_fk==15:
-                        candi_fk=candidatelist[14]
+                        candi_object=candidatelist[14]
                     elif candi_fk==16:
-                        candi_fk=candidatelist[15]
+                        candi_object=candidatelist[15]
                     else:
                         candi_object= candidatelist[16]
+                    print("candi object")
+                    print(candi_object.__str__())
                     print(candi_fk)
                     object = Article.objects.create(
                             candidate = candi_object,
@@ -479,47 +480,4 @@ else:
                     pass
 
 '''
-if POPULARITY_UP_TO_DATE:
-    pass
-else:
-class Article(models.Model):
-    """
-    Model representing a book (but not a specific copy of a book).
-    """
-    id = models.AutoField(primary_key=True)
-    candidate = models.ForeignKey('Candidate', on_delete=models.SET_NULL, null=True)
-    state = models.ForeignKey('State', on_delete=models.SET_NULL, null=True)
-    issue = models.ForeignKey('Issue', on_delete=models.SET_NULL, null=True)
-    source = models.ForeignKey('Source', on_delete=models.SET_NULL, null=True)
-    # Foreign Key used because book can only have one author, but authors can have multiple books
-    # Candidate as a string rather than object because it hasn't been declared yet in the file.
-    link = models.CharField(max_length=250)
-    sentiment_score = models.IntegerField()
-    summary = models.TextField(max_length=5000, help_text='Enter a brief description of the article')
-    date = models.DateField(null=True, blank=True)
-    title = models.CharField(max_length=250)
-
-
-                elif candi_fk==6:
-                    candi_fk =candidatelist[5]
-                elif candi_fk==7:
-                    candi_fk =candidatelist[6]
-                elif candi_fk ==8:
-                    candi_fk =candidatelist[7]
-                elif candi_fk ==9:
-                    candi_fk =candidatelist[8]
-                elif candi_fk ==10:
-                    candi_fk =candidatelist[9]
-                elif candi_fk==11:
-                    candi_fk =candidatelist[10]
-                elif candi_fk==12:
-                    candi_fk =candidatelist[11]
-                elif candi_fk==13:
-                    candi_fk =candidatelist[12]
-                elif candi_fk==14:
-                    candi_fk=candidatelist[13]
-                elif candi_fk==15:
-                    candi_fk=candidatelist[14]
-                elif candi_fk==16:
-                    candi_fk=candidatelist[15]
 '''
