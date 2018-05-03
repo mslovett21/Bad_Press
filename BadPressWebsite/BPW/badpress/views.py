@@ -19,16 +19,6 @@ def index(request):
 	)
 
 
-class CandidateList(generic.ListView):
-	model = Candidate
-	state="Texas"
-	def get_context_data(self, **kwargs):
-		# Call the base implementation first to get a context
-		context = super().get_context_data(**kwargs)
-		# Add in a QuerySet of all the books
-		context['state_names'] = State.objects.all()
-		return context
-
 def state(request, slug):
 	try:
 		state_name=State.objects.get(name=slug)
@@ -39,6 +29,7 @@ def state(request, slug):
 		candidates=Candidate.objects.filter(state=state_name)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
+	print(state_name.id)
 
 	args={'candidates': candidates, 'state': state_name,}
 	return render(request, 'badpress/candidate_list.html', args)
@@ -50,12 +41,16 @@ def candidate(request, last_name):
 		raise Http404("Candidate does not exist")
 
 	candidate_id=candidate.id
+	candidate_last=candidate.last_name
 	state=candidate.state
-	popularity= Popularity.objects.get(id=candidate_id)
-	cloud = Cloud.objects.get(id=candidate_id)
+	popularity= Popularity.objects.get(last_name=candidate_last)
+	cloud = Cloud.objects.get(last_name=candidate_last)
 	print(state)
 	print(popularity.october)
 	print(cloud.word_1)
+	print(cloud.word_2)
+	print(cloud.word_3)
+	print(cloud.word_4)
 	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
 	#number_candidates=len(candidates)
 	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
@@ -74,7 +69,7 @@ def issue(request, id, last_name):
 
 	try:
 		candidate_id=candidate.id
-		article = Article.objects.filter(candidate=candidate_id).filter(issue=id)
+		article = Article.objects.filter(candidate=candidate_id).filter(issue_id=id)
 	except Article.DoesNotExist:
 		raise Http404("Article does not exist")
 
@@ -101,7 +96,7 @@ def issue(request, id, last_name):
 
 def article(request, id):
 	try:
-		article = Article.objects.get(id=id)
+		article = Article.objects.get(article_id=id)
 	except Article.DoesNotExist:
 		raise Http404("Article does not exist")
 

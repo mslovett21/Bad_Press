@@ -36,6 +36,7 @@ class Issue(models.Model):
     Model representing article source.
     """
     id = models.AutoField(primary_key=True)
+    issue_id=models.IntegerField(default=6)
     name = models.CharField(max_length=250)
     info = models.TextField(max_length=1000)
     URL_logo = models.CharField(max_length=250)
@@ -53,6 +54,7 @@ class Article(models.Model):
     Model representing a book (but not a specific copy of a book).
     """
     id = models.AutoField(primary_key=True)
+    article_id=models.IntegerField(default=1)
     candidate = models.ForeignKey('Candidate', on_delete=models.SET_NULL, null=True)
     state = models.ForeignKey('State', on_delete=models.SET_NULL, null=True)
     issue = models.ForeignKey('Issue', on_delete=models.SET_NULL, null=True)
@@ -86,6 +88,7 @@ class Candidate(models.Model):
     Model representing a candidate.
     """
     id = models.AutoField(primary_key=True)
+    candidate_id=models.IntegerField(default=1)
     state = models.ForeignKey('State', on_delete=models.SET_NULL, null=True)
     name = models.CharField(max_length=200, null=True)
     first_name = models.CharField(max_length=100)
@@ -124,7 +127,8 @@ class Cloud(models.Model):
     """
     Model representing word cloud.
     """
-    id = models.OneToOneField('Candidate', on_delete=models.CASCADE, primary_key=True, null=False)
+    id =models.AutoField(primary_key=True)
+    last_name = models.CharField(max_length=250,default="LASt")
     word_1 = models.CharField(max_length=250)
     word_2 = models.CharField(max_length=250)
     word_3 = models.CharField(max_length=250)
@@ -150,7 +154,8 @@ class Popularity(models.Model):
     """
     Model representing word cloud.
     """
-    id = models.OneToOneField('Candidate', on_delete=models.CASCADE, primary_key=True, null=False)
+    id = models.AutoField(primary_key=True)
+    last_name = models.CharField(max_length=250,default="LAST")
     april = models.IntegerField()
     may = models.IntegerField()
     june = models.IntegerField()
@@ -164,10 +169,32 @@ class Popularity(models.Model):
     february = models.IntegerField()
     march = models.IntegerField()
 
-database_up_to_date=True
+'''
+STATES_UP_TO_DATE     = False
+SOURCES_UP_TO_DATE    = False
+ISSUES_UP_TO_DATE     = False
+CANDIDATE_UP_TO_DATE  = False
+POPULARITY_UP_TO_DATE = False
+CLOUD_UP_TO_DATE      = False
+ARTICLES_UP_TO_DATE   = False
+'''
+
+STATES_UP_TO_DATE     = True
+SOURCES_UP_TO_DATE    = True
+ISSUES_UP_TO_DATE     = True
+CANDIDATE_UP_TO_DATE  = True
+POPULARITY_UP_TO_DATE = True
+CLOUD_UP_TO_DATE      = True
+ARTICLES_UP_TO_DATE   = True
+
+
+
 statelist = []
 candidatelist = []
-if database_up_to_date:
+issue_list =[]
+source_list=[]
+
+if STATES_UP_TO_DATE:
     pass
 else:
     with open("states.csv", "r" ) as source:
@@ -181,6 +208,10 @@ else:
             object.save()
             statelist.append(object)
 
+
+if SOURCES_UP_TO_DATE:
+    pass
+else:
     with open("sources.csv", "r" ) as source:
         for line in source:
             line = line.strip()
@@ -189,23 +220,34 @@ else:
             URL_logof = line[1]
             object = Source.objects.create( name=namef, URL_logo=URL_logof )
             object.save()
+            source_list.append(object)
 
+if ISSUES_UP_TO_DATE:
+    pass
+else:
+    j_issue=1
     with open("issues.csv", "r" ) as source:
         for line in source:
             line = line.strip()
-            line = line.split(',')
+            line = line.split('"')
             namef = line[0]
             infof = line[1]
             URL_logof = line[2]
-            object = Issue.objects.create( name=namef, info=infof, URL_logo=URL_logof )
+            object = Issue.objects.create( name=namef,issue_id=j_issue, info=infof, URL_logo=URL_logof )
             object.save()
+            issue_list.append(object)
+            j_issue=j_issue+1
 
+if CANDIDATE_UP_TO_DATE:
+    pass
+else:
+    j_candidate=1
     with open("candidates.csv", "r" ) as source:
         for line in source:
             line = line.strip()
             line = line.split(',')
             statef = line[1]
-            if statef=="West_Virgina":
+            if statef=="West_Virginia":
                 stateobject=statelist[0]
             elif statef=="Virginia":
                 stateobject=statelist[1]
@@ -227,6 +269,7 @@ else:
             object = Candidate.objects.create(
                 state=stateobject,
                 name=namef,
+                candidate_id=j_candidate,
                 first_name=first_namef,
                 last_name=last_namef,
                 date_of_birth=date_of_birthf,
@@ -240,62 +283,33 @@ else:
                 score_issue_4=score_issue_4f,
                 score_issue_5=score_issue_5f )
             object.save()
+            print(object.__str__())
             candidatelist.append(object)
+            j_candidate=j_candidate+1
 
-    with open("popularity.csv", "r" ) as source:
+
+if POPULARITY_UP_TO_DATE:
+    pass
+else:
+    with open("popularity2.csv", "r" ) as source:
         for line in source:
             line = line.strip()
             line = line.split(',')
-            a_candidate = line[4]
-            if a_candidate==1:
-                popularityobject=candidatelist[0]
-            elif a_candidate==2:
-                popularityobject=candidatelist[1]
-            elif a_candidate==3:
-                popularityobject=candidatelist[2]
-            elif a_candidate==4:
-                popularityobject=candidatelist[3]
-            elif a_candidate==5:
-                popularityobject=candidatelist[4]
-            elif a_candidate==6:
-                popularityobject=candidatelist[5]
-            elif a_candidate==7:
-                popularityobject=candidatelist[6]
-            elif a_candidate==8:
-                popularityobject=candidatelist[7]
-            elif a_candidate==9:
-                popularityobject=candidatelist[8]
-            elif a_candidate==10:
-                popularityobject=candidatelist[9]
-            elif a_candidate==11:
-                popularityobject=candidatelist[10]
-            elif a_candidate==12:
-                popularityobject=candidatelist[11]
-            elif a_candidate==13:
-                popularityobject=candidatelist[12]
-            elif a_candidate==14:
-                popularityobject=candidatelist[13]
-            elif a_candidate==15:
-                popularityobject=candidatelist[14]
-            elif a_candidate==16:
-                popularityobject=candidatelist[15]
-            else:
-                popularityobject=candidatelist[16]
-            idf = popularityobject
+            last_namef = line[12]
             aprilf = line[0]
-            mayf = line[9]
-            junef = line[7]
-            julyf = line[6]
-            augustf = line[1]
-            septemberf = line[12]
-            octoberf = line[11]
-            novemberf = line[10]
-            decemberf = line[2]
-            januaryf = line[5]
-            februaryf = line[3]
-            marchf = line[8]
+            mayf = line[1]
+            junef = line[2]
+            julyf = line[3]
+            augustf = line[4]
+            septemberf = line[5]
+            octoberf = line[6]
+            novemberf = line[7]
+            decemberf = line[8]
+            januaryf = line[9]
+            februaryf = line[10]
+            marchf = line[11]
             object = Popularity.objects.create(
-                id = idf,
+                last_name = last_namef,
                 april = aprilf,
                 may = mayf,
                 june = junef,
@@ -310,46 +324,15 @@ else:
                 march = marchf )
             object.save()
 
-    with open("cloud.csv", "r" ) as source:
+
+if CLOUD_UP_TO_DATE:
+    pass
+else:
+    with open("cloud2.csv", "r" ) as source:
         for line in source:
             line = line.strip()
             line = line.split(',')
-            a_candidate = line[0]
-            if a_candidate==1:
-                a_object=candidatelist[0]
-            elif a_candidate==2:
-                a_object=candidatelist[1]
-            elif a_candidate==3:
-                a_object=candidatelist[2]
-            elif a_candidate==4:
-                a_object=candidatelist[3]
-            elif a_candidate==5:
-                a_object=candidatelist[4]
-            elif a_candidate==6:
-                a_object=candidatelist[5]
-            elif a_candidate==7:
-                a_object=candidatelist[6]
-            elif a_candidate==8:
-                a_object=candidatelist[7]
-            elif a_candidate==9:
-                a_object=candidatelist[8]
-            elif a_candidate==10:
-                a_object=candidatelist[9]
-            elif a_candidate==11:
-                a_object=candidatelist[10]
-            elif a_candidate==12:
-                a_object=candidatelist[11]
-            elif a_candidate==13:
-                a_object=candidatelist[12]
-            elif a_candidate==14:
-                a_object=candidatelist[13]
-            elif a_candidate==15:
-                a_object=candidatelist[14]
-            elif a_candidate==16:
-                a_object=candidatelist[15]
-            else:
-                a_object=candidatelist[16]
-            idf = a_object
+            last_namef = line[21]
             word_1f = line[1]
             word_2f = line[2]
             word_3f = line[3]
@@ -371,7 +354,7 @@ else:
             word_19f = line[19]
             word_20f = line[20]
             object = Cloud.objects.create(
-                id = idf,
+                last_name=last_namef,
                 word_1 = word_1f,
                 word_2 = word_2f,
                 word_3 = word_3f,
@@ -393,3 +376,150 @@ else:
                 word_19 = word_19f,
                 word_20 = word_20f )
             object.save()
+
+if ARTICLES_UP_TO_DATE:
+    pass
+else:
+    i=0
+    j_article=1
+    with open("articles4.csv", "r" ) as articles:
+            for line in articles:
+                print(i)
+                line = line.strip()
+                line = line.split('\t')
+                if len(line)==9:
+                    datet=line[0]
+                    linkt=line[1]
+                    titlet=line[2]
+                    summaryt=line[6]
+                    sentiment_scoret=line[7]
+                    issue_fk=line[8]
+                    state_fk=line[5]
+                    candi_fk=line[3]
+                    source_fk=line[4]
+                    issue_object=issue_list[0]
+                    state_object=statelist[0]
+                    candi_object=candidatelist[0]
+                    source_object=source_list[0]
+                    if issue_fk == 1:
+                        issue_object =issue_list[0]
+                    elif issue_fk == 2:
+                        issue_object=issue_list[1]
+                    elif issue_fk == 3:
+                        issue_object =issue_list[2]
+                    elif issue_fk == 4:
+                        issue_object=issue_list[3]
+                    elif issue_fk == 5:
+                        issue_object=issue_list[4]
+                    else:
+                        issue_object =issue_list[5]
+                    if state_fk== 1:
+                        state_object=statelist[0]
+                    elif state_fk== 2:
+                        state_object=statelist[1]
+                    else:
+                        state_object=statelist[2]
+                    if source_fk == 1:
+                        source_object=source_list[0]
+                    elif source_fk == 2:
+                        source_object=source_list[1]
+                    else:
+                        source_object=source_list[2]
+                    if candi_fk==1:
+                        candi_object=candidatelist[0]
+                    elif candi_fk==2:
+                        candi_object=candidatelist[1]
+                    elif candi_fk==3:
+                        candi_object=candidatelist[2]
+                    elif candi_fk==4:
+                        candi_object=candidatelist[3]
+                    elif candi_fk==5:
+                        candi_object =candidatelist[4]
+                    elif candi_fk==6:
+                        candi_fk =candidatelist[5]
+                    elif candi_fk==7:
+                        candi_fk =candidatelist[6]
+                    elif candi_fk ==8:
+                        candi_fk =candidatelist[7]
+                    elif candi_fk ==9:
+                        candi_fk =candidatelist[8]
+                    elif candi_fk ==10:
+                        candi_fk =candidatelist[9]
+                    elif candi_fk==11:
+                        candi_fk =candidatelist[10]
+                    elif candi_fk==12:
+                        candi_fk =candidatelist[11]
+                    elif candi_fk==13:
+                        candi_fk =candidatelist[12]
+                    elif candi_fk==14:
+                        candi_fk=candidatelist[13]
+                    elif candi_fk==15:
+                        candi_fk=candidatelist[14]
+                    elif candi_fk==16:
+                        candi_fk=candidatelist[15]
+                    else:
+                        candi_object= candidatelist[16]
+                    print(candi_fk)
+                    object = Article.objects.create(
+                            candidate = candi_object,
+                            state = state_object,
+                            article_id=j_article,
+                            issue = issue_object,
+                            source =  source_object,
+                            link = linkt,
+                            sentiment_score =sentiment_scoret,
+                            summary = summaryt,
+                            date = datet,
+                            title = titlet
+                        )
+                    object.save()
+                    i=i+1
+                    j_article=j_article+1
+                else:
+                    pass
+
+'''
+if POPULARITY_UP_TO_DATE:
+    pass
+else:
+class Article(models.Model):
+    """
+    Model representing a book (but not a specific copy of a book).
+    """
+    id = models.AutoField(primary_key=True)
+    candidate = models.ForeignKey('Candidate', on_delete=models.SET_NULL, null=True)
+    state = models.ForeignKey('State', on_delete=models.SET_NULL, null=True)
+    issue = models.ForeignKey('Issue', on_delete=models.SET_NULL, null=True)
+    source = models.ForeignKey('Source', on_delete=models.SET_NULL, null=True)
+    # Foreign Key used because book can only have one author, but authors can have multiple books
+    # Candidate as a string rather than object because it hasn't been declared yet in the file.
+    link = models.CharField(max_length=250)
+    sentiment_score = models.IntegerField()
+    summary = models.TextField(max_length=5000, help_text='Enter a brief description of the article')
+    date = models.DateField(null=True, blank=True)
+    title = models.CharField(max_length=250)
+
+
+                elif candi_fk==6:
+                    candi_fk =candidatelist[5]
+                elif candi_fk==7:
+                    candi_fk =candidatelist[6]
+                elif candi_fk ==8:
+                    candi_fk =candidatelist[7]
+                elif candi_fk ==9:
+                    candi_fk =candidatelist[8]
+                elif candi_fk ==10:
+                    candi_fk =candidatelist[9]
+                elif candi_fk==11:
+                    candi_fk =candidatelist[10]
+                elif candi_fk==12:
+                    candi_fk =candidatelist[11]
+                elif candi_fk==13:
+                    candi_fk =candidatelist[12]
+                elif candi_fk==14:
+                    candi_fk=candidatelist[13]
+                elif candi_fk==15:
+                    candi_fk=candidatelist[14]
+                elif candi_fk==16:
+                    candi_fk=candidatelist[15]
+'''

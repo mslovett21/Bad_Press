@@ -7,8 +7,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-9">
-
-				<h1>{{ state }} </h1>
+                
+				<h1>State: {{ state }} </h1>
 				<br>
 				<div class="bottom-left">
 					{% if candidates %}
@@ -44,6 +44,9 @@
 						{% if candidate.party == "i" %}
 						<h3 class="card-header warning-color white-text">Independent</h3>
 						{% endif %}
+						{% if candidate.party == "o" %}
+						 <h3 class="card-header warning-color white-text">Other</h3>
+					    {% endif %}
 						<div class="card-body">
 							<div class="row">
 								<div class="col-9">
