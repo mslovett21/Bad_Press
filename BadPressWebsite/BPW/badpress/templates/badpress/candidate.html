@@ -180,66 +180,28 @@ var myLineChart = new Chart(ctxL, {
       <div>
 
 <ul style="list-style: none; margin-top: -7px;">
+            {% for article in articles %}
                   <li class="news-item">
                     <table cellpadding="4">
                       <tr>
+                      {% if article.source|stringformat:"s" == "CNN" %}
                         <td><img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Cnn_logo_red_background.png" width="50" height="50" class="w3-circle" /></td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></td>
+                      {% endif %}
+                      {% if article.source|stringformat:"s" == "FoxNews" %}
+                         <td><img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Fox_News_Channel_logo.png" width="50" height="50" class="w3-circle" /></td>
+                      {% endif %}
+                      {% if article.source|stringformat:"s" == "New York Times" %}
+                         <td><img src="http://1000logos.net/wp-content/uploads/2017/04/Symbol-New-York-Times.png" width="50" height="50" class="w3-circle" /></td>
+                      {% endif %}
+                        <td> {{ article.title }} <a href="{% url 'article' id=article.article_id %}">Read more...</a></td>
                       </tr>
                     </table>
                   </li>
-                  <li class="news-item" style="background-color: #efeff5;">
-                    <table cellpadding="4">
-                      <tr>
-                        <td><img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Fox_News_Channel_logo.png" width="50" height="50" class="w3-circle" /></td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></td>
-                      </tr>
-                    </table>
-                  </li>
-                  <li class="news-item">
-                    <table cellpadding="4">
-                      <tr>
-                        <td><img src="http://1000logos.net/wp-content/uploads/2017/04/Symbol-New-York-Times.png" width="50" height="50" class="w3-circle" /></td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></td>
-                      </tr>
-                    </table>
-                  </li>
-                  <li class="news-item" style="background-color: #efeff5;">
-                    <table cellpadding="4">
-                      <tr>
-                        <td><img src="" width="60" class="img-circle" /></td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></td>
-                      </tr>
-                    </table>
-                  </li>
-                  <li class="news-item">
-                    <table cellpadding="4">
-                      <tr>
-                        <td><img src="" width="60" class="img-circle" /></td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></td>
-                      </tr>
-                    </table>
-                  </li>
-                  <li class="news-item" style="background-color: #efeff5;">
-                    <table cellpadding="4">
-                      <tr>
-                        <td><img src="" width="60" class="img-circle" /></td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></td>
-                      </tr>
-                    </table>
-                  </li>
-                  <li class="news-item">
-                    <table cellpadding="4">
-                      <tr>
-                        <td><img src="" width="60" class="img-circle" /></td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in venenatis enim... <a href="#">Read more...</a></td>
-                      </tr>
-                    </table>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
+            {% endfor %}
+          </ul>
+       </div>
+    </div>
+     </div>
   <!--End of NewsFeed-->
 
   <!--Word Cloud-->

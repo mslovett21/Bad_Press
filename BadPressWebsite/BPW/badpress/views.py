@@ -45,19 +45,16 @@ def candidate(request, last_name):
 	state=candidate.state
 	popularity= Popularity.objects.get(last_name=candidate_last)
 	cloud = Cloud.objects.get(last_name=candidate_last)
-	print(state)
-	print(popularity.october)
-	print(cloud.word_1)
-	print(cloud.word_2)
-	print(cloud.word_3)
-	print(cloud.word_4)
-	state_image="https://cdn.shopify.com/s/files/1/0394/9549/products/bigstock-Texas-Map-6029040.jpg?v=1496166825"
-	#number_candidates=len(candidates)
-	number_candidates=Candidate.objects.count()  # The 'all()' is implied by default.
+	articles = Article.objects.filter(candidate=candidate).order_by('date')[:6]
+	print(articles)
+
+	state_image=""
+
+	number_candidates=Candidate.objects.count()
 	date="6th May 2018"
-	#State.objects.filter(name__icontains="Texas")
+
 	args={'candidate':candidate,'state': state, 'state_image' : state_image, "popularity": popularity,
-	 "number_candidates": number_candidates, "date":date, 'cloud' : cloud}
+	 "number_candidates": number_candidates, 'cloud' : cloud, 'articles':articles}
 	return render(request, 'badpress/candidate.html', args)
 
 
@@ -106,7 +103,7 @@ def article(request, id):
 		candidate_id=Candidate.objects.get(name=article.candidate)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
-	print(candidate_id)
+	
 	try:
 		source = Source.objects.get(name=article.source)
 	except Source.DoesNotExist:
