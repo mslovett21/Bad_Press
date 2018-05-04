@@ -108,11 +108,14 @@ def article(request, id):
 		source = Source.objects.get(name=article.source)
 	except Source.DoesNotExist:
 		raise Http404("Source does not exist")
+	score=article.sentiment_score
+	print(source.URL_logo)
 
 	context={
 		"article": article,
 		"source": source,
 		"candidate": candidate_id,
+		"score": score
 	}
 	return render(request, 'badpress/article.html', context)
 
