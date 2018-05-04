@@ -1,10 +1,11 @@
 {% extends "badpress/header.html" %}
-
+{% load static %}
 {% block content %}
+<body>
+<div id="background" style="background-repeat: no-repeat;"><img src="{% static 'img/Wood.jpg' %}"> </div>
 
 <!--Profile Container-->
-
-<div class="container">
+<div class="container" style="background: white; padding:30px;">
 
   <div class="jumbotron">
     <div class="row">
@@ -181,7 +182,7 @@ var myLineChart = new Chart(ctxL, {
 
 <ul style="list-style: none; margin-top: -7px;">
             {% for article in articles %}
-                  <li class="news-item">
+                  <li class="news-item" style="{% if forloop.counter|divisibleby:2 %}background: #efeff5;{% endif %};">
                     <table cellpadding="4">
                       <tr>
                       {% if article.source|stringformat:"s" == "CNN" %}

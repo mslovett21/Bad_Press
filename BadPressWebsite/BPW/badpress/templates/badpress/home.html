@@ -1,21 +1,22 @@
 {% extends "badpress/header.html" %}
-
+{% load static %}
 {% block content%}
 
 <body style="padding-top: 0px; ">
 
 <div id="containCenter" style="min-height: 100%;float: none; margin: 0 auto; padding-top: 70px;">
+	  <div id="background" style="background-repeat: no-repeat;"><img src="{% static 'img/test.png' %}"></div> 
 <!--Carousel Wrapper-->
 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel";>
     <!--Slides-->
-    <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner no-copy" role="listbox">
         <div class="carousel-item active">
-        	<h2 style="text-align: center;"> Discover the politicians who champion your cause.</h2>
-        	<p style="text-align: center; color: grey;">Start by selecting a state holding a senate election. </p>
+          <h2 style="text-align: center; color:white; text-shadow: 1px 1px 1px #000000;"> Discover the politicians who champion your cause.</h2>
+          <p class="fade-in point4" style="text-align: center; color: white;">Start by selecting a state holding a senate election.</p>
         </div>
         <div class="carousel-item">
-				<h2 style="text-align:center;">"The Ballot is Stronger than the Bullet. "</h2>
-				<p style="text-align: center; padding-left: 100px; color: grey">-ABRAHAM LINCOLN, speech, May 19, 1856</p>
+        <h2 style="text-align:center; color:white; text-shadow: 1px 1px 1px #000000;">"The Ballot is Stronger than the Bullet. "</h2>
+        <p style="text-align: center; padding-left: 100px; color: white;">-ABRAHAM LINCOLN, speech, May 19, 1856</p>
         </dir>
         </div>
     </div>
@@ -41,8 +42,7 @@
 			</div>
 		</div>
 
-	<div id="usMap" style="background-image: url('test.png');"></div>
-
+		<div id="usMap" class="fade-in point8" ></div>
 
 		<script type="text/javascript">
 		var width = 950,

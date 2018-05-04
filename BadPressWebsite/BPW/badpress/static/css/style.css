@@ -24,6 +24,11 @@ p {
   font-size: 20px;
 }
 
+/*table, alternate row color*/
+.odd {background: white;}
+.even {background: grey;}
+
+
 
 /*background image, stretches to screen, blurs*/
 #background {
@@ -261,3 +266,6 @@ animation-delay: 1.2;
     border-left: 5px solid red;
 }
 
+.alternate {
+  background: grey;
+}
