@@ -1,9 +1,9 @@
-from django.shortcuts import render, HttpResponse, Http404
+from django.shortcuts import render, HttpResponse, Http404, redirect
 from django.views import generic
 from .models import Source, State, Issue, Article, Candidate, Popularity, Cloud
+from badpress.forms import HomeForm
 from django.shortcuts import render_to_response
 from django.shortcuts import redirect
-
 
 # Create your views here.
 def index(request):
@@ -12,9 +12,22 @@ def index(request):
 	"""
 	# Render the HTML template index.html with the data in the context variable
 	queryset = Candidate.objects.all()
+
+	query = request.GET.get("q")
+	if query:
+		queryset = queryset.filter(name__icontains=query)
+
+	print(query)
+	name = queryset.first()
+	print(name)
+	print(name.last_name)
+
 	context = {
 		"candidate_list": queryset,
+		"candidate": name,
+		#"text": text,
 	}
+
 	return render(
 		request,
 		'badpress/home.html',
@@ -46,6 +59,9 @@ def candidate(request, last_name):
 	candidate_id=candidate.id
 	candidate_last=candidate.last_name
 	state=candidate.state
+	number_candidates=Candidate.objects.count()
+
+
 	popularity= Popularity.objects.get(last_name=candidate_last)
 	cloud = Cloud.objects.get(last_name=candidate_last)
 	articles = Article.objects.filter(candidate=candidate).order_by('date')[:6]
@@ -53,7 +69,6 @@ def candidate(request, last_name):
 
 	state_image=""
 
-	number_candidates=Candidate.objects.count()
 	date="6th May 2018"
 
 	args={'candidate':candidate,'state': state, 'state_image' : state_image, "popularity": popularity,
@@ -106,7 +121,7 @@ def article(request, id):
 		candidate_id=Candidate.objects.get(name=article.candidate)
 	except Candidate.DoesNotExist:
 		raise Http404("Candidate does not exist")
-	
+
 	try:
 		source = Source.objects.get(name=article.source)
 	except Source.DoesNotExist:
