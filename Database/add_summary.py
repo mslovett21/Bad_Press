@@ -68,6 +68,15 @@ def find_empty_summary(no_summary, threshold, all_data):
     #print("output", empty_summary)
     return empty_summary
 
+def get_some_summary(all_data):
+    current_threshold = 1.4
+    no_summary = [i for i in range(size) if all_data.at[i,'summary'] == '']
+    while(no_summary != [] and current_threshold >= 1.0):
+        no_summary = find_empty_summary(no_summary, current_threshold, all_data)
+        current_threshold = round(current_threshold - .1, 2)
+
+    return all_data
+
 def add_summary(input_file, output_file):
     ## create frames for each state
     all_data = pd.read_json(input_file)
@@ -78,16 +87,6 @@ def add_summary(input_file, output_file):
     all_data['summary'] = [get_summary(x,1.5) for x in all_data.article_text.tolist()]
 
     size = all_data.shape[0]
-
-    current_threshold = 1.4
-    no_summary = [i for i in range(size) if all_data.at[i,'summary'] == '']
-    while(no_summary != [] and current_threshold >= 1.0):
-        no_summary = find_empty_summary(no_summary, current_threshold, all_data)
-        current_threshold = round(current_threshold - .1, 2)
-
-    #for index,row in all_data.iterrows():
-    #    if row["summary"] == "":
-    #        print(index, len(all_data.at[index, "article_text"]))
 
     with open(output_file, 'w') as f:
         f.write(all_data.to_json(orient = "records"))
