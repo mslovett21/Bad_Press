@@ -3,7 +3,7 @@ from pandas import DataFrame, Series
 import numpy as np
 import string
 
-from find_category import lemmatizeWords, convertToLowercase, removePunctuation
+from nlp_functions import lemmatizeWords, convertToLowercase, removePunctuation
 
 ## returns dataframes for each of the 3 newspapers
 def return_dataframe(news_data):
@@ -56,6 +56,10 @@ def remove_missing_data(all_data):
     all_data = all_data[all_data.articles_title != ""]
     all_data = all_data[all_data.articles_date != ""]
     all_data = all_data[all_data.first_name != ""]
+
+    all_data = all_data[all_data.article_text.notnull()]
+    all_data = all_data[all_data.articles_title.notnull()]
+    all_data = all_data[all_data.articles_date.notnull()]
     all_data = all_data[all_data.first_name.notnull()]
     all_data = all_data[all_data.articles_link.notnull()]
 
@@ -172,8 +176,8 @@ def remove_irrelevant_articles(input_file, words, output_file):
             new_row.loc[0] = all_data.iloc[index]
             all_rows.append(new_row)
             continue
-        else:
-            print(row["articles_title"])
+        #else:
+            #print(row["articles_title"])
 
     all_data = pd.concat(all_rows, ignore_index=True)
 
@@ -223,9 +227,9 @@ def structure_data(data_folder, state_data, all_candidates, candidate_table, sou
 
     all_data = reorder_df(all_data)
 
-    all_data = remove_misc_links(all_data)
+    #all_data = remove_misc_links(all_data) ## used this
 
-    all_data = reorder_df(all_data)
+    #all_data = reorder_df(all_data)
 
     all_data = get_candidate_fk(all_data, candidate_table)
 
