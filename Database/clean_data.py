@@ -3,6 +3,8 @@ from pandas import DataFrame, Series
 import numpy as np
 import string
 
+from find_category import lemmatizeWords, convertToLowercase, removePunctuation
+
 ## returns dataframes for each of the 3 newspapers
 def return_dataframe(news_data):
     news_df = pd.read_json(news_data)
@@ -152,6 +154,46 @@ def standardize_date(all_data):
 
     return all_data
 
+# checks if a word isnt in the stopset
+def notStopWords(sentence, undesirable_words):
+    for word in sentence:
+        if word in undesirable_words:
+            return False
+    return True
+
+def remove_irrelevant_articles(input_file, words, output_file):
+    all_data = return_dataframe(input_file)
+
+    df_columns = list(all_data.columns.values)
+    all_rows = []
+    for index,row in all_data.iterrows():
+        if (notStopWords(lemmatizeWords(convertToLowercase(removePunctuation(row["articles_title"]).split())),words)):
+            new_row = pd.DataFrame(columns = df_columns)
+            new_row.loc[0] = all_data.iloc[index]
+            all_rows.append(new_row)
+            continue
+        else:
+            print(row["articles_title"])
+
+    all_data = pd.concat(all_rows, ignore_index=True)
+
+    with open(output_file, 'w') as f:
+        f.write(all_data.to_json(orient = "records"))
+
+def remove_duplicates(all_data):
+    df_columns = list(all_data.columns.values)
+    all_rows = []
+    for i in range(len(all_data)-1)
+        if (all_data["articles_title"][i] == all_data["articles_title"][i+1]) and (all_data["candidate_fk"][i] == all_data["candidate_fk"][i+1])):
+            new_row = pd.DataFrame(columns = df_columns)
+            new_row.loc[0] = all_data.iloc[index]
+            all_rows.append(new_row)
+            continue
+        else:
+            print(row["articles_title"])
+
+    all_data = pd.concat(all_rows, ignore_index=True)
+
 ## TODO: pass in folder name, and state names/ids to loop through files
 def structure_data(data_folder, state_data, all_candidates, candidate_table, source_table, output_file):
     ## create frames for each state
@@ -182,7 +224,7 @@ def structure_data(data_folder, state_data, all_candidates, candidate_table, sou
 
     all_data = get_candidate_fk(all_data, candidate_table)
 
-    #all_data = get_state_fk(all_data, candidate_table)
+    all_data = get_state_fk(all_data, candidate_table)
 
     all_data = get_newspaper_fk(all_data, source_table)
 
