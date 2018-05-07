@@ -76,7 +76,7 @@ function RadialProgress(container,cfg){
 		if(!(f==true)&&!this.spin&&!this.indeterminate&&(Math.abs(this.prevP-this.progress)<1&&this.prevW==c.width&&this.prevH==c.height)) return;
 		var centerX=c.width/2, centerY=c.height/2, bw=(c.clientWidth/100.0), radius=c.height/2-(this.thick*bw*dp)/2, bw=(c.clientWidth/100.0);
 		this.text.style.fontSize=(this.fixedTextSize?(c.clientWidth*this.fixedTextSize):(c.clientWidth*0.26-this.thick))+"px";
-		if(this.noAnimations) this.aniP=this.progress; else{var aniF=Math.pow(0.63,this.animationSpeed);this.aniP=this.aniP*aniF+this.progress*(1-aniF);}
+		if(this.noAnimations) this.aniP=this.progress; else{var aniF=Math.pow(0.93,this.animationSpeed);this.aniP=this.aniP*aniF+this.progress*(1-aniF);}
 		c=c.getContext("2d");
 		c.beginPath();
 		c.strokeStyle=this.colorBg;

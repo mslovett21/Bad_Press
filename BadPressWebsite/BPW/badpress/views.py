@@ -2,6 +2,8 @@ from django.shortcuts import render, HttpResponse, Http404, redirect
 from django.views import generic
 from .models import Source, State, Issue, Article, Candidate, Popularity, Cloud
 from badpress.forms import HomeForm
+from django.shortcuts import render_to_response
+from django.shortcuts import redirect
 
 # Create your views here.
 def index(request):
@@ -37,7 +39,7 @@ def state(request, slug):
 	try:
 		state_name=State.objects.get(name=slug)
 	except State.DoesNotExist:
-		raise Http404("State does not exist")
+		return redirect('not_found_state')
 
 	try:
 		candidates=Candidate.objects.filter(state=state_name)
@@ -141,3 +143,15 @@ def about(request):
 		request,
 		'badpress/about.html',
 	)
+
+def not_found_state(request):
+	return render(request,'badpress/notfoundstate.html', {})
+
+def tutorial(request):
+	return render(request,'badpress/tutorial.html', {})
+
+def error_404(request):
+	return render(request,'badpress/404.html', {})
+
+def error_500(request):
+	return render(request,'badpress/404.html', {})

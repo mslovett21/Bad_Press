@@ -4,19 +4,13 @@ import numpy as np
 import string
 
 ## returns dataframes for each of the 3 newspapers
-def return_dataframes(cnn, fn, nyt, state_id):
-    CNN_df = pd.read_json(cnn)
-    FN_df = pd.read_json(fn)
-    NYT_df = pd.read_json(nyt)
+def return_dataframe(news_data):
+    news_df = pd.read_json(news_data)
 
-    FN_df=FN_df[["articles_date","article_text", "articles_title", "newspaper_name","first_name","last_name", "articles_link"]]
-    CNN_df.rename(columns={'articles_text': 'article_text'}, inplace=True)
+    #FN_df=FN_df[["articles_date","article_text", "articles_title", "newspaper_name","first_name","last_name", "articles_link"]]
+    news_df.rename(columns={'articles_text': 'article_text'}, inplace=True)
 
-    CNN_df["state_fk"] = state_id
-    FN_df["state_fk"] = state_id
-    NYT_df["state_fk"] = state_id
-
-    return [CNN_df, FN_df, NYT_df]
+    return news_df
 
 def return_data(table, index_column_name, value, desired_column):
     row = table[table[index_column_name] == value]
@@ -28,26 +22,15 @@ def substring_search(substring, string):
         return True
     return False
 
-## TODO: pass in folder name, and state names/ids to loop through files
-def structure_data(all_candidates, candidate_table, source_table, output_file):
-    ## create frames for each state
-    frames = []
-    frames.extend(return_dataframes("RAW_DATA/cnn_westvirginia.json","RAW_DATA/jsfoxnews_westvirginia.json","RAW_DATA/nyt_westvirginia.json",1 ))
-    frames.extend(return_dataframes("RAW_DATA/cnn_virginia.json","RAW_DATA/jsfoxnews_virginia.json","RAW_DATA/nyt_westvirginia.json",2 ))
-    frames.extend(return_dataframes("RAW_DATA/cnn_texas.json","RAW_DATA/jsfoxnews_texas.json","RAW_DATA/nyt_texas.json",3 ))
-
-    # combine all frames
-    all_data = pd.concat(frames, ignore_index=True)
-    all_data.is_copy = False
-    pd.options.mode.chained_assignment = None  ## to allow references to original objects and not copies
-
+def connect_strings(all_data):
     for i in range(len(all_data)):
         all_data["article_text"][i] = ' '.join(all_data["article_text"][i])
         all_data["articles_title"][i] = ''.join(all_data["articles_title"][i])
         if type(all_data["articles_date"][i]) == list:
             all_data["articles_date"][i] = ' '.join(all_data["articles_date"][i])
+    return all_data
 
-
+def find_candidates(all_data, all_candidates):
     df_columns = list(all_data.columns.values)
     all_rows = [all_data]
     for index,row in all_data.iterrows():
@@ -62,6 +45,9 @@ def structure_data(all_candidates, candidate_table, source_table, output_file):
 
     all_data = pd.concat(all_rows, ignore_index=True)
 
+    return all_data
+
+def remove_missing_data(all_data):
     # or substring_search(name.split()[-1],row['article_text'])
     all_data = all_data[all_data.article_text != ""]
     all_data = all_data[all_data.articles_title != ""]
@@ -70,18 +56,24 @@ def structure_data(all_candidates, candidate_table, source_table, output_file):
     all_data = all_data[all_data.first_name.notnull()]
     all_data = all_data[all_data.articles_link.notnull()]
 
+    return all_data
+
+def reorder_df(all_data):
     all_data = all_data.reset_index(drop=True) ## had to set it over otherwise change didn't apply
     last_id = all_data.shape[0] + 1
     all_data['id'] = list(range(1,last_id))
 
+    return all_data
 
+def get_candidate_fk(all_data, candidate_table):
     candidate_ids = []
     all_names = [x+" "+y for x,y in list(zip(all_data["first_name"].tolist(), all_data["last_name"].tolist()))]
     candidate_ids = [return_data(candidate_table, "name", x, "id") for x in all_names]
 
     all_data["candidate_fk"] = candidate_ids
+    return all_data
 
-
+def get_newspaper_fk(all_data, source_table):
     newspaper_to_key = {}
     for index, row in source_table.iterrows():
         #print(name)
@@ -95,7 +87,9 @@ def structure_data(all_candidates, candidate_table, source_table, output_file):
         id_val = newspaper_to_key[newspaper_name]
         all_data.at[index,"source_fk"] = id_val
 
+    return all_data
 
+def standardize_date(all_data):
     days = list(range(1,32))
     months = {"january":1, "jan":1, "february":2, "feb":2, "march":3, "mar":3, "april":4, "apr":4,
               "may":5, "june":6, "july":7, "august":8, "aug":8,
@@ -130,6 +124,40 @@ def structure_data(all_candidates, candidate_table, source_table, output_file):
             month =  date[5:7]
             day = date[8:10]
         all_data["articles_date"][i] = " ".join([day, month, year])
+
+    return all_data
+
+
+## TODO: pass in folder name, and state names/ids to loop through files
+def structure_data(data_folder, state_data, state_ids, all_candidates, candidate_table, source_table, output_file):
+    ## create frames for each state
+    frames = []
+    count = 0;
+    for state in state_data:
+        for data_file in state:
+            news_df = return_dataframe(data_folder+data_file)
+            news_df["state_fk"] = state_ids[count]
+            frames.append(news_df);
+        count += 1
+
+    # combine all frames
+    all_data = pd.concat(frames, ignore_index=True)
+    all_data.is_copy = False
+    pd.options.mode.chained_assignment = None  ## to allow references to original objects and not copies
+
+    all_data = connect_strings(all_data)
+
+    all_data = find_candidates(all_data, all_candidates)
+
+    all_data = remove_missing_data(all_data)
+
+    all_data = reorder_df(all_data)
+
+    all_data = get_candidate_fk(all_data, candidate_table)
+
+    all_data = get_newspaper_fk(all_data, source_table)
+
+    all_data = standardize_date(all_data)
 
     with open(output_file, 'w') as f:
         f.write(all_data.to_json(orient = "records"))
