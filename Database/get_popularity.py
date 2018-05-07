@@ -26,7 +26,7 @@ def create_popularity_json(candidate_table, input_file, output_file):
 
     all_candidates = candidate_table["id"].tolist()
 
-    table_columns = ["id", "january", "february", "march", "april", "may", "june", "july", "august", "september"
+    table_columns = ["january", "february", "march", "april", "may", "june", "july", "august", "september"
                      , "october", "november", "december", "last_name"]
 
     popularity_table = pd.DataFrame(columns = table_columns)
@@ -54,7 +54,7 @@ def create_popularity_json(candidate_table, input_file, output_file):
         full_name = return_data(candidate_table, "id", candidate, "name").split()
         last_name = full_name[-1]
 
-        row_values = [candidate] + count_list + [last_name]
+        row_values = count_list + [last_name]
         one_row.loc[0] = row_values
         frames = [popularity_table, one_row]
         popularity_table = pd.concat(frames)
