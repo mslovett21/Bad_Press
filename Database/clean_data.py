@@ -24,7 +24,8 @@ def substring_search(substring, string):
 
 def connect_strings(all_data):
     for i in range(len(all_data)):
-        all_data["article_text"][i] = ' '.join(all_data["article_text"][i])
+        if type(all_data["article_text"][i]) == list:
+            all_data["article_text"][i] = ' '.join(all_data["article_text"][i])
         all_data["articles_title"][i] = ''.join(all_data["articles_title"][i])
         if type(all_data["articles_date"][i]) == list:
             all_data["articles_date"][i] = ' '.join(all_data["articles_date"][i])
@@ -58,6 +59,22 @@ def remove_missing_data(all_data):
 
     return all_data
 
+def remove_misc_links(all_data):
+    df_columns = list(all_data.columns.values)
+    all_rows = []
+    newspapers = ["cnn.com", "nytimes.com", "foxnews.com"]
+    for index,row in all_data.iterrows():
+        for paper in newspapers:
+            if substring_search(paper, row["articles_link"]):
+                new_row = pd.DataFrame(columns = df_columns)
+                new_row.loc[0] = all_data.iloc[index]
+                all_rows.append(new_row)
+                continue
+
+    all_data = pd.concat(all_rows, ignore_index=True)
+
+    return all_data
+
 def reorder_df(all_data):
     all_data = all_data.reset_index(drop=True) ## had to set it over otherwise change didn't apply
     last_id = all_data.shape[0] + 1
@@ -73,13 +90,21 @@ def get_candidate_fk(all_data, candidate_table):
     all_data["candidate_fk"] = candidate_ids
     return all_data
 
+def get_state_fk(all_data, candidate_table):
+    state_ids = []
+    all_candidate_ids = all_data["candidate_fk"].tolist()
+    state_ids = [return_data(candidate_table, "id", x, "state_fk") for x in all_candidate_ids]
+
+    all_data["state_fk"] = state_ids
+    return all_data
+
 def get_newspaper_fk(all_data, source_table):
     newspaper_to_key = {}
     for index, row in source_table.iterrows():
         #print(name)
         newspaper_to_key[row["name"]] = row['id']
 
-    newspaper_shorthand = {'CNN':'CNN', 'NYT':'New York Times', 'foxnews':'FoxNews'}
+    newspaper_shorthand = {'CNN':'CNN', 'NYT':'New York Times', 'foxnews':'FoxNews', "Fox News":'FoxNews'}
 
     for index, row in all_data.iterrows():
         newspaper_name = newspaper_shorthand[row['newspaper_name']]
@@ -127,16 +152,14 @@ def standardize_date(all_data):
 
     return all_data
 
-
 ## TODO: pass in folder name, and state names/ids to loop through files
-def structure_data(data_folder, state_data, state_ids, all_candidates, candidate_table, source_table, output_file):
+def structure_data(data_folder, state_data, all_candidates, candidate_table, source_table, output_file):
     ## create frames for each state
     frames = []
     count = 0;
     for state in state_data:
         for data_file in state:
             news_df = return_dataframe(data_folder+data_file)
-            news_df["state_fk"] = state_ids[count]
             frames.append(news_df);
         count += 1
 
@@ -153,7 +176,13 @@ def structure_data(data_folder, state_data, state_ids, all_candidates, candidate
 
     all_data = reorder_df(all_data)
 
+    all_data = remove_misc_links(all_data)
+
+    all_data = reorder_df(all_data)
+
     all_data = get_candidate_fk(all_data, candidate_table)
+
+    #all_data = get_state_fk(all_data, candidate_table)
 
     all_data = get_newspaper_fk(all_data, source_table)
 
