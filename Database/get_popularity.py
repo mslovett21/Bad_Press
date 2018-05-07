@@ -5,6 +5,8 @@ import string
 
 from datetime import datetime
 
+from clean_data import return_data
+
 def create_popularity_json(candidate_table, input_file, output_file):
 
     currentMonth = datetime.now().month
@@ -25,7 +27,7 @@ def create_popularity_json(candidate_table, input_file, output_file):
     all_candidates = candidate_table["id"].tolist()
 
     table_columns = ["id", "january", "february", "march", "april", "may", "june", "july", "august", "september"
-                     , "october", "november", "december"]
+                     , "october", "november", "december", "last_name"]
 
     popularity_table = pd.DataFrame(columns = table_columns)
 
@@ -49,7 +51,10 @@ def create_popularity_json(candidate_table, input_file, output_file):
 
         count_list = [counts[x] for x in range(1,13)]
 
-        row_values = [candidate] + count_list
+        full_name = return_data(candidate_table, "id", candidate, "name").split()
+        last_name = full_name[-1]
+
+        row_values = [candidate] + count_list + [last_name]
         one_row.loc[0] = row_values
         frames = [popularity_table, one_row]
         popularity_table = pd.concat(frames)
