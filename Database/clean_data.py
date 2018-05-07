@@ -181,18 +181,23 @@ def remove_irrelevant_articles(input_file, words, output_file):
         f.write(all_data.to_json(orient = "records"))
 
 def remove_duplicates(all_data):
+    all_data = all_data.sort_values(by=["articles_title", "candidate_fk"])
+    all_data = reorder_df(all_data)
     df_columns = list(all_data.columns.values)
     all_rows = []
-    for i in range(len(all_data)-1)
-        if (all_data["articles_title"][i] == all_data["articles_title"][i+1]) and (all_data["candidate_fk"][i] == all_data["candidate_fk"][i+1])):
+    for i in range(len(all_data)-1):
+        if (not ((all_data["articles_title"][i] == all_data["articles_title"][i+1]) and (all_data["candidate_fk"][i] == all_data["candidate_fk"][i+1]))):
             new_row = pd.DataFrame(columns = df_columns)
-            new_row.loc[0] = all_data.iloc[index]
+            new_row.loc[0] = all_data.iloc[i]
             all_rows.append(new_row)
-            continue
-        else:
-            print(row["articles_title"])
+        #else:
+        #    print(all_data["articles_title"][i])
+        #    print(all_data["articles_title"][i+1])
+        #    print(all_data["candidate_fk"][i], all_data["candidate_fk"][i+1])
 
     all_data = pd.concat(all_rows, ignore_index=True)
+
+    return all_data
 
 ## TODO: pass in folder name, and state names/ids to loop through files
 def structure_data(data_folder, state_data, all_candidates, candidate_table, source_table, output_file):
@@ -223,6 +228,10 @@ def structure_data(data_folder, state_data, all_candidates, candidate_table, sou
     all_data = reorder_df(all_data)
 
     all_data = get_candidate_fk(all_data, candidate_table)
+
+    all_data = remove_duplicates(all_data)
+
+    all_data = reorder_df(all_data)
 
     all_data = get_state_fk(all_data, candidate_table)
 
