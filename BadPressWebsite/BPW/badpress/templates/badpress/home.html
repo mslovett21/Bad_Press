@@ -5,7 +5,7 @@
 <body style="padding-top: 0px; ">
 
 <div id="containCenter" style="min-height: 100%;float: none; margin: 0 auto; padding-top: 70px;">
-	  <div id="background" style="background-repeat: no-repeat;"><img src="{% static 'img/test.png' %}"></div> 
+	  <div id="background" style="background-repeat: no-repeat;"><img src="{% static 'img/test.png' %}"></div>
 <!--Carousel Wrapper-->
 <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel";>
     <!--Slides-->
@@ -37,10 +37,17 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-						<input type="text" placeholder="Search by Candidate's Name..">
+          <form method="GET" action="">
+						<input type="text" name="q" placeholder="Search by Candidate's Name..." value="{{ request.GET.q }}">
+          </form>
+					{% if candidate %}
+						<a class="btn btn-outline-primary" href="{% url 'candidate' last_name=candidate.last_name %}">{{ candidate.first_name }} {{ candidate.last_name }}</a>
+					{% endif %}
 				</div>
 			</div>
 		</div>
+
+
 
 		<div id="usMap" class="fade-in point8" ></div>
 
