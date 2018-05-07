@@ -203,6 +203,22 @@ def remove_duplicates(all_data):
 
     return all_data
 
+def update_date(input_file, output_file):
+    article = pd.read_json(input_file)
+    #article.is_copy = False
+    pd.options.mode.chained_assignment = None  ## to allow references to original objects and not copies
+    for i in range(len(article)):
+        date=article["articles_date"][i]
+        date=date.split()
+        if (len(date[0])==1):
+            date[0]="0"+date[0]
+        if (len(date[1])==1):
+            date[1]="0"+date[1]
+        article["articles_date"][i]=date[2]+"-"+date[1]+"-"+date[0]
+
+    with open(output_file, 'w') as f:
+        f.write(article.to_json(orient = "records"))
+
 ## TODO: pass in folder name, and state names/ids to loop through files
 def structure_data(data_folder, state_data, all_candidates, candidate_table, source_table, output_file):
     ## create frames for each state
