@@ -11,12 +11,12 @@
     <!--Slides-->
     <div class="carousel-inner no-copy" role="listbox">
         <div class="carousel-item active">
-          <h2 style="text-align: center; color:white; text-shadow: 1px 1px 1px #000000;"> Discover the politicians who champion your cause.</h2>
-          <p class="fade-in point4" style="text-align: center; color: white;">Start by selecting a state holding a senate election.</p>
+          <h2 style="text-align: center; text-shadow: 1px 1px 1px #000000;"> Discover the politicians who champion your cause.</h2>
+          <p class="fade-in point4" style="text-align: center;">Start by selecting a state holding a senate election.</p>
         </div>
         <div class="carousel-item">
-        <h2 style="text-align:center; color:white; text-shadow: 1px 1px 1px #000000;">"The Ballot is Stronger than the Bullet. "</h2>
-        <p style="text-align: center; padding-left: 100px; color: white;">-ABRAHAM LINCOLN, speech, May 19, 1856</p>
+        <h2 style="text-align:center; text-shadow: 1px 1px 1px #000000;">"The Ballot is Stronger than the Bullet. "</h2>
+        <p style="text-align: center; padding-left: 100px;">-ABRAHAM LINCOLN, speech, May 19, 1856</p>
         </dir>
         </div>
     </div>
@@ -37,12 +37,47 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 mx-auto">
-          <form method="GET" action="">
-						<input type="text" name="q" placeholder="Search by Candidate's Name..." value="{{ request.GET.q }}">
-          </form>
-					{% if candidate %}
-						<a class="btn btn-outline-primary" href="{% url 'candidate' last_name=candidate.last_name %}">{{ candidate.first_name }} {{ candidate.last_name }}</a>
-					{% endif %}
+
+<input type="text" id="myInput" onkeyup="filterSearch()" placeholder="Search for names.." title="Type in a name">
+
+<ul id="myUL" style="position: absolute; list-style: none; z-index: 1;">
+{% for candidate in candidate_list %}
+  <li><a href="{% url 'candidate' last_name=candidate.last_name %}"> {{ candidate.name }}</a></li>
+ {% endfor %}
+</ul>
+<script>
+
+    var input, filter, ul, li, a;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+            li[i].style.display = "none";
+}
+
+function filterSearch() {
+    var input, filter, ul, li, a, limit;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    limit = 0;
+    for (i = 0; i < li.length && limit < 3; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (filter == '') { li[i].style.display ="none";}
+        else if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+            limit++;
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
+</script>
+
+
 				</div>
 			</div>
 		</div>

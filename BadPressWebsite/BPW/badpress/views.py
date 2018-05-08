@@ -13,18 +13,10 @@ def index(request):
 	# Render the HTML template index.html with the data in the context variable
 	queryset = Candidate.objects.all()
 
-	query = request.GET.get("q")
-	if query:
-		queryset = queryset.filter(name__icontains=query)
-
-	print(query)
-	name = queryset.first()
-	print(name)
-	print(name.last_name)
+	
 
 	context = {
 		"candidate_list": queryset,
-		"candidate": name,
 		#"text": text,
 	}
 

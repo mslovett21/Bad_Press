@@ -8,15 +8,17 @@
 	{% if article %}
 		{% if candidate %}
 		<div class="row">
-			<div class="col-md-3">
-				<div class="list-group">
-					<a href="#" class="list-group-item list-group-item-info"  class="white"  style="font-size: 18px; background:  #673ab7">
-						<center><font color="white"><strong>{{ article.candidate }}</strong></font> </center>
-					</a>
-					<div class="list-group-item "><center> <img src="{{ candidate.URL_photo }}" width="150" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "></center>
-					</div>
-				</div>
-			</div>
+    	  <div class="col-md-3">
+
+        	<div class="list-group">
+          		<a href="#" class="list-group-item list-group-item-info"  class="white"  style="font-size: 18px; background:  #673ab7">
+            	<center><font color="white"><strong> {{ candidate.state }} </strong> </font> </center>
+          		</a>
+          	<div class="list-group-item "><center> <img style="object-fit: contain;" src="{{ candidate.URL_photo }}" width="175" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "> </center>
+          	</div>
+        </div>
+
+      </div>
 			<div class="col-md-9">
 				<h2>{{ article.candidate }} on {{ article.issue }}</h2>
 				<br>
@@ -94,7 +96,7 @@ function RadialProgress(container,cfg){
 		}else{
 			if(this.spin&&!this.noAnimations)this.rot=(this.rot+0.07*this.animationSpeed)%(2*Math.PI)
 			c.arc(centerX,centerY,radius,this.rot-Math.PI/2, this.rot+this.aniP*(2*Math.PI)-Math.PI/2);
-			if(!this.noPercentage)this.text.innerHTML=Math.round({{ score }} *this.aniP)+" %";
+			if(!this.noPercentage)this.text.innerHTML=Math.round(100 *this.aniP)+" %"; //if greater than 1 (100%), output 100
 		}
 		c.stroke();
 		this.prevW=c.width; this.prevH=c.height; this.prevP=this.aniP;
@@ -115,7 +117,7 @@ RadialProgress.prototype={
 				</div>
 				<script>
 					var bar=new RadialProgress(document.getElementById("score"),{indeterminate:false,colorFg:"#1565d6",colorText:"#202020",thick:7,fixedTextSize:0.3});
-					bar.setValue({{ score }});
+					bar.setValue({{ score }}/100); 
 				</script>
 
 			</div>
