@@ -90,7 +90,7 @@ def reorder_df(all_data):
 
 def get_candidate_fk(all_data, candidate_table):
     candidate_ids = []
-    all_names = [x+" "+y for x,y in list(zip(all_data["first_name"].tolist(), all_data["last_name"].tolist()))]
+    all_names = [x+" "+y.replace("'","") for x,y in list(zip(all_data["first_name"].tolist(), all_data["last_name"].tolist()))]
     candidate_ids = [return_data(candidate_table, "name", x, "id") for x in all_names]
 
     all_data["candidate_fk"] = candidate_ids
@@ -99,7 +99,7 @@ def get_candidate_fk(all_data, candidate_table):
 def get_state_fk(all_data, candidate_table):
     state_ids = []
     all_candidate_ids = all_data["candidate_fk"].tolist()
-    state_ids = [return_data(candidate_table, "id", x, "state_fk") for x in all_candidate_ids]
+    state_ids = [return_data(candidate_table, "id", x, "state") for x in all_candidate_ids]
 
     all_data["state_fk"] = state_ids
     return all_data
