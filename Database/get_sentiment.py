@@ -83,6 +83,7 @@ def add_sentiment_to_candidate(input_file, candidate_file, output_file):
         for k1,v1 in v.items():
             if v1["count"] == 0:
                 v1["count"] = 1
+                #v1["summed"] = -1
 
     for i in range(len(candidate_table)):
         candidate_id = candidate_table["id"][i]
