@@ -11,7 +11,7 @@ from clean_data import return_data
 
 
 
-def find_categories_and_top_20(words_to_remove, candidate_info, input_file, output_file, output_file_values):
+def find_top_20(words_to_remove, candidate_info, input_file, output_file, output_file_values):
 
     all_data = pd.read_json(input_file)
 
@@ -111,3 +111,28 @@ def find_categories_and_top_20(words_to_remove, candidate_info, input_file, outp
 
     with open(output_file_values, 'w') as f:
         f.write(ids_for_words.to_json(orient = "records"))
+
+def add_category(tagged_data_file,input_file, output_file):
+    all_data = pd.read_json(input_file)
+
+    with open(tagged_data_file) as f:
+        content = f.readlines()
+    content = [x.strip() for x in content]
+
+    df_columns = list(all_data.columns.values)
+    all_rows = []
+    for i in range(len(all_data)):
+        tag = content[i].split()
+        tag = int(tag[1])
+        if tag > 0:
+            new_row = pd.DataFrame(columns = df_columns)
+            new_row.loc[0] = all_data.iloc[i]
+            if tag > 6:
+                tag = 6
+            new_row["issue"] = tag
+            all_rows.append(new_row)
+
+    all_data = pd.concat(all_rows, ignore_index=True)
+
+    with open(output_file, 'w') as f:
+        f.write(all_data.to_json(orient = "records"))
