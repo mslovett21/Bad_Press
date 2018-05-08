@@ -1,21 +1,215 @@
 {% extends "badpress/header.html" %}
-
+{% load static %}
 {% block content %}
 
+<div id="top" class="container-fluid">
+
+  <div class="topBox w3-animate-top" style="color: white; margin: auto;">
+ 			<h1> Here is what you can do with our website:</h1>
+	</div>
+	<div style="padding-bottom: 5vh;"> </div>
+
+	<div class="container-fluid" style="padding-bottom: 10vh; border-bottom: .01vw solid grey;" onclick="EPPZScrollTo.scrollVerticalToElementById('div1', 20);">
+		<div>
+		<div class="row">
+			<div class="col-lg-4" style="padding: 20px; border-right: .01vw solid grey;">
+				<div>
+				<h2 class="topBox"> Cross Search </h2>
+				<br>
+				<h3> Click on any of the bars in the key issues on the profile page, and start a cross search of articles between issue and candidate.</h3>
+				<h3> The following page will be a list of all articles with both. </h3>
+				<br>
+				<h3>  </h3>
+				</div>
+			</div>
+			<div class="col-lg-8 no-copy">
+				<div style="padding-top: 5vh; position: absolute;">
+					<div style=" background: white; border-radius: 15px 15px 0px 15px; border: 5px solid grey; padding: 10px; opacity: .9"> <h3>Click any bar!</h3> </div>
+				</div>
+				<div style="padding-top: 15vh; padding-left: 45vw; position: absolute;">
+					<div style=" background: white; border-radius: 15px 15px 15px 0px; border: 5px solid grey; padding: 20px; opacity: .9;"> <h3> Scores represent percentage of positive articles</h3> </div>
+				</div>
+				<div style="padding-top: 50vh; padding-left: 25vw; position: absolute;">
+					<div style=" background: white; border-radius:  15px 15px 15px 0px; border: 5px solid grey; padding: 20px; opacity: .9;"> <h3> Search for all articles here</h3> </div>
+				</div>
+
+				<center style="z-index:-1; padding-right: 70px; ">
+					<img src="{% static 'img/keyIssues.png' %}">
+				</center>
+			 </div>
+</div>
+</div>
+</div>
+
+	<div id="div1" class="container-fluid" style="padding-bottom: 10vh; padding-top: 10vh; border-bottom: .01vw solid grey;" onclick="EPPZScrollTo.scrollVerticalToElementById('div2', 20);">
+		<div>
+		<div class="row">
+			<div class="col-lg-4" style="padding: 20px; border-right: .01vw solid grey;">
+				<div>
+				<h2 class="topBox"> Buzz Watch </h2>
+				<br>
+				<h3> Keep an eye on your favorite candidate. </h3>
+				<br>
+				<h3> In this age of viral marketing, you can never disregard the power of buzz. Our popularity graph has a history of how often a candidate is mentioned in media. </h3>
+				</div>
+			</div>
+			<div class="col-lg-8 no-copy">
+				<div style="padding-top: 20vh; padding-left: 55vw; position: absolute;">
+					<div style=" background: white; border-radius: 15px 15px 15px 0px; border: 5px solid grey; padding: 10px; opacity: .9"> <h3>Hover over to see an exact number!</h3> </div>
+				</div>
+								<center style="z-index:-1; float: right; padding-right: 70px;">
+					<img src="{% static 'img/popGraph.png' %}">
+				</center>
+			 </div>
+</div>
+</div>
+</div>
+	<div id="div2" class="container-fluid" style="padding-bottom: 10vh; padding-top: 10vh; border-bottom: .01vw solid grey;" onclick="EPPZScrollTo.scrollVerticalToElementById('div3', 20);"> >
+		<div>
+		<div class="row">
+			<div class="col-lg-4" style="padding: 20px; border-right: .01vw solid grey;">
+				<div>
+				<h2 class="topBox"> News Feed </h2>
+				<br>
+				<h3> Keep up to date with our newsfeed, showcasing the latest articles we have on a candidate </h3>
+				<br>
+				<h3> Choosing to read more on an article will direct you to a summary and a sentiment score. Sentiment scores show how much of a positive (or negative) light is shown on a candidate. It can be a good litmus test of competency. </h3>
+				</div>
+			</div>
+			<div class="col-lg-8 no-copy">
+				<div style="position: absolute; background: white; border-radius: 15px; padding: 10px;"> </div>
+								<center style="z-index:-1; float: right; padding-right: 70px;">
+					<img src="{% static 'img/newsFeed.png' %}">
+				</center>
+			 </div>
+</div>
+</div>
+</div>
+
+	<div id="div3" class="container-fluid" style="padding-bottom: 10vh; padding-top: 10vh; border-bottom: .01vw solid grey;" onclick="EPPZScrollTo.scrollVerticalToElementById('top', 20);">
+		<div>
+		<div class="row">
+			<div class="col-lg-4" style="padding: 20px; border-right: .01vw solid grey;">
+				<div>
+				<h2 class="topBox"> Word Cloud </h2>
+				<br>
+				<h3> Look at the top 20 words associated with a candidate. </h3>
+				<br>
+				<h3> This cloud is generated based on the articles scrapped to our database. </h3>
+				</div>
+			</div>
+			<div class="col-lg-8 no-copy">
+				<div style="padding-top: 20vh; padding-left: 10vw; position: absolute;">
+					<div style="position: absolute; background: white; border-radius: 15px 15px 0px 15px; border: 5px solid grey; padding: 10px; opacity: .9;"> <h3> Size = frequency </h3> </div>
+				</div>
+								<center style="z-index:-1; float: right; padding-right: 70px;">
+					<img src="{% static 'img/cloud.png' %}">
+				</center>
+			 </div>
+</div>
+</div>
+</div>
 
 
-     
 
+<div style="padding: 10vw;"> <a href='#top'>Back to top</a></div>
 
+<script type="text/javascript">
+/**
+ *
+ * Created by Borbás Geri on 12/17/13
+ * Copyright (c) 2013 eppz! development, LLC.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ *
+ */
 
- <div class="container"  style="min-height: 100%;float: none; margin: 0 auto; padding-top: 60px">
+var EPPZScrollTo =
+{
+    /**
+     * Helpers.
+     */
+    documentVerticalScrollPosition: function()
+    {
+        if (self.pageYOffset) return self.pageYOffset; // Firefox, Chrome, Opera, Safari.
+        if (document.documentElement && document.documentElement.scrollTop) return document.documentElement.scrollTop; // Internet Explorer 6 (standards mode).
+        if (document.body.scrollTop) return document.body.scrollTop; // Internet Explorer 6, 7 and 8.
+        return 0; // None of the above.
+    },
 
- <div class="jumbotron">
-    <div class="row">
- <h2> TUTORIAL<h2>
+    viewportHeight: function()
+    { return (document.compatMode === "CSS1Compat") ? document.documentElement.clientHeight : document.body.clientHeight; },
 
+    documentHeight: function()
+    { return (document.height !== undefined) ? document.height : document.body.offsetHeight; },
 
+    documentMaximumScrollPosition: function()
+    { return this.documentHeight() - this.viewportHeight(); },
 
-	 </div>
+    elementVerticalClientPositionById: function(id)
+    {
+        var element = document.getElementById(id);
+        var rectangle = element.getBoundingClientRect();
+        return rectangle.top;
+    },
+
+    /**
+     * Animation tick.
+     */
+    scrollVerticalTickToPosition: function(currentPosition, targetPosition)
+    {
+        var filter = 0.2;
+        var fps = 60;
+        var difference = parseFloat(targetPosition) - parseFloat(currentPosition);
+
+        // Snap, then stop if arrived.
+        var arrived = (Math.abs(difference) <= 0.5);
+        if (arrived)
+        {
+            // Apply target.
+            scrollTo(0.0, targetPosition);
+            return;
+        }
+
+        // Filtered position.
+        currentPosition = (parseFloat(currentPosition) * (1.0 - filter)) + (parseFloat(targetPosition) * filter);
+
+        // Apply target.
+        scrollTo(0.0, Math.round(currentPosition));
+
+        // Schedule next tick.
+        setTimeout("EPPZScrollTo.scrollVerticalTickToPosition("+currentPosition+", "+targetPosition+")", (1000 / fps));
+    },
+
+    /**
+     * For public use.
+     *
+     * @param id The id of the element to scroll to.
+     * @param padding Top padding to apply above element.
+     */
+    scrollVerticalToElementById: function(id, padding)
+    {
+        var element = document.getElementById(id);
+        if (element == null)
+        {
+            console.warn('Cannot find element with id \''+id+'\'.');
+            return;
+        }
+
+        var targetPosition = this.documentVerticalScrollPosition() + this.elementVerticalClientPositionById(id) - padding;
+        var currentPosition = this.documentVerticalScrollPosition();
+
+        // Clamp.
+        var maximumScrollPosition = this.documentMaximumScrollPosition();
+        if (targetPosition > maximumScrollPosition) targetPosition = maximumScrollPosition;
+
+        // Start animation.
+        this.scrollVerticalTickToPosition(currentPosition, targetPosition);
+    }
+};
+</script>
+
 </div>
 {% endblock %}

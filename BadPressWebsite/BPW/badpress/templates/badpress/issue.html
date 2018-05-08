@@ -1,5 +1,5 @@
 {% extends "badpress/header.html" %}
-
+{% load static %}
 {% block content %}
 
 {% for article in articles|slice:":1" %}
@@ -14,19 +14,18 @@
 	});
 </script>
 
-
-
-<div class="container"  style="min-height: 100%;float: none; margin: 0 auto;">
-	<!--Carousel Wrapper-->
-	<div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel">
-		<!--Slides-->
+<div class="container"  style="min-height: 100%; float: none; margin: auto;">
+	<!--<div id="background" class="stretch"><img src="{% static 'img/newspaper.jpg' %}"></div>-->
+	<!--Carousel Wrapper, static size-->
+	<div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel" style="width: 39.14vw; height: 45.00vh; margin: auto; background: white; padding-bottom: 20vh;">
+		<!--Slides, Aspect Ratio: 11:6-->
 		<div class="carousel-inner" role="listbox">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="{{ issue.URL_logo }}" style="width: 500px; height:340px" alt="First slide">
+				<img class="d-block w-100" src="{{ issue.URL_logo }}" style="width: 100%; height:54.54%;" alt="First slide">
 			</div>
-			<div class="carousel-item">
-				<div class="jumbotron">
-					<h1> {{ issue.name }}</h1>
+			<div class="carousel-item pre-scrollable" style="width:100%; height:100%; padding: 20px; background: white;">
+				<div>
+					<h1 class="topBox"> {{ issue.name }}</h1>
 					<p>{{ issue.info }} </p>
 				</div>
 			</dir>
@@ -48,9 +47,10 @@
 		<li data-target="#carousel-thumb" data-slide-to="1"><img class="d-block w-100" src="" class="img-fluid"></li>
 
 	</ol>
-</div>
 <!--/.Carousel Wrapper-->
+</div>
 
+<br>
 <br>
 
 <div class="row">					 

@@ -7,7 +7,7 @@
 <!--Profile Container-->
 <div class="container" style="background: white; padding:30px;">
 
-  <div class="jumbotron">
+  <div class="jumbotron narrow">
     <div class="row">
 <!--Candiate Header-->
       <div class="col-md-9">
@@ -27,7 +27,7 @@
           <a href="#" class="list-group-item list-group-item-info"  class="white"  style="font-size: 18px; background:  #673ab7">
             <center><font color="white"><strong> {{ candidate.state }} </strong> </font> </center>
           </a>
-          <div class="list-group-item "><center> <img src="{{ candidate.URL_photo }}" width="130" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "> </center>
+          <div class="list-group-item "><center> <img style="object-fit: contain;" src="{{ candidate.URL_photo }}" width="175" height="150" alt="candidate-picture" align="center"  data-toggle="tooltip" data-placement="left" title=" Candidate Picture" style="margin-bottom: 3px; margin-top: 3px; "> </center>
           </div>
         </div>
 
@@ -41,7 +41,7 @@
 
         <h2 class="topBox">Key Issues</h2>
 
-      <div class="jumbotron" style="margin-top:-7px;">
+      <div class="jumbotron narrow" style="margin-top:-7px;">
         <a href="{% url 'issue' id=1 last_name=candidate.last_name %}">
           <span id="animatedU" style="padding-top:20px;"> Environment: </span>
           <div id="bars">
@@ -130,16 +130,14 @@
 <!--MDB Line Chart-->
 <div class="col-md-6">
           <h2 class="topBox">Popularity</h2>
-      <div class="jumbotron" style="background-color: white; margin-top: -7px;
-      ">
-        <p>April 2017- March 2018 </p>
-        <div id = "chart"></div>
+      <div class="jumbotron narrow" style="background-color: white; margin-top: -7px;">
+        <p style="padding-top: 4vh;">April 2017- March 2018 </p>
+        <div id = "chart" style="padding-bottom: 4vh;"></div>
 
         <canvas id="lineChart" style="background-color: white"></canvas>
 
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
-        <script></script>
 <script>
 var ctxL = document.getElementById("lineChart").getContext('2d');
 var myLineChart = new Chart(ctxL, {
@@ -208,7 +206,7 @@ var myLineChart = new Chart(ctxL, {
   <!--Word Cloud-->
     <div class="col-md-6">
       <h2 class="topBox"> Cloud </h2>
-      <div class="jumbotron" style="margin-top: -7px;">
+      <div class="jumbotron narrow" style="margin-top: -7px;">
         <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 <script type="text/javascript">
 // Word cloud layout by Jason Davies, http://www.jasondavies.com/word-cloud/
