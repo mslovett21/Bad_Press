@@ -189,6 +189,7 @@ ARTICLES_UP_TO_DATE   = True
 
 
 
+
 statelist = []
 candidatelist = []
 issue_list =[]
@@ -291,7 +292,7 @@ else:
 if POPULARITY_UP_TO_DATE:
     pass
 else:
-    with open("popularity2.csv", "r" ) as source:
+    with open("popularity.csv", "r" ) as source:
         for line in source:
             line = line.strip()
             line = line.split(',')
@@ -328,7 +329,7 @@ else:
 if CLOUD_UP_TO_DATE:
     pass
 else:
-    with open("cloud2.csv", "r" ) as source:
+    with open("cloud.csv", "r" ) as source:
         for line in source:
             line = line.strip()
             line = line.split(',')
@@ -382,7 +383,7 @@ if ARTICLES_UP_TO_DATE:
 else:
     i=0
     j_article=1
-    with open("articles4.csv", "r" ) as articles:
+    with open("articles.csv", "r" ) as articles:
             for line in articles:
                 line = line.strip()
                 line = line.split('\t')
