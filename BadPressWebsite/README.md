@@ -1,7 +1,9 @@
 
 ## To get it running
 ### Required Resources
-* Django
+* Install Python
+* Set up a database
+* Install Django
 
 Run Server
 ```python
