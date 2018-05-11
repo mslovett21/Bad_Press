@@ -127,7 +127,7 @@ def add_category(tagged_data_file,input_file, output_file):
         if tag > 0:
             new_row = pd.DataFrame(columns = df_columns)
             new_row.loc[0] = all_data.iloc[i]
-            if tag in [6,7]:
+            if tag in [3,6,7]:
                 tag = 6
             new_row["issue"] = tag
             all_rows.append(new_row)

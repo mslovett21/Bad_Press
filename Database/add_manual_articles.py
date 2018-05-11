@@ -94,7 +94,7 @@ names = ["copley", "newbrough", "swearengin", "freitas", "jackson", "waters","wi
 
 def add_manual(output_file):
     all_rows = []
-    original_data = pd.read_json("set_2_data/ALL_DATA.json")
+    original_data = pd.read_json("scraped_data_0.json")
     df_columns = list(original_data.columns.values)
     df_columns.append("issue")
 

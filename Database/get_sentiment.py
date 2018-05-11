@@ -66,7 +66,7 @@ def add_sentiment_to_candidate(input_file, candidate_file, output_file):
 
     issue_count = {}
     for i in range(len(candidate_table)):
-        issue_count[candidate_table["id"][i]] = {1:{"summed":0,"count":0},2:{"summed":0,"count":0},3:{"summed":0,"count":0},4:{"summed":0,"count":0},5:{"summed":0,"count":0},8:{"summed":0,"count":0}}
+        issue_count[candidate_table["id"][i]] = {1:{"summed":0,"count":0},2:{"summed":0,"count":0},3:{"summed":0,"count":0},5:{"summed":0,"count":0},8:{"summed":0,"count":0}}
 
     all_data = pd.read_json(input_file)
 
@@ -75,7 +75,7 @@ def add_sentiment_to_candidate(input_file, candidate_file, output_file):
         category = all_data["issue"][i]
         sentiment = all_data["sentiment_score"][i]
 
-        if category not in [6,7]:
+        if category in [1,2,3,5,8]:
             issue_count[candidate_id][category]["summed"] += sentiment
             issue_count[candidate_id][category]["count"] += 1
 
@@ -97,14 +97,12 @@ def add_sentiment_to_candidate(input_file, candidate_file, output_file):
         average3 = issue_count[candidate_id][3]["summed"] / issue_count[candidate_id][3]["count"]
         candidate_table["score_issue_3"][i] = int(average3)
 
-        average4 = issue_count[candidate_id][4]["summed"] / issue_count[candidate_id][4]["count"]
+        average4 = issue_count[candidate_id][8]["summed"] / issue_count[candidate_id][8]["count"]
         candidate_table["score_issue_4"][i] = int(average4)
 
         average5 = issue_count[candidate_id][5]["summed"] / issue_count[candidate_id][5]["count"]
         candidate_table["score_issue_5"][i] = int(average5)
 
-        average6 = issue_count[candidate_id][8]["summed"] / issue_count[candidate_id][8]["count"]
-        candidate_table["score_issue_6"][i] = int(average6)
 
     with open(output_file, 'w') as f:
         f.write(candidate_table.to_json(orient = "records"))
