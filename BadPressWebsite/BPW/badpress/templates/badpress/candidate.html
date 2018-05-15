@@ -71,10 +71,10 @@
 
 
         <a href="{% url 'issue' id=4 last_name=candidate.last_name %}">
-         <span id="animatedU"> Education: </span>
+         <span id="animatedU"> Election: </span>
           <div id="bars">
             <div class="w3-border">
-              <div id="Education" class="w3-purple w3-center innerBar"></div>
+              <div id="Election" class="w3-purple w3-center innerBar"></div>
             </div>
           </div>
         </a>
@@ -98,15 +98,15 @@
 
 <script type="text/javascript">
   function move(name, fin) {
-  var elem = document.getElementById(name);   
+  var elem = document.getElementById(name);
   var width = 0;
   var id = setInterval(frame, 3); //lower is faster
   function frame() {
     if (width >= fin) {
       clearInterval(id);
     } else {
-      width++; 
-      elem.style.width = width + '%'; 
+      width++;
+      elem.style.width = width + '%';
       elem.innerHTML = width * 1  + '%';
     }
   }
@@ -117,7 +117,7 @@
           $(document).ready(function () {
           move("Environment", {{ candidate.score_issue_1 }});
           move("Gun Control", {{ candidate.score_issue_2 }});
-          move("Education",   {{ candidate.score_issue_3 }});
+          move("Election",    {{ candidate.score_issue_3 }});
           move("Immigration", {{ candidate.score_issue_4 }});
           move("Health Care", {{ candidate.score_issue_5 }});
         });
@@ -154,7 +154,7 @@ var myLineChart = new Chart(ctxL, {
       pointHighlightFill: "#fff",
       pointHighlightStroke: "rgba(220,220,220,1)",
       data: [{{ popularity.april }}, {{ popularity.may }}, {{ popularity.june }},
-       {{ popularity.july }}, {{ popularity.august }}, {{ popularity.september }}, {{ popularity.october }}, 
+       {{ popularity.july }}, {{ popularity.august }}, {{ popularity.september }}, {{ popularity.october }},
        {{ popularity.november }}, {{ popularity.december }}, {{ popularity.january }},
        {{ popularity.february }},{{ popularity.march }}]
     }
