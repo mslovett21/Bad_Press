@@ -169,7 +169,7 @@ class Popularity(models.Model):
     february = models.IntegerField()
     march = models.IntegerField()
 
-
+'''
 STATES_UP_TO_DATE     = False
 SOURCES_UP_TO_DATE    = False
 ISSUES_UP_TO_DATE     = False
@@ -187,7 +187,7 @@ POPULARITY_UP_TO_DATE = True
 CLOUD_UP_TO_DATE      = True
 ARTICLES_UP_TO_DATE   = True
 
-'''
+
 
 
 statelist = []
