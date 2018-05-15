@@ -77,6 +77,8 @@ def issue(request, id, last_name):
 	try:
 		if int(id) <7:
 			issueS = Issue.objects.get(issue_id=id)
+			print(issueS)
+			print(id)
 			article = Article.objects.filter(candidate=candidateS).filter(issue=issueS)
 			issue = Issue.objects.get(issue_id=id)
 		else:
