@@ -13,7 +13,7 @@ def index(request):
 	# Render the HTML template index.html with the data in the context variable
 	queryset = Candidate.objects.all()
 
-	
+
 
 	context = {
 		"candidate_list": queryset,
