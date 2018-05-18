@@ -1,4 +1,7 @@
-# Good Press/Bad Press
+# Bad Press
+
+## MAIN PAGE
+![Image of Website Mockup](https://github.com/mslovett21/Bad_Press/blob/master/screenshots/main.png)
 ## SCOPE OF THE PROJECT (UPDATED):
 - We will use 3 sources of articles: NYT, CNN and FoxNews
 - We will gather all informations for the following 3 states: Virginia, West Virginia, Texas
