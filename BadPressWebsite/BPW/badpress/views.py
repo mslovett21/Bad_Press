@@ -75,12 +75,12 @@ def issue(request, id, last_name):
 		raise Http404("Candidate does not exist")
 
 	try:
-		if int(id) <7:
-			issueS = Issue.objects.get(issue_id=id)
+		if int(id) < 7:
+			issueS = Issue.objects.get(issue_id = id)
 			print(issueS)
 			print(id)
 			article = Article.objects.filter(candidate=candidateS).filter(issue=issueS)
-			issue = Issue.objects.get(issue_id=id)
+			issue = Issue.objects.get(issue_id = id)
 		else:
 			article = Article.objects.filter(candidate=candidateS)
 			issue = Issue.objects.get(issue_id=6)
