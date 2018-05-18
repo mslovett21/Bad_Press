@@ -190,7 +190,6 @@ ARTICLES_UP_TO_DATE   = True
 
 
 
-
 statelist = []
 candidatelist = []
 issue_list =[]
