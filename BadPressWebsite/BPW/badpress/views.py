@@ -91,6 +91,7 @@ def issue(request, id, last_name):
 	try:
 
 		source= Source.objects.all()
+		print(source)
 	except Source.DoesNotExist:
 		raise Http404("Source does not exist")
 

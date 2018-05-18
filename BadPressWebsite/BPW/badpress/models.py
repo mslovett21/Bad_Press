@@ -169,7 +169,7 @@ class Popularity(models.Model):
     february = models.IntegerField()
     march = models.IntegerField()
 
-'''
+
 STATES_UP_TO_DATE     = False
 SOURCES_UP_TO_DATE    = False
 ISSUES_UP_TO_DATE     = False
@@ -186,7 +186,7 @@ CANDIDATE_UP_TO_DATE  = True
 POPULARITY_UP_TO_DATE = True
 CLOUD_UP_TO_DATE      = True
 ARTICLES_UP_TO_DATE   = True
-
+'''
 
 
 
@@ -423,8 +423,10 @@ else:
                         source_object=source_list[0]
                     elif source_fk == 2:
                         source_object=source_list[1]
-                    else:
+                    elif source_fk == 3:
                         source_object=source_list[2]
+                    else:
+                        source_object=source_list[3]
                     if candi_fk==1:
                         candi_object=candidatelist[0]
                     elif candi_fk==2:
